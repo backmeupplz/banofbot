@@ -9,3 +9,9 @@ This repository contains the code for the democracy bots I've built. Readme is s
 5. Run `npm run start`
 
 And you should be good to go! Feel free to fork and submit pull requests. Thanks!
+
+# Continuous integration
+Any commit pushed to master gets deployed to both @banofbot and @silent_banofbot via [CI Ninja](https://github.com/backmeupplz/ci-ninja).
+
+# License
+MIT — use for any purpose. Would be great if you could leave a note about the original developers. Thanks!
