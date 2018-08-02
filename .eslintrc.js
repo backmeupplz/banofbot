@@ -14,6 +14,7 @@ module.exports = {
     "no-console": ["error", { allow: ["info"] }],
     "global-require": 0,
     "no-param-reassign": 0,
+    "no-restricted-syntax": 0,
   }
 };
 

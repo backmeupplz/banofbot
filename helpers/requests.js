@@ -15,71 +15,59 @@ const admins = require('./admins');
  * @param {Telegram:Bot} bot Bot that should respond
  * @param {Telegram:Message} msg Message to start ban request
  */
-function startRequest(bot, msg) {
-  const p = db.findChat(msg.chat)
-    .then(chat =>
-      db.findUser(msg.from)
-        .then(starter =>
-          db.findUser(msg.reply_to_message.from)
-            .then(candidate => ({ chat, starter, candidate }))))
-    .then(({ chat, starter, candidate }) =>
-      admins.isBotAdmin(bot, chat.id)
-        .then((isBotAdmin) => {
-          if (!isBotAdmin) {
-            sendAdminError(bot, chat);
-            p.cancel();
-          }
-          return ({ chat, starter, candidate });
-        }))
-    .then(({ chat, starter, candidate }) =>
-      admins.isAdmin(bot, chat.id, candidate.id)
-        .then((isAdmin) => {
-          if (isAdmin) {
-            p.cancel();
-          }
-          return ({ chat, starter, candidate });
-        }))
-    .then(({ chat, starter, candidate }) => {
-      if (candidate.username === 'banofbot') {
-        p.cancel();
-      }
-      return ({ chat, starter, candidate });
-    })
-    .then(({ chat, starter, candidate }) => {
-      const mockRequest = {
-        reply_chat_id: msg.reply_to_message.chat.id,
-        reply_message_id: msg.reply_to_message.message_id,
-        chat,
-        candidate,
-        starter,
-        voters_ban: [starter],
-      };
-      return db.createRequest(mockRequest);
-    })
-    .then((request) => {
-      const strings = require('./strings')();
-      strings.setChat(request.chat);
+async function startRequest(bot, msg) {
+  const chat = await db.findChat(msg.chat);
+  const starter = await db.findUser(msg.from);
+  const candidate = await db.findUser(msg.reply_to_message.from);
 
-      const text = strings.translate('$[1] would like to kick $[2]. Do you agree?', request.starter.name(), request.candidate.name());
-      const options = {
-        reply_markup: {
-          inline_keyboard:
-            kickKeyboard(1,
-              0,
-              request._id,
-              strings,
-              request.chat.required_voters_count) },
-      };
-      options.reply_markup = JSON.stringify(options.reply_markup);
-      return bot.sendMessage(request.chat.id, text, options)
-        .then(data => ({ request, data }));
-    })
-    .then(({ request, data }) => {
-      request.inline_chat_id = data.chat.id;
-      request.inline_message_id = data.message_id;
-      return request.save();
-    })
-    .catch(/** todo: handle error */);
+  const isBotAdmin = await admins.isBotAdmin(bot, chat.id);
+  if (!isBotAdmin) {
+    sendAdminError(bot, chat);
+    return;
+  }
+
+  const isCandidateAdmin = await admins.isAdmin(bot, chat.id, candidate.id);
+  if (isCandidateAdmin) {
+    return;
+  }
+
+  if (candidate.username === 'banofbot') {
+    return;
+  }
+
+  const mockRequest = {
+    reply_chat_id: msg.reply_to_message.chat.id,
+    reply_message_id: msg.reply_to_message.message_id,
+    chat,
+    candidate,
+    starter,
+    voters_ban: [starter],
+  };
+  const request = await db.createRequest(mockRequest);
+
+  const strings = require('./strings')();
+  strings.setChat(request.chat);
+
+  const starterName = await request.starter.realNameWithMarkdown(bot, chat.id);
+  const candidateName = await request.candidate.realNameWithMarkdown(bot, chat.id);
+
+  const text = strings.translate('$[1] would like to kick $[2]. Do you agree?', starterName, candidateName);
+  const options = {
+    parse_mode: 'Markdown',
+    reply_markup: {
+      inline_keyboard:
+        kickKeyboard(1,
+          0,
+          request._id,
+          strings,
+          request.chat.required_voters_count) },
+  };
+  options.reply_markup = JSON.stringify(options.reply_markup);
+  const data = await bot.sendMessage(request.chat.id, text, options);
+
+  request.inline_chat_id = data.chat.id;
+  request.inline_message_id = data.message_id;
+  await request.save();
 }
 
 /**
@@ -87,51 +75,45 @@ function startRequest(bot, msg) {
  * @param {Telegram:Bot} bot Bot that should respond
  * @param {Teleram:Message} msg Message that triggered inline
  */
-function voteQuery(bot, msg) {
+async function voteQuery(bot, msg) {
   const options = msg.data.split('~');
   const requestId = options[1];
   const against = parseInt(options[2], 10) === 1;
 
-  const p = db.findRequest(requestId)
-    .populate('chat candidate starter voters_ban voters_noban')
-    .then(request =>
-      db.findUser(msg.from)
-        .then(voter => ({ request, voter })))
-    .then(({ request, voter }) => {
-      const strings = require('./strings')();
-      strings.setChat(request.chat);
+  let request = await db.findRequest(requestId)
+    .populate('chat candidate starter voters_ban voters_noban');
+  const voter = await db.findUser(msg.from);
 
-      if (against) {
-        const alreadyThere = _.find(request.voters_noban,
-          arrayVoter => arrayVoter._id.equals(voter._id));
-        if (alreadyThere) {
-          p.cancel();
-          return bot.answerCallbackQuery(msg.id, {
-            text: strings.translate('You have already voted for 👼'),
-            show_alert: true,
-          });
-        }
-        request.voters_ban = request.voters_ban.filter(
-          arrayVoter => !arrayVoter._id.equals(voter._id));
-        request.voters_noban.push(voter);
-      } else {
-        const alreadyThere = _.find(request.voters_ban,
-          arrayVoter => arrayVoter._id.equals(voter._id));
-        if (alreadyThere) {
-          p.cancel();
-          return bot.answerCallbackQuery(msg.id, {
-            text: strings.translate('You have already voted for 🔫'),
-            show_alert: true,
-          });
-        }
-        request.voters_noban = request.voters_noban.filter(
-          arrayVoter => !arrayVoter._id.equals(voter._id));
-        request.voters_ban.push(voter);
-      }
-      return request.save();
-    })
-    .then(request => updateMessage(bot, request))
-    .catch(/** todo: handle error */);
+  const strings = require('./strings')();
+  strings.setChat(request.chat);
+
+  if (against) {
+    const alreadyThere = _.find(request.voters_noban,
+      arrayVoter => arrayVoter._id.equals(voter._id));
+    if (alreadyThere) {
+      return await bot.answerCallbackQuery(msg.id, {
+        text: strings.translate('You have already voted for 👼'),
+        show_alert: true,
+      });
+    }
+    request.voters_ban = request.voters_ban.filter(
+      arrayVoter => !arrayVoter._id.equals(voter._id));
+    request.voters_noban.push(voter);
+  } else {
+    const alreadyThere = _.find(request.voters_ban,
+      arrayVoter => arrayVoter._id.equals(voter._id));
+    if (alreadyThere) {
+      return await bot.answerCallbackQuery(msg.id, {
+        text: strings.translate('You have already voted for 🔫'),
+        show_alert: true,
+      });
+    }
+    request.voters_noban = request.voters_noban.filter(
+      arrayVoter => !arrayVoter._id.equals(voter._id));
+    request.voters_ban.push(voter);
+  }
+  request = await request.save();
+  return await updateMessage(bot, request);
 }
 
 /**
@@ -139,18 +121,22 @@ function voteQuery(bot, msg) {
  * @param {Telegram:Bot} bot Bot that should respond
  * @param {Mongoose:Request} request Request whos message to be updated
  */
-function updateMessage(bot, request) {
+async function updateMessage(bot, request) {
   const finished =
     request.voters_noban.length >= request.chat.required_voters_count ||
     request.voters_ban.length >= request.chat.required_voters_count;
   if (finished) {
-    return finishRequest(bot, request);
+    return await finishRequest(bot, request);
   }
   const strings = require('./strings')();
   strings.setChat(request.chat);
 
-  const text = strings.translate('$[1] would like to kick $[2]. Do you agree?', request.starter.name(), request.candidate.name());
+  const starterName = await request.starter.realNameWithMarkdown(bot, request.chat.id);
+  const candidateName = await request.candidate.realNameWithMarkdown(bot, request.chat.id);
+
+  const text = strings.translate('$[1] would like to kick $[2]. Do you agree?', starterName, candidateName);
   const options = {
+    parse_mode: 'Markdown',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
     reply_markup: {
@@ -164,7 +150,7 @@ function updateMessage(bot, request) {
   };
   options.reply_markup = JSON.stringify(options.reply_markup);
 
-  return bot.editMessageText(text, options);
+  return await bot.editMessageText(text, options);
 }
 
 /**
@@ -172,20 +158,33 @@ function updateMessage(bot, request) {
  * @param {Telegram:Bot} bot Bot that should respond
  * @param {Mongoose:Request} request Request to be finalized
  */
-function finishRequest(bot, request) {
+async function finishRequest(bot, request) {
   const strings = require('./strings')();
   strings.setChat(request.chat);
 
   const saved = request.voters_noban.length >= request.chat.required_voters_count;
   let voters;
   if (saved) {
-    voters = request.voters_noban.map(v => v.name()).join(', ');
+    const votersArray = [];
+    for (const voter of request.voters_noban) {
+      const realName = await voter.realNameWithMarkdown(bot, request.chat.id);
+      votersArray.push(realName);
+    }
+    voters = votersArray.join(', ');
   } else {
-    voters = request.voters_ban.map(v => v.name()).join(', ');
+    const votersArray = [];
+    for (const voter of request.voters_ban) {
+      const realName = await voter.realNameWithMarkdown(bot, request.chat.id);
+      votersArray.push(realName);
+    }
+    voters = votersArray.join(', ');
   }
+
+  const candidateName = await request.candidate.realNameWithMarkdown(bot, request.chat.id);
+
   const text = saved ?
-    strings.translate('👼 $[1] has been saved — no kick for you this time.\n\nVoters who chose to save:\n$[2]', request.candidate.name(), voters) :
-    strings.translate('🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]', request.candidate.name(), voters);
+    strings.translate('👼 $[1] has been saved — no kick for you this time.\n\nVoters who chose to save:\n$[2]', candidateName, voters) :
+    strings.translate('🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]', candidateName, voters);
 
   if (!saved) {
     bot.kickChatMember(request.chat.id, request.candidate.id);
@@ -195,6 +194,7 @@ function finishRequest(bot, request) {
   }
 
   const options = {
+    parse_mode: 'Markdown',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
   };

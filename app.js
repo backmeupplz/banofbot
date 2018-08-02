@@ -14,7 +14,6 @@ const bot = require('./helpers/bot');
 const mongoose = require('mongoose');
 const config = require('./config');
 const db = require('./helpers/db');
-const botan = require('botanio')(config.botan);
 const language = require('./helpers/language');
 const help = require('./helpers/help');
 const lock = require('./helpers/lock');
@@ -128,7 +127,11 @@ function handle(msg) {
       })
       .catch(/** todo: handle error */);
   } else if (isReply) {
-    requests.startRequest(bot, msg);
+    try {
+      requests.startRequest(bot, msg);
+    } catch (err) {
+      // Do nothing
+    }
   }
 }
 
@@ -138,7 +141,11 @@ bot.on('callback_query', (msg) => {
   if (inline === 'li') {
     language.setLanguage(bot, msg);
   } else if (inline === 'vi') {
-    requests.voteQuery(bot, msg);
+    try {
+      requests.voteQuery(bot, msg);
+    } catch (err) {
+      // Do nothing
+    }
   } else if (inline === 'lti') {
     limit.setLimit(bot, msg);
   }

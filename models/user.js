@@ -21,13 +21,24 @@ const userSchema = new Schema({
   username: String,
 }, { timestamps: true });
 
-userSchema.methods.name = function () {
+userSchema.methods.name = function name() {
   if (this.username) {
     return `@${this.username}`;
   } else if (this.last_name) {
     return `${this.first_name} ${this.last_name}`;
   }
   return this.first_name;
+};
+
+userSchema.methods.realNameWithMarkdown = function realNameWithMarkdown(bot, chatId) {
+  return bot.getChatMember(chatId, this.id)
+    .then((res) => {
+      const user = res.user;
+      if (user.username) {
+        return `[@${user.username}](tg://tg://user?id=${user.id})`;
+      }
+      return `[${user.first_name}${user.last_name ? ` ${user.last_name}` : ''}](tg://tg://user?id=${user.id})`;
+    });
 };
 
 /** Exports */
