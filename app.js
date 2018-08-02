@@ -57,25 +57,7 @@ bot.on('message', (msg) => {
     return;
   }
   handle(msg);
-  analytics(msg);
 });
-
-/**
- * Function to send analytics to botan.io
- * @param {Telegram:Message} msg Message to track
- */
-function analytics(msg) {
-  if (msg.entities && msg.entities[0] && msg.entities[0].type === 'bot_command') {
-    const commandList = ['help', 'language', 'lock', 'limit'];
-    commandList.forEach((command) => {
-      if (msg.text && msg.text.includes(command)) {
-        botan.track(msg, command);
-      }
-    });
-  } else {
-    botan.track(msg, 'message');
-  }
-}
 
 /**
  * Used to handle incoming message
@@ -116,6 +98,7 @@ function handle(msg) {
           admins.isAdmin(bot, chat.id, msg.from.id)
             .then((isAdmin) => {
               if (!isAdmin) {
+                bot.deleteMessage(msg.chat.id, msg.message_id);
                 return;
               }
               if (msg.text.includes('start')) {
