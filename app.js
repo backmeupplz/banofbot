@@ -69,7 +69,6 @@ function handle(msg) {
   if (msg.text && msg.text.includes('@') && !msg.text.includes('banofbot')) {
     return;
   }
-  console.log(msg);
   const isPrivateChat = msg.chat.type === 'private' || msg.chat.type === 'channel';
   const isCommand = msg.text && msg.entities && msg.entities[0] && msg.entities[0].type === 'bot_command';
   const isEntry = (msg.new_chat_participant && msg.new_chat_participant.username === 'banofbot') || msg.group_chat_created;
