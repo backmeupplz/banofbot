@@ -34,5 +34,14 @@ if (config.should_use_webhooks) {
   console.info('Telegram is using polling');
 }
 
+bot.on('polling_error', () => {
+  this.bot.stopPolling({ cancel: true })
+    .then(() => {
+      setTimeout(() => {
+        bot.startPolling();
+      }, 1 * 1000);
+    })
+});
+
 /** Exports */
 module.exports = bot;
