@@ -20,6 +20,7 @@ const lock = require('./helpers/lock');
 const requests = require('./helpers/requests');
 const admins = require('./helpers/admins');
 const limit = require('./helpers/limit');
+const newcomers = require('./helpers/filterNewcomers');
 
 global.Promise = require('bluebird');
 
@@ -95,43 +96,37 @@ function handle(msg) {
             if (!isPrivateChat) {
               lock.toggle(bot, chat);
             }
+          } else if (msg.text.includes('filterNewcomers')) {
+            if (!isPrivateChat) {
+              newcomers.toggle(bot, chat);
+            }
           }
         } else {
           admins.isAdmin(bot, chat.id, msg.from.id)
             .then((isAdmin) => {
               if (msg.text.includes('start')) {
-                if (!isAdmin) {
-                  bot.deleteMessage(msg.chat.id, msg.message_id);
-                  return;
-                }
+                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
                 language.sendLanguage(bot, chat, false);
               } else if (msg.text.includes('help')) {
-                if (!isAdmin) {
-                  bot.deleteMessage(msg.chat.id, msg.message_id);
-                  return;
-                }
+                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
                 help.sendHelp(bot, chat);
               } else if (msg.text.includes('language')) {
-                if (!isAdmin) {
-                  bot.deleteMessage(msg.chat.id, msg.message_id);
-                  return;
-                }
+                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
                 language.sendLanguage(bot, chat, true);
               } else if (msg.text.includes('limit')) {
-                if (!isAdmin) {
-                  bot.deleteMessage(msg.chat.id, msg.message_id);
-                  return;
-                }
                 if (!isPrivateChat) {
-                  if (!isAdmin) {
-                    bot.deleteMessage(msg.chat.id, msg.message_id);
-                    return;
-                  }
+                  if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
                   limit.sendLimit(bot, chat);
                 }
               } else if (msg.text.includes('lock')) {
+                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
                 if (!isPrivateChat) {
                   lock.toggle(bot, chat);
+                }
+              } else if (msg.text.includes('filterNewcomers')) {
+                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
+                if (!isPrivateChat) {
+                  newcomers.toggle(bot, chat);
                 }
               }
             })
