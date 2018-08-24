@@ -38,10 +38,8 @@ bot.on('polling_error', () => {
     .then(() => {
       setTimeout(() => {
         console.log('Restart polling on error');
-        bot = new Telegram(config.token, {
-          polling: true,
-        });
-      }, 1 * 1000);
+        bot.startPolling();
+      }, 60 * 1000);
     })
 });
 
