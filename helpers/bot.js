@@ -38,6 +38,7 @@ bot.on('polling_error', () => {
   this.bot.stopPolling({ cancel: true })
     .then(() => {
       setTimeout(() => {
+        console.log('Restart polling on error');
         bot.startPolling();
       }, 1 * 1000);
     })
