@@ -35,7 +35,7 @@ if (config.should_use_webhooks) {
 }
 
 bot.on('polling_error', () => {
-  this.bot.stopPolling({ cancel: true })
+  bot.stopPolling({ cancel: true })
     .then(() => {
       setTimeout(() => {
         console.log('Restart polling on error');
