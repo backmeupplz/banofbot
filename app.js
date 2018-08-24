@@ -99,18 +99,34 @@ function handle(msg) {
         } else {
           admins.isAdmin(bot, chat.id, msg.from.id)
             .then((isAdmin) => {
-              if (!isAdmin) {
-                bot.deleteMessage(msg.chat.id, msg.message_id);
-                return;
-              }
               if (msg.text.includes('start')) {
+                if (!isAdmin) {
+                  bot.deleteMessage(msg.chat.id, msg.message_id);
+                  return;
+                }
                 language.sendLanguage(bot, chat, false);
               } else if (msg.text.includes('help')) {
+                if (!isAdmin) {
+                  bot.deleteMessage(msg.chat.id, msg.message_id);
+                  return;
+                }
                 help.sendHelp(bot, chat);
               } else if (msg.text.includes('language')) {
+                if (!isAdmin) {
+                  bot.deleteMessage(msg.chat.id, msg.message_id);
+                  return;
+                }
                 language.sendLanguage(bot, chat, true);
               } else if (msg.text.includes('limit')) {
+                if (!isAdmin) {
+                  bot.deleteMessage(msg.chat.id, msg.message_id);
+                  return;
+                }
                 if (!isPrivateChat) {
+                  if (!isAdmin) {
+                    bot.deleteMessage(msg.chat.id, msg.message_id);
+                    return;
+                  }
                   limit.sendLimit(bot, chat);
                 }
               } else if (msg.text.includes('lock')) {
