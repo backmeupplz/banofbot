@@ -36,6 +36,11 @@ const chatSchema = new Schema({
     required: true,
     default: 5,
   },
+  filter_newcomers: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 }, { timestamps: true });
 
 /** Exports */

@@ -78,4 +78,12 @@ module.exports = () => new Localize({
     en: '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!',
     ru: '@banofbot теперь будет кикать пользователя, если *$[1]* людей проголосуют за это. Спасибо!',
   },
+  '💀 Great! *Banofbot* will filter newcomers.': {
+    en: '💀 Great! *Banofbot* will filter newcomers.',
+    ru: '💀 Отлично! *Banofbot* будет фильтровать новых пользователей.',
+  },
+  '💀 Great! *Banofbot* will not filter newcomers.': {
+    en: '💀 Great! *Banofbot* will not filter newcomers.',
+    ru: '💀 Отлично! *Banofbot* не будет фильтровать новых пользователей.',
+  }
 });
