@@ -77,7 +77,7 @@ function handle(msg) {
   if (msg.reply_to_message && msg.sticker && msg.sticker.file_id === 'CAADAQADyQIAAgdEiQTkPSm3CRyNIQI') {
     isReply = true;
   }
-  console.log(msg);
+  const isNewcomer = msg.new_chat_participant && !msg.new_chat_participant.username.includes('banofbot');
 
   if (isCommand) {
     db.findChat(msg.chat)
@@ -106,26 +106,26 @@ function handle(msg) {
           admins.isAdmin(bot, chat.id, msg.from.id)
             .then((isAdmin) => {
               if (msg.text.includes('start')) {
-                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
+                if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id);
                 language.sendLanguage(bot, chat, false);
               } else if (msg.text.includes('help')) {
-                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
+                if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id);
                 help.sendHelp(bot, chat);
               } else if (msg.text.includes('language')) {
-                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
+                if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id);
                 language.sendLanguage(bot, chat, true);
               } else if (msg.text.includes('limit')) {
                 if (!isPrivateChat) {
-                  if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
+                  if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id);
                   limit.sendLimit(bot, chat);
                 }
               } else if (msg.text.includes('lock')) {
-                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
+                if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id);
                 if (!isPrivateChat) {
                   lock.toggle(bot, chat);
                 }
               } else if (msg.text.includes('filterNewcomers')) {
-                if (!isAdmin) return bot.deleteMessage(msg.chat.id, msg.message_id);
+                if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id);
                 if (!isPrivateChat) {
                   newcomers.toggle(bot, chat);
                 }
@@ -147,6 +147,28 @@ function handle(msg) {
     } catch (err) {
       // Do nothing
     }
+  } else if (isNewcomer) {
+    if (isPrivateChat) return;
+    db.findChat(msg.chat)
+      .then((chat) => {
+        if (!chat.filter_newcomers) return;
+        const strings = require('./helpers/strings')();
+        strings.setChat(chat);
+        return bot.getChatMember(chat.id, msg.new_chat_participant.id)
+          .then((member) => {
+            bot.sendMessage(chat.id, `[${getUsername(member)}](tg://user?id=${member.user.id}), ${strings.translate('please, send any message to this chat within the next 60 seconds, otherwise you will be kicked. Thanks!')}`, {
+              parse_mode: 'Markdown',
+            });
+            chat.newcomers.push(`${member.user.id}*~*~*!${Date.now()}`);
+            console.log(`${member.user.id}*~*~*!${Date.now()}`)
+            chat.save();
+          })
+      })
+      .catch(console.error);
+  }
+
+  if (!isNewcomer && !isPrivateChat) {
+    removeFromNewcomers(msg);
   }
 }
 
@@ -167,3 +189,53 @@ bot.on('callback_query', (msg) => {
 });
 
 console.info('Bot is up and running');
+
+function getUsername(member) {
+  return `${member.user.username ? `@${member.user.username}` : `${member.user.first_name}${member.user.last_name ? ` ${member.user.last_name}` : ''}`}`;
+}
+
+function deleteMessage(c, m) {
+  try {
+    deleteMessage(c, m);
+  } catch (err) {
+    // Do nothing
+  }
+}
+
+setInterval(() => {
+  db.findChatsWithNewcomers()
+    .then((chats) => {
+      const date = Date.now();
+      chats.forEach((chat) => {
+        const newcomersToDelete = [];
+        chat.newcomers.forEach((newcomer) => {
+          const ops = newcomer.split('*~*~*!');
+          const id = Number(ops[0]);
+          const dateCame = Number(ops[1]);
+          console.log(id, dateCame, date, date - dateCame)
+          if (date - dateCame > 60 * 1000) {
+            try {
+              bot.kickChatMember(chat.id, id);
+              newcomersToDelete.push(newcomer);
+            } catch (err) {
+              // Do nothing
+            }
+          }
+        });
+        chat.newcomers = chat.newcomers.filter(v => !newcomersToDelete.includes(v));
+        chat.save();
+      });
+    })
+}, 15 * 1000);
+
+function removeFromNewcomers(msg) {
+  const id = msg.from.id;
+  db.findChat(msg.chat)
+    .then((chat) => {
+        if (!chat.filter_newcomers) return;
+
+        chat.newcomers = chat.newcomers.filter(v => !v.includes(id));
+        chat.save();
+      })
+      .catch(console.error);
+}

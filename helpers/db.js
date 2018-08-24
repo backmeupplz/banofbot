@@ -25,6 +25,10 @@ function findChat(chat) {
     });
 }
 
+function findChatsWithNewcomers() {
+  return Chat.find({ 'newcomers.0': { '$exists': true } });
+}
+
 /**
  * Function to get user, creates if none exists yet
  * @param {Telegram:User} user User object that was passed from Telegram
@@ -65,4 +69,5 @@ module.exports = {
   findUser,
   findRequest,
   createRequest,
+  findChatsWithNewcomers,
 };

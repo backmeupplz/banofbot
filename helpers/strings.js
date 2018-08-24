@@ -85,5 +85,9 @@ module.exports = () => new Localize({
   '💀 Great! *Banofbot* will not filter newcomers.': {
     en: '💀 Great! *Banofbot* will not filter newcomers.',
     ru: '💀 Отлично! *Banofbot* не будет фильтровать новых пользователей.',
-  }
+  },
+  'please, send any message to this chat within the next 60 seconds, otherwise you will be kicked. Thanks!': {
+    en: 'please, send any message to this chat within the next 60 seconds, otherwise you will be kicked. Thanks!',
+    ru: 'пожалуйста, отправьте любое сообщение в этот чат в течение 60 секунд, иначе я вас кикну. Спасибо!',
+  },
 });

@@ -41,6 +41,11 @@ const chatSchema = new Schema({
     required: true,
     default: false,
   },
+  newcomers: [{
+    type: String,
+    required: true,
+    default: [],
+  }],
 }, { timestamps: true });
 
 /** Exports */
