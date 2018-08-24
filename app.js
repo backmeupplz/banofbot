@@ -77,6 +77,7 @@ function handle(msg) {
   if (msg.reply_to_message && msg.sticker && msg.sticker.file_id === 'CAADAQADyQIAAgdEiQTkPSm3CRyNIQI') {
     isReply = true;
   }
+  console.log(msg);
 
   if (isCommand) {
     db.findChat(msg.chat)
