@@ -30,7 +30,6 @@ if (config.should_use_webhooks) {
   bot = new Telegram(config.token, {
     polling: true,
   });
-  bot.setWebHook({ url: '' });
   console.info('Telegram is using polling');
 }
 
@@ -39,7 +38,9 @@ bot.on('polling_error', () => {
     .then(() => {
       setTimeout(() => {
         console.log('Restart polling on error');
-        bot.startPolling();
+        bot = new Telegram(config.token, {
+          polling: true,
+        });
       }, 1 * 1000);
     })
 });
