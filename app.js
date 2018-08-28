@@ -191,7 +191,7 @@ bot.on('callback_query', (msg) => {
 console.info('Bot is up and running');
 
 function getUsername(member) {
-  return `${member.user.username ? `@${member.user.username}` : `${member.user.first_name}${member.user.last_name ? ` ${member.user.last_name}` : ''}`}`;
+  return member.user.username ? `@${member.user.username}` : member.user.first_name;
 }
 
 function deleteMessage(c, m) {
