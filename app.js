@@ -82,7 +82,7 @@ function handle(msg) {
   if (msg.reply_to_message && msg.sticker && msg.sticker.file_id === 'CAADAQADyQIAAgdEiQTkPSm3CRyNIQI') {
     isReply = true;
   }
-  const isNewcomer = msg.new_chat_participant && msg.new_chat_participant.username && !msg.new_chat_participant.username.includes('banofbot');
+  const isNewcomer = msg.new_chat_participant && (!msg.new_chat_participant.username || !msg.new_chat_participant.username.includes('banofbot'));
   console.log(3);
   if (isCommand) {
     db.findChat(msg.chat)
