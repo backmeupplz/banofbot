@@ -156,9 +156,11 @@ function handle(msg) {
         strings.setChat(chat);
         return bot.getChatMember(chat.id, msg.new_chat_participant.id)
           .then((member) => {
+            console.log(member);
             bot.sendMessage(chat.id, `[${getUsername(member)}](tg://user?id=${member.user.id}), ${strings.translate('please, send any message to this chat within the next 60 seconds, otherwise you will be kicked. Thanks!')}`, {
               parse_mode: 'Markdown',
             });
+            console.log('sent');
             chat.newcomers.push(`${member.user.id}*~*~*!${Date.now()}`);
             console.log(`${member.user.id}*~*~*!${Date.now()}`)
             chat.save();
