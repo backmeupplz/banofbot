@@ -72,7 +72,7 @@ function handle(msg) {
   }
   const isPrivateChat = msg.chat.type === 'private' || msg.chat.type === 'channel';
   const isCommand = msg.text && msg.entities && msg.entities[0] && msg.entities[0].type === 'bot_command';
-  const isEntry = (msg.new_chat_participant && msg.new_chat_participant.username === 'banofbot') || msg.group_chat_created;
+  const isEntry = (msg.new_chat_participant && msg.new_chat_participant.username && msg.new_chat_participant.username === 'banofbot') || msg.group_chat_created;
   let isReply = msg.reply_to_message && msg.text && (msg.text.includes('banofbot') || msg.text.includes('@ban') || msg.text.includes('voteban') || msg.text.includes('Voteban') || msg.text.includes('/spam'));
   if (msg.reply_to_message && msg.sticker && msg.sticker.file_id === 'CAADAQADyQIAAgdEiQTkPSm3CRyNIQI') {
     isReply = true;
