@@ -78,7 +78,7 @@ function handle(msg) {
     isReply = true;
   }
   const isNewcomer = msg.new_chat_participant && !msg.new_chat_participant.username.includes('banofbot');
-
+  console.log(msg);
   if (isCommand) {
     db.findChat(msg.chat)
       .then((chat) => {
@@ -168,7 +168,7 @@ function handle(msg) {
       })
       .catch(console.error);
   }
-  console.log(msg);
+
   if (!isNewcomer && !isPrivateChat) {
     removeFromNewcomers(msg);
   }
