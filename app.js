@@ -67,9 +67,14 @@ function handle(msg) {
   if (!msg) {
     return;
   }
+  if (msg.chat.id === 1001307313887) {
+    console.log(msg);
+    console.log(1);
+  }
   if (msg.text && msg.text.includes('@') && !msg.text.includes('banofbot')) {
     return;
   }
+  console.log(2);
   const isPrivateChat = msg.chat.type === 'private' || msg.chat.type === 'channel';
   const isCommand = msg.text && msg.entities && msg.entities[0] && msg.entities[0].type === 'bot_command';
   const isEntry = (msg.new_chat_participant && msg.new_chat_participant.username && msg.new_chat_participant.username === 'banofbot') || msg.group_chat_created;
@@ -78,7 +83,7 @@ function handle(msg) {
     isReply = true;
   }
   const isNewcomer = msg.new_chat_participant && msg.new_chat_participant.username && !msg.new_chat_participant.username.includes('banofbot');
-
+  console.log(3);
   if (isCommand) {
     db.findChat(msg.chat)
       .then((chat) => {
@@ -148,18 +153,26 @@ function handle(msg) {
       // Do nothing
     }
   } else if (isNewcomer) {
+    console.log(4);
     if (isPrivateChat) return;
+    console.log(5);
     db.findChat(msg.chat)
       .then((chat) => {
+        console.log(6);
         if (!chat.filter_newcomers) return;
+        console.log(7);
         const strings = require('./helpers/strings')();
         strings.setChat(chat);
+        console.log(8);
         return bot.getChatMember(chat.id, msg.new_chat_participant.id)
           .then((member) => {
+            console.log(9);
             console.log(member);
+            console.log(10);
             bot.sendMessage(chat.id, `[${getUsername(member)}](tg://user?id=${member.user.id}), ${strings.translate('please, send any message to this chat within the next 60 seconds, otherwise you will be kicked. Thanks!')}`, {
               parse_mode: 'Markdown',
             });
+            console.log(11);
             console.log('sent');
             chat.newcomers.push(`${member.user.id}*~*~*!${Date.now()}`);
             console.log(`${member.user.id}*~*~*!${Date.now()}`)
