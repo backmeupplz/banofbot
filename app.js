@@ -64,9 +64,6 @@ bot.on('message', (msg) => {
  * @param {Telegram:Message} msg Message received
  */
 function handle(msg) {
-  if (msg.chat.id === -1001307313887) {
-    console.log(msg);
-  }
   if (!msg) {
     return;
   }
@@ -80,7 +77,7 @@ function handle(msg) {
   if (msg.reply_to_message && msg.sticker && msg.sticker.file_id === 'CAADAQADyQIAAgdEiQTkPSm3CRyNIQI') {
     isReply = true;
   }
-  const isNewcomer = msg.new_chat_participant && !msg.new_chat_participant.username.includes('banofbot');
+  const isNewcomer = msg.new_chat_participant && msg.new_chat_participant.username && !msg.new_chat_participant.username.includes('banofbot');
 
   if (isCommand) {
     db.findChat(msg.chat)
