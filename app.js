@@ -168,7 +168,7 @@ function handle(msg) {
       })
       .catch(console.error);
   }
-
+  console.log(msg);
   if (!isNewcomer && !isPrivateChat) {
     removeFromNewcomers(msg);
   }
