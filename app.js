@@ -67,7 +67,7 @@ function handle(msg) {
   if (!msg) {
     return;
   }
-  if (msg.chat.id === 1001307313887) {
+  if (msg.chat.id === -1001307313887) {
     console.log(msg);
     console.log(1);
   }
