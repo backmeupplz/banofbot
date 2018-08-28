@@ -64,7 +64,9 @@ bot.on('message', (msg) => {
  * @param {Telegram:Message} msg Message received
  */
 function handle(msg) {
-  console.log(msg);
+  if (msg.chat.id === -1001307313887) {
+    console.log(msg);
+  }
   if (!msg) {
     return;
   }
