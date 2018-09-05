@@ -256,7 +256,7 @@ setInterval(() => {
     const date = Date.now()
     chats.forEach(chat => {
       const newcomersToDelete = []
-      chat.newcomers.forEach(newcomer => {
+      chat.newcomers.forEach(async newcomer => {
         const ops = newcomer.split('*~*~*!')
         const id = Number(ops[0])
         const dateCame = Number(ops[1])
@@ -264,9 +264,9 @@ setInterval(() => {
         console.log(id, dateCame, date, date - dateCame, msgId)
         if (date - dateCame > 60 * 1000) {
           try {
-            bot.kickChatMember(chat.id, id)
+            await bot.kickChatMember(chat.id, id)
             if (msgId) {
-              bot.deleteMessage(chat.id, msgId)
+              await bot.deleteMessage(chat.id, msgId)
             }
             newcomersToDelete.push(newcomer)
           } catch (err) {
