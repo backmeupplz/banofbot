@@ -260,7 +260,7 @@ setInterval(() => {
       chat = await chat.save()
       const newcomersToDelete = []
       console.log(`Checking newcomers: ${chat.newcomers}`)
-      chat.newcomers.forEach(async newcomer => {
+      for (const newcomer of chat.newcomers) {
         const ops = newcomer.split('*~*~*!')
         const id = Number(ops[0])
         const dateCame = Number(ops[1])
@@ -284,7 +284,7 @@ setInterval(() => {
             console.error(err)
           }
         }
-      })
+      }
       console.log(`Removing newcomers: ${newcomersToDelete}`)
       let newcomers = []
       chat.newcomers.forEach(n => {
