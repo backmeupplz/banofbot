@@ -198,9 +198,10 @@ function handle(msg) {
                 parse_mode: 'Markdown',
               }
             )
-            chat.newcomers.push(
-              `${member.user.id}*~*~*!${Date.now()}*~*~*!${sent.message_id}`
-            )
+            console.log(chat.newcomers)
+            // chat.newcomers.push(
+            //   `${member.user.id}*~*~*!${Date.now()}*~*~*!${sent.message_id}`
+            // )
             console.log(
               `${member.user.id}*~*~*!${Date.now()}*~*~*!${sent.message_id}`
             )
