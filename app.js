@@ -285,9 +285,13 @@ setInterval(() => {
           }
         }
       })
-      chat.newcomers = chat.newcomers.filter(
-        v => !newcomersToDelete.includes(v)
-      )
+      let newcomers = []
+      chat.newcomers.forEach(n => {
+        if (!newcomersToDelete.includes(n)) {
+          newcomers.push(n)
+        }
+      })
+      chat.newcomers = newcomers
       chat.save()
     })
   })
