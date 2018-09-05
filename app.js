@@ -85,6 +85,7 @@ function handle(msg) {
     msg.entities[0].type === 'bot_command'
   const isEntry =
     (msg.new_chat_participant &&
+      msg.new_chat_participant.username &&
       msg.new_chat_participant.username === 'banofbot') ||
     msg.group_chat_created
   let isReply =
@@ -104,8 +105,8 @@ function handle(msg) {
   }
   const isNewcomer =
     msg.new_chat_participant &&
-    !msg.new_chat_participant.username.includes('banofbot')
-
+    (!msg.new_chat_participant.username ||
+      !msg.new_chat_participant.username.includes('banofbot'))
   if (isCommand) {
     db.findChat(msg.chat)
       .then(chat => {
