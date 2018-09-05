@@ -255,8 +255,8 @@ setInterval(() => {
   db.findChatsWithNewcomers().then(chats => {
     const date = Date.now()
     chats.forEach(async chat => {
-      if (chat.newcomers instanceof String) {
-        chat.newcomers = [chat.newcomers]
+      if (!(chat.newcomers instanceof Array)) {
+        chat.newcomers = []
         chat = await chat.save()
       }
       const newcomersToDelete = []
