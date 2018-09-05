@@ -254,7 +254,11 @@ function deleteMessage(c, m) {
 setInterval(() => {
   db.findChatsWithNewcomers().then(chats => {
     const date = Date.now()
-    chats.forEach(chat => {
+    chats.forEach(async chat => {
+      if (chat.newcomers instanceof String) {
+        chat.newcomers = [chat.newcomers]
+        chat = await chat.save()
+      }
       const newcomersToDelete = []
       console.log(`Checking newcomers: ${chat.newcomers}`)
       chat.newcomers.forEach(async newcomer => {
