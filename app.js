@@ -264,9 +264,15 @@ setInterval(() => {
         console.log(id, dateCame, date, date - dateCame, msgId)
         if (date - dateCame > 60 * 1000) {
           try {
-            await bot.kickChatMember(chat.id, id)
+            console.log(`Banning ${chat.id} ${id}`)
+            const banned = await bot.kickChatMember(chat.id, id)
+            console.log(`Banned ${chat.id} ${id} ${banned}`)
             if (msgId) {
-              await bot.deleteMessage(chat.id, msgId)
+              try {
+                await bot.deleteMessage(chat.id, msgId)
+              } catch (err) {
+                console.err(err)
+              }
             }
             newcomersToDelete.push(newcomer)
           } catch (err) {
