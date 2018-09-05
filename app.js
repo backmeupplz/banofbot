@@ -285,13 +285,17 @@ setInterval(() => {
           }
         }
       })
+      console.log(`Removing newcomers: ${newcomersToDelete}`)
       let newcomers = []
       chat.newcomers.forEach(n => {
+        console.log(`Checking if newcomer stays ${n}`)
         if (!newcomersToDelete.includes(n)) {
           newcomers.push(n)
         }
       })
+      console.log(`Resulting newcomers: ${newcomers}`)
       chat.newcomers = newcomers
+      console.log(`Newcomers on chat: ${chat.newcomers}`)
       chat.save()
     })
   })
