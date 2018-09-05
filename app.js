@@ -255,6 +255,8 @@ setInterval(() => {
   db.findChatsWithNewcomers().then(chats => {
     const date = Date.now()
     chats.forEach(async chat => {
+      chat.newcomers = []
+      chat = await chat.save()
       const newcomersToDelete = []
       console.log(`Checking newcomers: ${chat.newcomers}`)
       chat.newcomers.forEach(async newcomer => {
