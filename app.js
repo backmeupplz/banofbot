@@ -199,9 +199,12 @@ function handle(msg) {
               }
             )
             console.log(chat.newcomers)
-            chat.newcomers = chat.newcomers.append([
-              `${member.user.id}*~*~*!${Date.now()}*~*~*!${sent.message_id}`,
-            ])
+            const newcomers = []
+            chat.newcomers.forEach(n => newcomers.push(n))
+            newcomers.push(
+              `${member.user.id}*~*~*!${Date.now()}*~*~*!${sent.message_id}`
+            )
+            chat.newcomers = newcomers
             console.log(chat.newcomers)
             chat.save()
           })
