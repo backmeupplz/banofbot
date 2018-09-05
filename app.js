@@ -291,7 +291,7 @@ setInterval(() => {
 function removeFromNewcomers(msg) {
   const id = msg.from.id
   db.findChat(msg.chat)
-    .then(chat => {
+    .then(async chat => {
       if (!chat.filter_newcomers) return
 
       try {
@@ -305,7 +305,11 @@ function removeFromNewcomers(msg) {
           const ops = newcomer.split('*~*~*!')
           const msgId = Number(ops[2] || 0)
           if (msgId) {
-            bot.deleteMessage(chat.id, msgId)
+            try {
+              await bot.deleteMessage(chat.id, msgId)
+            } catch (err) {
+              // DO nothing
+            }
           }
         }
       } catch (err) {
