@@ -271,7 +271,7 @@ setInterval(() => {
               try {
                 await bot.deleteMessage(chat.id, msgId)
               } catch (err) {
-                console.err(err)
+                console.error(err)
               }
             }
             newcomersToDelete.push(newcomer)
