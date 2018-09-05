@@ -274,7 +274,7 @@ setInterval(() => {
                 console.error(err)
               }
             }
-            newcomersToDelete.push(newcomer)
+            newcomersToDelete.push(`${id}`)
           } catch (err) {
             console.error(err)
           }
