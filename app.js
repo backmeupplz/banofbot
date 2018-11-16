@@ -20,7 +20,6 @@ const lock = require('./helpers/lock')
 const requests = require('./helpers/requests')
 const admins = require('./helpers/admins')
 const limit = require('./helpers/limit')
-const newcomers = require('./helpers/filterNewcomers')
 
 global.Promise = require('bluebird')
 
@@ -32,23 +31,18 @@ mongoose.Promise = require('bluebird')
 mongoose.connect(
   config.database,
   {
-    server: {
-      socketOptions: {
-        socketTimeoutMS: 0,
-        connectTimeoutMS: 0,
-      },
-    },
+    useMongoClient: true,
+    socketTimeoutMS: 0,
+    connectTimeoutMS: 0,
   }
 )
 mongoose.connection.on('disconnected', () => {
   mongoose.connect(
     config.database,
     {
-      server: {
-        socketOptions: {
-          connectTimeoutMS: 0,
-        },
-      },
+      useMongoClient: true,
+      socketTimeoutMS: 0,
+      connectTimeoutMS: 0,
     }
   )
 })
@@ -103,10 +97,6 @@ function handle(msg) {
   ) {
     isReply = true
   }
-  const isNewcomer =
-    msg.new_chat_participant &&
-    (!msg.new_chat_participant.username ||
-      !msg.new_chat_participant.username.includes('banofbot'))
   if (isCommand) {
     db.findChat(msg.chat)
       .then(chat => {
@@ -127,7 +117,7 @@ function handle(msg) {
             }
           } else if (msg.text.includes('filterNewcomers')) {
             if (!isPrivateChat) {
-              newcomers.toggle(bot, chat)
+              bot.sendMessage(chat.id, 'Please, use @shieldy_bot instead.')
             }
           }
         } else {
@@ -156,9 +146,7 @@ function handle(msg) {
                 }
               } else if (msg.text.includes('filterNewcomers')) {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
-                if (!isPrivateChat) {
-                  newcomers.toggle(bot, chat)
-                }
+                bot.sendMessage(chat.id, 'Please, use @shieldy_bot instead.')
               }
             })
             .catch(/** todo: handle error */)
@@ -177,43 +165,6 @@ function handle(msg) {
     } catch (err) {
       // Do nothing
     }
-  } else if (isNewcomer) {
-    if (isPrivateChat) return
-    db.findChat(msg.chat)
-      .then(chat => {
-        if (!chat.filter_newcomers) return
-        const strings = require('./helpers/strings')()
-        strings.setChat(chat)
-        return bot
-          .getChatMember(chat.id, msg.new_chat_participant.id)
-          .then(async member => {
-            const sent = await bot.sendMessage(
-              chat.id,
-              `[${getUsername(member)}](tg://user?id=${
-                member.user.id
-              }), ${strings.translate(
-                'please, send any message to this chat within the next 60 seconds, otherwise you will be kicked. Thanks!'
-              )}`,
-              {
-                parse_mode: 'Markdown',
-              }
-            )
-            console.log(chat.newcomers)
-            const newcomers = []
-            chat.newcomers.forEach(n => newcomers.push(n))
-            newcomers.push(
-              `${member.user.id}*~*~*!${Date.now()}*~*~*!${sent.message_id}`
-            )
-            chat.newcomers = newcomers
-            console.log(chat.newcomers)
-            chat.save()
-          })
-      })
-      .catch(console.error)
-  }
-
-  if (!isNewcomer && !isPrivateChat) {
-    removeFromNewcomers(msg)
   }
 }
 
@@ -251,86 +202,4 @@ function deleteMessage(c, m) {
   } catch (err) {
     // Do nothing
   }
-}
-
-setInterval(() => {
-  db.findChatsWithNewcomers().then(chats => {
-    const date = Date.now()
-    chats.forEach(async chat => {
-      chat = await chat.save()
-      const newcomersToDelete = []
-      console.log(`Checking newcomers: ${chat.newcomers}`)
-      for (const newcomer of chat.newcomers) {
-        const ops = newcomer.split('*~*~*!')
-        const id = Number(ops[0])
-        const dateCame = Number(ops[1])
-        const msgId = Number(ops[2] || 0)
-        console.log(id, dateCame, date, date - dateCame, msgId)
-        if (date - dateCame > 60 * 1000) {
-          try {
-            console.log(`Banning ${chat.id} ${id}`)
-            const banned = await bot.kickChatMember(chat.id, id)
-            console.log(`Banned ${chat.id} ${id} ${banned}`)
-            if (msgId) {
-              try {
-                await bot.deleteMessage(chat.id, msgId)
-              } catch (err) {
-                // console.error(err)
-              }
-            }
-            console.log(`Removing newcomer ${newcomer} from list`)
-            newcomersToDelete.push(newcomer)
-          } catch (err) {
-            console.error(err)
-          }
-        }
-      }
-      console.log(`Removing newcomers: ${newcomersToDelete}`)
-      let newcomers = []
-      chat.newcomers.forEach(n => {
-        console.log(`Checking if newcomer stays ${n}`)
-        if (!newcomersToDelete.includes(n)) {
-          newcomers.push(n)
-        }
-      })
-      console.log(`Resulting newcomers: ${newcomers}`)
-      chat.newcomers = newcomers
-      console.log(`Newcomers on chat: ${chat.newcomers}`)
-      chat.save()
-    })
-  })
-}, 15 * 1000)
-
-function removeFromNewcomers(msg) {
-  const id = msg.from.id
-  db.findChat(msg.chat)
-    .then(async chat => {
-      if (!chat.filter_newcomers) return
-
-      try {
-        let newcomer
-        chat.newcomers.forEach(v => {
-          if (v.includes(id)) {
-            newcomer = v
-          }
-        })
-        if (newcomer) {
-          const ops = newcomer.split('*~*~*!')
-          const msgId = Number(ops[2] || 0)
-          if (msgId) {
-            try {
-              await bot.deleteMessage(chat.id, msgId)
-            } catch (err) {
-              // DO nothing
-            }
-          }
-        }
-      } catch (err) {
-        console.error(err)
-      }
-
-      chat.newcomers = chat.newcomers.filter(v => !v.includes(id))
-      chat.save()
-    })
-    .catch(console.error)
 }

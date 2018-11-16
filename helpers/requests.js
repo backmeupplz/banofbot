@@ -6,9 +6,9 @@
  */
 
 /** Dependencies */
-const db = require('./db');
-const _ = require('lodash');
-const admins = require('./admins');
+const db = require('./db')
+const _ = require('lodash')
+const admins = require('./admins')
 
 /**
  * Starts ban request
@@ -16,23 +16,23 @@ const admins = require('./admins');
  * @param {Telegram:Message} msg Message to start ban request
  */
 async function startRequest(bot, msg) {
-  const chat = await db.findChat(msg.chat);
-  const starter = await db.findUser(msg.from);
-  const candidate = await db.findUser(msg.reply_to_message.from);
+  const chat = await db.findChat(msg.chat)
+  const starter = await db.findUser(msg.from)
+  const candidate = await db.findUser(msg.reply_to_message.from)
 
-  const isBotAdmin = await admins.isBotAdmin(bot, chat.id);
+  const isBotAdmin = await admins.isBotAdmin(bot, chat.id)
   if (!isBotAdmin) {
-    sendAdminError(bot, chat);
-    return;
+    sendAdminError(bot, chat)
+    return
   }
 
-  const isCandidateAdmin = await admins.isAdmin(bot, chat.id, candidate.id);
+  const isCandidateAdmin = await admins.isAdmin(bot, chat.id, candidate.id)
   if (isCandidateAdmin) {
-    return;
+    return
   }
 
   if (candidate.username === 'banofbot') {
-    return;
+    return
   }
 
   const mockRequest = {
@@ -42,32 +42,41 @@ async function startRequest(bot, msg) {
     candidate,
     starter,
     voters_ban: [starter],
-  };
-  const request = await db.createRequest(mockRequest);
+  }
+  const request = await db.createRequest(mockRequest)
 
-  const strings = require('./strings')();
-  strings.setChat(request.chat);
+  const strings = require('./strings')()
+  strings.setChat(request.chat)
 
-  const starterName = await request.starter.realNameWithMarkdown(bot, chat.id);
-  const candidateName = await request.candidate.realNameWithMarkdown(bot, chat.id);
+  const starterName = await request.starter.realNameWithMarkdown(bot, chat.id)
+  const candidateName = await request.candidate.realNameWithMarkdown(
+    bot,
+    chat.id
+  )
 
-  const text = strings.translate('$[1] would like to kick $[2]. Do you agree?', starterName, candidateName);
+  const text = strings.translate(
+    '$[1] would like to kick $[2]. Do you agree?',
+    starterName,
+    candidateName
+  )
   const options = {
     parse_mode: 'Markdown',
     reply_markup: {
-      inline_keyboard:
-        kickKeyboard(1,
-          0,
-          request._id,
-          strings,
-          request.chat.required_voters_count) },
-  };
-  options.reply_markup = JSON.stringify(options.reply_markup);
-  const data = await bot.sendMessage(request.chat.id, text, options);
+      inline_keyboard: kickKeyboard(
+        1,
+        0,
+        request._id,
+        strings,
+        request.chat.required_voters_count
+      ),
+    },
+  }
+  options.reply_markup = JSON.stringify(options.reply_markup)
+  const data = await bot.sendMessage(request.chat.id, text, options)
 
-  request.inline_chat_id = data.chat.id;
-  request.inline_message_id = data.message_id;
-  await request.save();
+  request.inline_chat_id = data.chat.id
+  request.inline_message_id = data.message_id
+  await request.save()
 }
 
 /**
@@ -76,44 +85,51 @@ async function startRequest(bot, msg) {
  * @param {Teleram:Message} msg Message that triggered inline
  */
 async function voteQuery(bot, msg) {
-  const options = msg.data.split('~');
-  const requestId = options[1];
-  const against = parseInt(options[2], 10) === 1;
+  const options = msg.data.split('~')
+  const requestId = options[1]
+  const against = parseInt(options[2], 10) === 1
 
-  let request = await db.findRequest(requestId)
-    .populate('chat candidate starter voters_ban voters_noban');
-  const voter = await db.findUser(msg.from);
+  console.log(123)
 
-  const strings = require('./strings')();
-  strings.setChat(request.chat);
+  let request = await db
+    .findRequest(requestId)
+    .populate('chat candidate starter voters_ban voters_noban')
+  const voter = await db.findUser(msg.from)
+
+  const strings = require('./strings')()
+  strings.setChat(request.chat)
 
   if (against) {
-    const alreadyThere = _.find(request.voters_noban,
-      arrayVoter => arrayVoter._id.equals(voter._id));
+    const alreadyThere = _.find(request.voters_noban, arrayVoter =>
+      arrayVoter._id.equals(voter._id)
+    )
     if (alreadyThere) {
       return await bot.answerCallbackQuery(msg.id, {
         text: strings.translate('You have already voted for 👼'),
         show_alert: true,
-      });
+      })
     }
     request.voters_ban = request.voters_ban.filter(
-      arrayVoter => !arrayVoter._id.equals(voter._id));
-    request.voters_noban.push(voter);
+      arrayVoter => !arrayVoter._id.equals(voter._id)
+    )
+    request.voters_noban.push(voter)
   } else {
-    const alreadyThere = _.find(request.voters_ban,
-      arrayVoter => arrayVoter._id.equals(voter._id));
+    const alreadyThere = _.find(request.voters_ban, arrayVoter =>
+      arrayVoter._id.equals(voter._id)
+    )
     if (alreadyThere) {
       return await bot.answerCallbackQuery(msg.id, {
         text: strings.translate('You have already voted for 🔫'),
         show_alert: true,
-      });
+      })
     }
     request.voters_noban = request.voters_noban.filter(
-      arrayVoter => !arrayVoter._id.equals(voter._id));
-    request.voters_ban.push(voter);
+      arrayVoter => !arrayVoter._id.equals(voter._id)
+    )
+    request.voters_ban.push(voter)
   }
-  request = await request.save();
-  return await updateMessage(bot, request);
+  request = await request.save()
+  return await updateMessage(bot, request)
 }
 
 /**
@@ -124,33 +140,44 @@ async function voteQuery(bot, msg) {
 async function updateMessage(bot, request) {
   const finished =
     request.voters_noban.length >= request.chat.required_voters_count ||
-    request.voters_ban.length >= request.chat.required_voters_count;
+    request.voters_ban.length >= request.chat.required_voters_count
   if (finished) {
-    return await finishRequest(bot, request);
+    return await finishRequest(bot, request)
   }
-  const strings = require('./strings')();
-  strings.setChat(request.chat);
+  const strings = require('./strings')()
+  strings.setChat(request.chat)
 
-  const starterName = await request.starter.realNameWithMarkdown(bot, request.chat.id);
-  const candidateName = await request.candidate.realNameWithMarkdown(bot, request.chat.id);
+  const starterName = await request.starter.realNameWithMarkdown(
+    bot,
+    request.chat.id
+  )
+  const candidateName = await request.candidate.realNameWithMarkdown(
+    bot,
+    request.chat.id
+  )
 
-  const text = strings.translate('$[1] would like to kick $[2]. Do you agree?', starterName, candidateName);
+  const text = strings.translate(
+    '$[1] would like to kick $[2]. Do you agree?',
+    starterName,
+    candidateName
+  )
   const options = {
     parse_mode: 'Markdown',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
     reply_markup: {
-      inline_keyboard:
-        kickKeyboard(request.voters_ban.length,
-          request.voters_noban.length,
-          request._id,
-          strings,
-          request.chat.required_voters_count),
+      inline_keyboard: kickKeyboard(
+        request.voters_ban.length,
+        request.voters_noban.length,
+        request._id,
+        strings,
+        request.chat.required_voters_count
+      ),
     },
-  };
-  options.reply_markup = JSON.stringify(options.reply_markup);
+  }
+  options.reply_markup = JSON.stringify(options.reply_markup)
 
-  return await bot.editMessageText(text, options);
+  return await bot.editMessageText(text, options)
 }
 
 /**
@@ -159,37 +186,49 @@ async function updateMessage(bot, request) {
  * @param {Mongoose:Request} request Request to be finalized
  */
 async function finishRequest(bot, request) {
-  const strings = require('./strings')();
-  strings.setChat(request.chat);
+  const strings = require('./strings')()
+  strings.setChat(request.chat)
 
-  const saved = request.voters_noban.length >= request.chat.required_voters_count;
-  let voters;
+  const saved =
+    request.voters_noban.length >= request.chat.required_voters_count
+  let voters
   if (saved) {
-    const votersArray = [];
+    const votersArray = []
     for (const voter of request.voters_noban) {
-      const realName = await voter.realNameWithMarkdown(bot, request.chat.id);
-      votersArray.push(realName);
+      const realName = await voter.realNameWithMarkdown(bot, request.chat.id)
+      votersArray.push(realName)
     }
-    voters = votersArray.join(', ');
+    voters = votersArray.join(', ')
   } else {
-    const votersArray = [];
+    const votersArray = []
     for (const voter of request.voters_ban) {
-      const realName = await voter.realNameWithMarkdown(bot, request.chat.id);
-      votersArray.push(realName);
+      const realName = await voter.realNameWithMarkdown(bot, request.chat.id)
+      votersArray.push(realName)
     }
-    voters = votersArray.join(', ');
+    voters = votersArray.join(', ')
   }
 
-  const candidateName = await request.candidate.realNameWithMarkdown(bot, request.chat.id);
+  const candidateName = await request.candidate.realNameWithMarkdown(
+    bot,
+    request.chat.id
+  )
 
-  const text = saved ?
-    strings.translate('👼 $[1] has been saved — no kick for you this time.\n\nVoters who chose to save:\n$[2]', candidateName, voters) :
-    strings.translate('🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]', candidateName, voters);
+  const text = saved
+    ? strings.translate(
+        '👼 $[1] has been saved — no kick for you this time.\n\nVoters who chose to save:\n$[2]',
+        candidateName,
+        voters
+      )
+    : strings.translate(
+        '🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]',
+        candidateName,
+        voters
+      )
 
   if (!saved) {
-    bot.kickChatMember(request.chat.id, request.candidate.id);
+    bot.kickChatMember(request.chat.id, request.candidate.id)
     if (request.reply_chat_id && request.reply_message_id) {
-      bot.deleteMessage(request.reply_chat_id, request.reply_message_id);
+      bot.deleteMessage(request.reply_chat_id, request.reply_message_id)
     }
   }
 
@@ -197,8 +236,8 @@ async function finishRequest(bot, request) {
     parse_mode: 'Markdown',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
-  };
-  return bot.editMessageText(text, options);
+  }
+  return bot.editMessageText(text, options)
 }
 
 /**
@@ -211,13 +250,20 @@ async function finishRequest(bot, request) {
  * @return {Telegram:InlineKeyboard} Keyboard to kick or not to kick user
  */
 function kickKeyboard(forkick, against, requestId, strings, voteCount) {
-  return [[{
-    text: strings.translate('🔫 Kick ($[1]/$[2])', forkick, voteCount),
-    callback_data: `vi~${String(requestId)}~0`,
-  }], [{
-    text: strings.translate('👼 Save ($[1]/$[2])', against, voteCount),
-    callback_data: `vi~${String(requestId)}~1`,
-  }]];
+  return [
+    [
+      {
+        text: strings.translate('🔫 Kick ($[1]/$[2])', forkick, voteCount),
+        callback_data: `vi~${String(requestId)}~0`,
+      },
+    ],
+    [
+      {
+        text: strings.translate('👼 Save ($[1]/$[2])', against, voteCount),
+        callback_data: `vi~${String(requestId)}~1`,
+      },
+    ],
+  ]
 }
 
 /**
@@ -226,14 +272,19 @@ function kickKeyboard(forkick, against, requestId, strings, voteCount) {
  * @param {Mongoose:Chat} chat Chat that should receive the message
  */
 function sendAdminError(bot, chat) {
-  const strings = require('./strings')();
-  strings.setChat(chat);
+  const strings = require('./strings')()
+  strings.setChat(chat)
 
-  return bot.sendMessage(chat.id, strings.translate('🔥 Oops! Looks like @banofbot is not an admin here yet. Please ask admins to set @banofbot as an admin as well, otherwise it will not work. Thanks!'));
+  return bot.sendMessage(
+    chat.id,
+    strings.translate(
+      '🔥 Oops! Looks like @banofbot is not an admin here yet. Please ask admins to set @banofbot as an admin as well, otherwise it will not work. Thanks!'
+    )
+  )
 }
 
 /** Exports */
 module.exports = {
   startRequest,
   voteQuery,
-};
+}
