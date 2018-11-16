@@ -89,8 +89,6 @@ async function voteQuery(bot, msg) {
   const requestId = options[1]
   const against = parseInt(options[2], 10) === 1
 
-  console.log(123)
-
   let request = await db
     .findRequest(requestId)
     .populate('chat candidate starter voters_ban voters_noban')

@@ -38,7 +38,7 @@ const chatSchema = new Schema(
       default: 5,
     },
   },
-  { timestamps: true }
+  { timestamps: true, usePushEach: true }
 )
 
 /** Exports */
