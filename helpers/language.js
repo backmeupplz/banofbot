@@ -108,6 +108,7 @@ function languages() {
   return {
     Russian: 'ru',
     English: 'en',
+    Ukrainian: 'uk',
   };
 }
 
