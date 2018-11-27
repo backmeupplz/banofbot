@@ -9,6 +9,7 @@
 const db = require('./db')
 const _ = require('lodash')
 const admins = require('./admins')
+const { Lock } = require('semaphore-async-await')
 
 /**
  * Starts ban request
@@ -85,49 +86,59 @@ async function startRequest(bot, msg) {
  * @param {Teleram:Message} msg Message that triggered inline
  */
 async function voteQuery(bot, msg) {
-  const options = msg.data.split('~')
-  const requestId = options[1]
-  const against = parseInt(options[2], 10) === 1
+  const lock = new Lock(1)
+  lock.acquire()
+  try {
+    const options = msg.data.split('~')
+    const requestId = options[1]
+    const against = parseInt(options[2], 10) === 1
 
-  let request = await db
-    .findRequest(requestId)
-    .populate('chat candidate starter voters_ban voters_noban')
-  const voter = await db.findUser(msg.from)
+    let request = await db
+      .findRequest(requestId)
+      .populate('chat candidate starter voters_ban voters_noban')
+    const voter = await db.findUser(msg.from)
 
-  const strings = require('./strings')()
-  strings.setChat(request.chat)
+    const strings = require('./strings')()
+    strings.setChat(request.chat)
 
-  if (against) {
-    const alreadyThere = _.find(request.voters_noban, arrayVoter =>
-      arrayVoter._id.equals(voter._id)
-    )
-    if (alreadyThere) {
-      return await bot.answerCallbackQuery(msg.id, {
-        text: strings.translate('You have already voted for 👼'),
-        show_alert: true,
-      })
+    if (against) {
+      const alreadyThere = _.find(request.voters_noban, arrayVoter =>
+        arrayVoter._id.equals(voter._id)
+      )
+      if (alreadyThere) {
+        await bot.answerCallbackQuery(msg.id, {
+          text: strings.translate('You have already voted for 👼'),
+          show_alert: true,
+        })
+        return
+      }
+      request.voters_ban = request.voters_ban.filter(
+        arrayVoter => !arrayVoter._id.equals(voter._id)
+      )
+      request.voters_noban.push(voter)
+    } else {
+      const alreadyThere = _.find(request.voters_ban, arrayVoter =>
+        arrayVoter._id.equals(voter._id)
+      )
+      if (alreadyThere) {
+        await bot.answerCallbackQuery(msg.id, {
+          text: strings.translate('You have already voted for 🔫'),
+          show_alert: true,
+        })
+        return
+      }
+      request.voters_noban = request.voters_noban.filter(
+        arrayVoter => !arrayVoter._id.equals(voter._id)
+      )
+      request.voters_ban.push(voter)
     }
-    request.voters_ban = request.voters_ban.filter(
-      arrayVoter => !arrayVoter._id.equals(voter._id)
-    )
-    request.voters_noban.push(voter)
-  } else {
-    const alreadyThere = _.find(request.voters_ban, arrayVoter =>
-      arrayVoter._id.equals(voter._id)
-    )
-    if (alreadyThere) {
-      return await bot.answerCallbackQuery(msg.id, {
-        text: strings.translate('You have already voted for 🔫'),
-        show_alert: true,
-      })
-    }
-    request.voters_noban = request.voters_noban.filter(
-      arrayVoter => !arrayVoter._id.equals(voter._id)
-    )
-    request.voters_ban.push(voter)
+    request = await request.save()
+    await updateMessage(bot, request)
+  } catch {
+    // Do nothing
+  } finally {
+    lock.release()
   }
-  request = await request.save()
-  return await updateMessage(bot, request)
 }
 
 /**

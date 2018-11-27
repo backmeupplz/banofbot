@@ -20,7 +20,8 @@
     "localize": "^0.4.7",
     "lodash": "^4.17.2",
     "mongoose": "^4.7.2",
-    "node-telegram-bot-api": "^0.30.0"
+    "node-telegram-bot-api": "^0.30.0",
+    "semaphore-async-await": "^1.5.1"
   },
   "devDependencies": {
     "eslint": "^3.12.2",
