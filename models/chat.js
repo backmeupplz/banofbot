@@ -37,6 +37,16 @@ const chatSchema = new Schema(
       required: true,
       default: 5,
     },
+    last_ban: {
+      type: Date,
+      required: true,
+      default: new Date(0),
+    },
+    seconds_between_bans: {
+      type: Number,
+      required: true,
+      default: 30,
+    },
   },
   { timestamps: true, usePushEach: true }
 )

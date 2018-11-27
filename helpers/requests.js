@@ -21,6 +21,14 @@ async function startRequest(bot, msg) {
   const starter = await db.findUser(msg.from)
   const candidate = await db.findUser(msg.reply_to_message.from)
 
+  // Check if it can create new ban request
+  const now = new Date().getTime()
+  const lastBan = chat.last_ban.getTime()
+  const requiredMilliseconds = chat.seconds_between_bans * 1000
+  if (now - lastBan < requiredMilliseconds) {
+    return sendBanLimitError(bot, chat)
+  }
+
   const isBotAdmin = await admins.isBotAdmin(bot, chat.id)
   if (!isBotAdmin) {
     sendAdminError(bot, chat)
@@ -239,6 +247,12 @@ async function finishRequest(bot, request) {
     if (request.reply_chat_id && request.reply_message_id) {
       bot.deleteMessage(request.reply_chat_id, request.reply_message_id)
     }
+    try {
+      request.chat.last_ban = new Date()
+      await request.chat.save()
+    } catch (err) {
+      // Do nothing
+    }
   }
 
   const options = {
@@ -288,6 +302,23 @@ function sendAdminError(bot, chat) {
     chat.id,
     strings.translate(
       '🔥 Oops! Looks like @banofbot is not an admin here yet. Please ask admins to set @banofbot as an admin as well, otherwise it will not work. Thanks!'
+    )
+  )
+}
+
+/**
+ * Function to send error that ban limit is not sufficient
+ * @param {Telegram:Bot} bot Bot that should send message
+ * @param {Mongoose:Chat} chat Chat that should receive the message
+ */
+function sendBanLimitError(bot, chat) {
+  const strings = require('./strings')()
+  strings.setChat(chat)
+
+  return bot.sendMessage(
+    chat.id,
+    strings.translate(
+      '🔥 Looks like you are trying to start a new ban request too soon. You can change the time limit for ban requests by using /time command. Thanks!'
     )
   )
 }

@@ -20,6 +20,7 @@ const lock = require('./helpers/lock')
 const requests = require('./helpers/requests')
 const admins = require('./helpers/admins')
 const limit = require('./helpers/limit')
+const time = require('./helpers/time')
 
 global.Promise = require('bluebird')
 
@@ -111,6 +112,10 @@ function handle(msg) {
             if (!isPrivateChat) {
               limit.sendLimit(bot, chat)
             }
+          } else if (msg.text.includes('time')) {
+            if (!isPrivateChat) {
+              time.sendTime(bot, chat)
+            }
           } else if (msg.text.includes('lock')) {
             if (!isPrivateChat) {
               lock.toggle(bot, chat)
@@ -138,6 +143,12 @@ function handle(msg) {
                   if (!isAdmin)
                     return deleteMessage(msg.chat.id, msg.message_id)
                   limit.sendLimit(bot, chat)
+                }
+              } else if (msg.text.includes('time')) {
+                if (!isPrivateChat) {
+                  if (!isAdmin)
+                    return deleteMessage(msg.chat.id, msg.message_id)
+                  time.sendTime(bot, chat)
                 }
               } else if (msg.text.includes('lock')) {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
@@ -181,6 +192,8 @@ bot.on('callback_query', msg => {
     }
   } else if (inline === 'lti') {
     limit.setLimit(bot, msg)
+  } else if (inline === 'tlti') {
+    time.setTime(bot, msg)
   }
 })
 
