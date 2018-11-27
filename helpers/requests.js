@@ -134,7 +134,7 @@ async function voteQuery(bot, msg) {
     }
     request = await request.save()
     await updateMessage(bot, request)
-  } catch {
+  } catch (err) {
     // Do nothing
   } finally {
     lock.release()
