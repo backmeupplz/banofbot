@@ -198,7 +198,7 @@ function getUsername(member) {
 
 function deleteMessage(c, m) {
   try {
-    deleteMessage(c, m)
+    bot.deleteMessage(c, m)
   } catch (err) {
     // Do nothing
   }
