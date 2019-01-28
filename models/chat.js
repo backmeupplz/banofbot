@@ -1,12 +1,7 @@
-/**
- * @module models/chat
- * @license MIT
- */
-
-/** Dependencies */
+// Dependencies
 const mongoose = require('mongoose')
 
-/** Schema */
+// Schema
 const Schema = mongoose.Schema
 const chatSchema = new Schema(
   {
@@ -51,5 +46,5 @@ const chatSchema = new Schema(
   { timestamps: true, usePushEach: true }
 )
 
-/** Exports */
+// Exports
 module.exports = mongoose.model('chat', chatSchema)

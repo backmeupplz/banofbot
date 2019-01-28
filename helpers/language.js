@@ -1,13 +1,6 @@
-/**
- * Used to send language picker
- *
- * @module language
- * @license MIT
- */
-
-/** Dependencies */
-const db = require('./db');
-const help = require('./help');
+// Dependencies
+const db = require('./db')
+const help = require('./help')
 
 /**
  * Sends language message to specified chat
@@ -16,16 +9,16 @@ const help = require('./help');
  * @param {Boolean} isCommand Whether action was triggered by /language or start of the bot
  */
 function sendLanguage(bot, chat, isCommand) {
-  const strings = require('./strings')();
-  strings.setChat(chat);
+  const strings = require('./strings')()
+  strings.setChat(chat)
 
-  const text = strings.translate('👋 Please, select your language.');
+  const text = strings.translate('👋 Please, select your language.')
   const options = {
     parse_mode: 'Markdown',
     reply_markup: { inline_keyboard: languageKeyboard(isCommand) },
-  };
-  options.reply_markup = JSON.stringify(options.reply_markup);
-  bot.sendMessage(chat.id, text, options);
+  }
+  options.reply_markup = JSON.stringify(options.reply_markup)
+  bot.sendMessage(chat.id, text, options)
 }
 
 /**
@@ -34,22 +27,21 @@ function sendLanguage(bot, chat, isCommand) {
  * @param {Telegram:Message} msg Message of inline button that was touched
  */
 function setLanguage(bot, msg) {
-  const options = msg.data.split('~');
-  const isCommand = parseInt(options[1], 10) === 1;
-  const code = options[2];
+  const options = msg.data.split('~')
+  const isCommand = parseInt(options[1], 10) === 1
+  const code = options[2]
 
   db.findChat(msg.message.chat)
-    .then((chat) => {
-      chat.language = code;
-      return chat.save()
-        .then((dbchat) => {
-          updateMessagewithSuccess(bot, msg.message, dbchat);
-          if (!isCommand) {
-            help.sendHelp(bot, dbchat);
-          }
-        });
+    .then(chat => {
+      chat.language = code
+      return chat.save().then(dbchat => {
+        updateMessagewithSuccess(bot, msg.message, dbchat)
+        if (!isCommand) {
+          help.sendHelp(bot, dbchat)
+        }
+      })
     })
-    .catch(err => updateMessagewithError(bot, msg.message, err));
+    .catch(err => updateMessagewithError(bot, msg.message, err))
 }
 
 /**
@@ -63,7 +55,7 @@ function updateMessagewithError(bot, msg, error) {
     chat_id: msg.chat.id,
     message_id: msg.message_id,
     parse_mode: 'Markdown',
-  });
+  })
 }
 
 /**
@@ -73,14 +65,17 @@ function updateMessagewithError(bot, msg, error) {
  * @param {Mongoose:Chat} chat Chat that had language updated
  */
 function updateMessagewithSuccess(bot, msg, chat) {
-  const strings = require('./strings')();
-  strings.setChat(chat);
+  const strings = require('./strings')()
+  strings.setChat(chat)
 
-  bot.editMessageText(strings.translate('@banofbot now speaks English. Thank you!'), {
-    chat_id: msg.chat.id,
-    message_id: msg.message_id,
-    parse_mode: 'Markdown',
-  });
+  bot.editMessageText(
+    strings.translate('@banofbot now speaks English. Thank you!'),
+    {
+      chat_id: msg.chat.id,
+      message_id: msg.message_id,
+      parse_mode: 'Markdown',
+    }
+  )
 }
 
 /**
@@ -89,15 +84,17 @@ function updateMessagewithSuccess(bot, msg, chat) {
  * @return {Telegram:Inline} Inline keyboard with all available languages
  */
 function languageKeyboard(isCommand) {
-  const list = languages();
-  const keyboard = Object.keys(list).map((key) => {
-    const code = list[key];
-    return [{
-      text: key,
-      callback_data: `li~${(isCommand ? 1 : 0)}~${code}`,
-    }];
-  });
-  return keyboard;
+  const list = languages()
+  const keyboard = Object.keys(list).map(key => {
+    const code = list[key]
+    return [
+      {
+        text: key,
+        callback_data: `li~${isCommand ? 1 : 0}~${code}`,
+      },
+    ]
+  })
+  return keyboard
 }
 
 /**
@@ -109,11 +106,12 @@ function languages() {
     Russian: 'ru',
     English: 'en',
     Ukrainian: 'uk',
-  };
+    Uzbek: 'uz',
+  }
 }
 
-/** Exports */
+// Exports
 module.exports = {
   sendLanguage,
   setLanguage,
-};
+}
