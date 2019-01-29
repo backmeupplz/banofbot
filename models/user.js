@@ -40,11 +40,11 @@ userSchema.methods.realNameWithMarkdown = function realNameWithMarkdown(
   return bot.getChatMember(chatId, this.id).then(res => {
     const user = res.user
     if (user.username) {
-      return `[@${user.username}](tg://tg://user?id=${user.id})`
+      return `[@${user.username}](tg://user?id=${user.id})`
     }
-    return `[${user.first_name}${
+    return `[${user.first_name || 'User'}${
       user.last_name ? ` ${user.last_name}` : ''
-    }](tg://tg://user?id=${user.id})`
+    }](tg://user?id=${user.id})`
   })
 }
 
