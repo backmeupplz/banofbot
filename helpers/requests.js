@@ -57,11 +57,8 @@ async function startRequest(bot, msg) {
   const strings = require('./strings')()
   strings.setChat(request.chat)
 
-  const starterName = await request.starter.realNameWithMarkdown(bot, chat.id)
-  const candidateName = await request.candidate.realNameWithMarkdown(
-    bot,
-    chat.id
-  )
+  const starterName = await request.starter.realNameWithHTML(bot, chat.id)
+  const candidateName = await request.candidate.realNameWithHTML(bot, chat.id)
 
   const text = strings.translate(
     '$[1] would like to kick $[2]. Do you agree?',
@@ -69,7 +66,7 @@ async function startRequest(bot, msg) {
     candidateName
   )
   const options = {
-    parse_mode: 'Markdown',
+    parse_mode: 'HTML',
     reply_markup: {
       inline_keyboard: kickKeyboard(
         1,
@@ -164,11 +161,11 @@ async function updateMessage(bot, request) {
   const strings = require('./strings')()
   strings.setChat(request.chat)
 
-  const starterName = await request.starter.realNameWithMarkdown(
+  const starterName = await request.starter.realNameWithHTML(
     bot,
     request.chat.id
   )
-  const candidateName = await request.candidate.realNameWithMarkdown(
+  const candidateName = await request.candidate.realNameWithHTML(
     bot,
     request.chat.id
   )
@@ -179,7 +176,7 @@ async function updateMessage(bot, request) {
     candidateName
   )
   const options = {
-    parse_mode: 'Markdown',
+    parse_mode: 'HTML',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
     reply_markup: {
@@ -212,20 +209,20 @@ async function finishRequest(bot, request) {
   if (saved) {
     const votersArray = []
     for (const voter of request.voters_noban) {
-      const realName = await voter.realNameWithMarkdown(bot, request.chat.id)
+      const realName = await voter.realNameWithHTML(bot, request.chat.id)
       votersArray.push(realName)
     }
     voters = votersArray.join(', ')
   } else {
     const votersArray = []
     for (const voter of request.voters_ban) {
-      const realName = await voter.realNameWithMarkdown(bot, request.chat.id)
+      const realName = await voter.realNameWithHTML(bot, request.chat.id)
       votersArray.push(realName)
     }
     voters = votersArray.join(', ')
   }
 
-  const candidateName = await request.candidate.realNameWithMarkdown(
+  const candidateName = await request.candidate.realNameWithHTML(
     bot,
     request.chat.id
   )
@@ -256,7 +253,7 @@ async function finishRequest(bot, request) {
   }
 
   const options = {
-    parse_mode: 'Markdown',
+    parse_mode: 'HTML',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
   }

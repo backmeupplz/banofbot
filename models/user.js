@@ -33,18 +33,15 @@ userSchema.methods.name = function name() {
   return this.first_name
 }
 
-userSchema.methods.realNameWithMarkdown = function realNameWithMarkdown(
-  bot,
-  chatId
-) {
+userSchema.methods.realNameWithHTML = function(bot, chatId) {
   return bot.getChatMember(chatId, this.id).then(res => {
     const user = res.user
     if (user.username) {
-      return `[@${user.username}](tg://user?id=${user.id})`
+      return `<a href="tg://user?id=${user.id}">@${user.username}</a>`
     }
-    return `[${user.first_name || 'User'}${
+    return `<a href="tg://user?id=${user.id}">${user.first_name || 'User'}${
       user.last_name ? ` ${user.last_name}` : ''
-    }](tg://user?id=${user.id})`
+    }</a>`
   })
 }
 
