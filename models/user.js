@@ -39,8 +39,12 @@ userSchema.methods.realNameWithHTML = function(bot, chatId) {
     if (user.username) {
       return `<a href="tg://user?id=${user.id}">@${user.username}</a>`
     }
-    return `<a href="tg://user?id=${user.id}">${user.first_name || 'User'}${
-      user.last_name ? ` ${user.last_name}` : ''
+    return `<a href="tg://user?id=${user.id}">${(user.first_name || 'User')
+      .replace('<', '')
+      .replace('>', '')}${
+      user.last_name
+        ? ` ${user.last_name.replace('<', '').replace('>', '')}`
+        : ''
     }</a>`
   })
 }
