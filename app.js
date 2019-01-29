@@ -174,6 +174,7 @@ function handle(msg) {
     try {
       requests.startRequest(bot, msg)
     } catch (err) {
+      console.error(err)
       // Do nothing
     }
   }
