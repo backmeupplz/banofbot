@@ -124,6 +124,10 @@ function handle(msg) {
             if (!isPrivateChat) {
               bot.sendMessage(chat.id, 'Please, use @shieldy_bot instead.')
             }
+          } else if (msg.text.includes('/banme')) {
+            if (!isPrivateChat) {
+              bot.kickChatMember(msg.chat.id, msg.from.id)
+            }
           }
         } else {
           admins
@@ -158,6 +162,10 @@ function handle(msg) {
               } else if (msg.text.includes('filterNewcomers')) {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 bot.sendMessage(chat.id, 'Please, use @shieldy_bot instead.')
+              } else if (msg.text.includes('/banme')) {
+                if (!isPrivateChat) {
+                  bot.kickChatMember(msg.chat.id, msg.from.id)
+                }
               }
             })
             .catch(/** todo: handle error */)
