@@ -92,7 +92,7 @@ async function startRequest(bot, msg) {
  */
 async function voteQuery(bot, msg) {
   const lock = new Lock(1)
-  lock.acquire()
+  await lock.acquire()
   try {
     const options = msg.data.split('~')
     const requestId = options[1]
