@@ -116,6 +116,8 @@ async function voteQuery(bot, msg) {
           show_alert: true,
         })
         return
+      } else {
+        await bot.answerCallbackQuery(msg.id)
       }
       request.voters_ban = request.voters_ban.filter(
         arrayVoter => !arrayVoter._id.equals(voter._id)
@@ -131,6 +133,8 @@ async function voteQuery(bot, msg) {
           show_alert: true,
         })
         return
+      } else {
+        await bot.answerCallbackQuery(msg.id)
       }
       request.voters_noban = request.voters_noban.filter(
         arrayVoter => !arrayVoter._id.equals(voter._id)
