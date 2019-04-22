@@ -4,7 +4,7 @@ This repository contains the code for the democracy bots I've built. Readme is s
 # Installation and local launch
 1. Clone this repo: `git clone https://github.com/backmeupplz/banofbot`
 2. Launch the [mongo database](https://www.mongodb.com/) locally
-3. Create `.env` file with `TELEGRAM_API_KEY`, `MONGO_DB_URL` and `BOTAN_API_KEY`
+3. Create `.env` file with `TELEGRAM_API_KEY` and `MONGO_DB_URL`
 4. Run `npm i` in the root folder
 5. Run `npm run start`
 
