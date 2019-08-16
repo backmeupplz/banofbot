@@ -108,6 +108,7 @@ function languages() {
     Ukrainian: 'uk',
     Uzbek: 'uz',
     Kazakh: 'kz'
+    Português: 'pt'
   }
 }
 
