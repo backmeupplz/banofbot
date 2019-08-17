@@ -107,8 +107,8 @@ function languages() {
     English: 'en',
     Ukrainian: 'uk',
     Uzbek: 'uz',
-    Kazakh: 'kz'
-    Português: 'pt'
+    Kazakh: 'kz',
+    Português: 'pt',
   }
 }
 
