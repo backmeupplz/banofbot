@@ -38,7 +38,7 @@ function sendLimit(bot, chat, text) {
       .catch(err => bot.sendMessage(chat.id, `❗️ _${error.message}_`))
   }
 
-  const text = strings.translate(
+  const replyText = strings.translate(
     '✌️ Please, select the minimum number of votes to kick a user. Current number is *$[1]*',
     chat.required_voters_count
   )
@@ -47,7 +47,7 @@ function sendLimit(bot, chat, text) {
     reply_markup: { inline_keyboard: limitKeyboard() },
   }
   options.reply_markup = JSON.stringify(options.reply_markup)
-  bot.sendMessage(chat.id, text, options)
+  bot.sendMessage(chat.id, replyText, options)
 }
 
 /**
