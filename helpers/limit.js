@@ -6,24 +6,48 @@
  */
 
 /** Dependencies */
-const db = require('./db');
+const db = require('./db')
 
 /**
  * Sends limit message to specified chat
  * @param {Telegam:Bot} bot Bot that should send message
  * @param {Mongoose:Chat} chat Chat where to send message
  */
-function sendLimit(bot, chat) {
-  const strings = require('./strings')();
-  strings.setChat(chat);
+function sendLimit(bot, chat, text) {
+  const strings = require('./strings')()
+  strings.setChat(chat)
 
-  const text = strings.translate('✌️ Please, select the minimum number of votes to kick a user. Current number is *$[1]*', chat.required_voters_count);
+  // Check if limit is set
+  const limitNumber = +text.substr(7).trim()
+  if (!isNaN(limitNumber) && limitNumber < 100000) {
+    chat.required_voters_count = limitNumber
+    return chat
+      .save()
+      .then(() =>
+        bot.sendMessage(
+          chat.id,
+          strings.translate(
+            '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!',
+            chat.required_voters_count
+          ),
+          {
+            parse_mode: 'Markdown',
+          }
+        )
+      )
+      .catch(err => bot.sendMessage(chat.id, `❗️ _${error.message}_`))
+  }
+
+  const text = strings.translate(
+    '✌️ Please, select the minimum number of votes to kick a user. Current number is *$[1]*',
+    chat.required_voters_count
+  )
   const options = {
     parse_mode: 'Markdown',
     reply_markup: { inline_keyboard: limitKeyboard() },
-  };
-  options.reply_markup = JSON.stringify(options.reply_markup);
-  bot.sendMessage(chat.id, text, options);
+  }
+  options.reply_markup = JSON.stringify(options.reply_markup)
+  bot.sendMessage(chat.id, text, options)
 }
 
 /**
@@ -32,17 +56,17 @@ function sendLimit(bot, chat) {
  * @param {Telegram:Message} msg Message of inline button that was touched
  */
 function setLimit(bot, msg) {
-  const options = msg.data.split('~');
-  const limit = parseInt(options[1], 10);
+  const options = msg.data.split('~')
+  const limit = parseInt(options[1], 10)
 
   db.findChat(msg.message.chat)
-    .then((chat) => {
-      chat.required_voters_count = limit;
-      return chat.save()
-        .then(dbchat =>
-          updateMessagewithSuccess(bot, msg.message, dbchat));
+    .then(chat => {
+      chat.required_voters_count = limit
+      return chat
+        .save()
+        .then(dbchat => updateMessagewithSuccess(bot, msg.message, dbchat))
     })
-    .catch(err => updateMessagewithError(bot, msg.message, err));
+    .catch(err => updateMessagewithError(bot, msg.message, err))
 }
 
 /**
@@ -56,7 +80,7 @@ function updateMessagewithError(bot, msg, error) {
     chat_id: msg.chat.id,
     message_id: msg.message_id,
     parse_mode: 'Markdown',
-  });
+  })
 }
 
 /**
@@ -66,14 +90,20 @@ function updateMessagewithError(bot, msg, error) {
  * @param {Mongoose:Chat} chat Chat that had limit updated
  */
 function updateMessagewithSuccess(bot, msg, chat) {
-  const strings = require('./strings')();
-  strings.setChat(chat);
+  const strings = require('./strings')()
+  strings.setChat(chat)
 
-  bot.editMessageText(strings.translate('@banofbot will now kick a user if *$[1]* people vote for it. Thanks!', chat.required_voters_count), {
-    parse_mode: 'Markdown',
-    chat_id: msg.chat.id,
-    message_id: msg.message_id,
-  });
+  bot.editMessageText(
+    strings.translate(
+      '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!',
+      chat.required_voters_count
+    ),
+    {
+      parse_mode: 'Markdown',
+      chat_id: msg.chat.id,
+      message_id: msg.message_id,
+    }
+  )
 }
 
 /**
@@ -81,24 +111,24 @@ function updateMessagewithSuccess(bot, msg, chat) {
  * @return {Telegram:Inline} Inline keyboard with all available limits
  */
 function limitKeyboard() {
-  const list = [3, 5, 8, 10, 20, 30, 40, 50, 100];
-  const keyboard = [];
-  let temp = [];
-  list.forEach((number) => {
+  const list = [3, 5, 8, 10, 20, 30, 40, 50, 100]
+  const keyboard = []
+  let temp = []
+  list.forEach(number => {
     temp.push({
       text: `${number}`,
       callback_data: `lti~${number}`,
-    });
+    })
     if (temp.length >= 3) {
-      keyboard.push(temp);
-      temp = [];
+      keyboard.push(temp)
+      temp = []
     }
-  });
-  return keyboard;
+  })
+  return keyboard
 }
 
 /** Exports */
 module.exports = {
   sendLimit,
   setLimit,
-};
+}

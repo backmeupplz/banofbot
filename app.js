@@ -10,8 +10,8 @@ const path = require('path')
 require('dotenv').config({
   path: path.join(__dirname, '/.env'),
 })
-const bot = require('./helpers/bot')
 const mongoose = require('mongoose')
+const bot = require('./helpers/bot')
 const config = require('./config')
 const db = require('./helpers/db')
 const language = require('./helpers/language')
@@ -29,24 +29,22 @@ global.Promise.config({ cancellation: true })
 /** Setup mongoose */
 mongoose.Promise = require('bluebird')
 
-mongoose.connect(
-  config.database,
-  {
-    useMongoClient: true,
+mongoose.connect(config.database, {
+  socketTimeoutMS: 0,
+  connectTimeoutMS: 0,
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+})
+mongoose.connection.on('disconnected', () => {
+  mongoose.connect(config.database, {
     socketTimeoutMS: 0,
     connectTimeoutMS: 0,
-  }
-)
-mongoose.connection.on('disconnected', () => {
-  mongoose.connect(
-    config.database,
-    {
-      useMongoClient: true,
-      socketTimeoutMS: 0,
-      connectTimeoutMS: 0,
-    }
-  )
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
 })
+mongoose.set('useCreateIndex', true)
+mongoose.set('useFindAndModify', false)
 
 let timeoutOver = false
 setTimeout(() => {
@@ -110,7 +108,7 @@ function handle(msg) {
             language.sendLanguage(bot, chat, true)
           } else if (msg.text.includes('limit')) {
             if (!isPrivateChat) {
-              limit.sendLimit(bot, chat)
+              limit.sendLimit(bot, chat, msg.text)
             }
           } else if (msg.text.includes('time')) {
             if (!isPrivateChat) {
@@ -126,7 +124,9 @@ function handle(msg) {
             }
           } else if (msg.text.includes('/banme')) {
             if (!isPrivateChat) {
-              bot.kickChatMember(msg.chat.id, msg.from.id, { until_date: Math.floor(Date.now() / 1000) + 60 })
+              bot.kickChatMember(msg.chat.id, msg.from.id, {
+                until_date: Math.floor(Date.now() / 1000) + 60,
+              })
             }
           }
         } else {
@@ -146,7 +146,7 @@ function handle(msg) {
                 if (!isPrivateChat) {
                   if (!isAdmin)
                     return deleteMessage(msg.chat.id, msg.message_id)
-                  limit.sendLimit(bot, chat)
+                  limit.sendLimit(bot, chat, msg.text)
                 }
               } else if (msg.text.includes('time')) {
                 if (!isPrivateChat) {
@@ -164,7 +164,9 @@ function handle(msg) {
                 bot.sendMessage(chat.id, 'Please, use @shieldy_bot instead.')
               } else if (msg.text.includes('/banme')) {
                 if (!isPrivateChat) {
-                  bot.kickChatMember(msg.chat.id, msg.from.id, { until_date: Math.floor(Date.now() / 1000) + 60 })
+                  bot.kickChatMember(msg.chat.id, msg.from.id, {
+                    until_date: Math.floor(Date.now() / 1000) + 60,
+                  })
                 }
               }
             })
