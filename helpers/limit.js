@@ -19,7 +19,7 @@ function sendLimit(bot, chat, text) {
 
   // Check if limit is set
   const limitNumber = +text.substr(7).trim()
-  if (!isNaN(limitNumber) && limitNumber < 100000) {
+  if (!isNaN(limitNumber) && limitNumber > 0 && limitNumber < 100000) {
     chat.required_voters_count = limitNumber
     return chat
       .save()
