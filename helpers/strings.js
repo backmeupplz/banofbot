@@ -89,7 +89,7 @@ module.exports = () =>
     '$[1] would like to kick $[2]. Do you agree?': {
       uk: '$[1] хоче кікнути $[2] з чату. Згідні?',
       en: '$[1] would like to kick $[2]. Do you agree?',
-      pt: '$[1] gostaria de expulsar $[2]. Concordam?',
+      pt: '$[1] acha que $[2] deveria ser retirado do grupo. Concordam?',
       ru: '$[1] хочет кикнуть $[2] из чата. Согласны?',
       uz: '$[1] guruhdan $[2]ni ban qilishni istayapti. Rozimisiz?',
       kz: '$[1] chattań $[2]-ti shyǵatynyn qalaıdy. Sіz kelіsesіz be?',
@@ -97,7 +97,7 @@ module.exports = () =>
     '🔫 Kick ($[1]/$[2])': {
       uk: '🔫 Кікнути ($[1]/$[2])',
       en: '🔫 Kick ($[1]/$[2])',
-      pt: '🔫 Expulsar ($[1]/$[2])',
+      pt: '🔫 Retirar ($[1]/$[2])',
       ru: '🔫 Кикнуть ($[1]/$[2])',
       uz: '🔫 Ban qilish ($[1]/$[2])',
       kz: '🔫 Shyǵaryp jіberý ($[1]/$[2])',
@@ -130,7 +130,7 @@ module.exports = () =>
       en:
         '🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]',
       pt:
-        '🔫 $[1] foi expulso — a única forma de retornar é um admin removendo o banimento do usuário nas configurações do grupo.\n\nQuem votou pela expulsão:\n$[2]',
+        '🔫 $[1] foi retirado do grupo — a única forma de retornar é um admin removendo o banimento do usuário nas configurações do grupo.\n\nQuem votou pela expulsão:\n$[2]',
       ru:
         '🔫 $[1] кикнут — вернуть этого пользователя можно только разбаном в настройках чата.\n\nПроголосовавшие за кик:\n$[2]',
       uz:
@@ -160,7 +160,7 @@ module.exports = () =>
       en:
         '🔥 Oops! Looks like @banofbot is not an admin here yet. Please ask admins to set @banofbot as an admin as well, otherwise it will not work. Thanks!',
       pt:
-        '🔥 Ops! Parece que o @banofbot ainda não é um administrador aqui. Por favor, peça aos administradores que definam @banofbot como administrador também, senão não funcionará. Obrigado!',
+        '🔥 Ops! Parece que o @banofbot ainda não é um administrador. Por favor, peça aos administradores que definam @banofbot como administrador também, senão não funcionará. Obrigado!',
       ru:
         '🔥 Ой! Похоже, что @banofbot здесь еще не админ. Пожалуйста, попросите админов добавить @banofbot, как админа, иначее он не будет работать. Спасибо!',
       uz:
@@ -174,7 +174,7 @@ module.exports = () =>
       en:
         '✌️ Please, select the minimum number of votes to kick a user. Current number is *$[1]*',
       pt:
-        '✌️ Por favor, selecione o número mínimo de votos para expulsar um usuário. O número atual é *$[1]*',
+        '✌️ Por favor, selecione o número mínimo de votos para retirar um usuário. O número atual é *$[1]*',
       ru:
         '✌️ Пожалуйста, выберите минимальное количество голосов для кика пользователя. Текущее количество — *$[1]*',
       uz:
@@ -202,7 +202,7 @@ module.exports = () =>
       en:
         '🔥 Looks like you are trying to start a new ban request too soon. You can change the time limit for ban requests by using /time command. Thanks!',
       pt:
-        '🔥 Parece que você está tentando iniciar uma nova solicitação de expulsão cedo demais. Você pode alterar o limite de tempo para este tipo de solicitação usando o comando /time. Obrigado!',
+        '🔥 Parece que você está tentando iniciar uma nova solicitação cedo demais. Você pode alterar o limite de tempo para este tipo de solicitação usando o comando /time. Obrigado!',
       ru:
         '🔥 Похоже, вы пытаетесь начать голосование на кик слишком рано. Вы можете изменить лимит по времени между голосованиями при помощи комманды /time. Спасибо!',
       uz:
@@ -216,7 +216,7 @@ module.exports = () =>
       en:
         '✌️ Please, select the minimum amount of time between ban requests. Current limit is *$[1]* seconds.',
       pt:
-        '✌️ Por favor, selecione o tempo mínimo entre as solicitações de expulsão. O limite atual é *$[1]* segundos.',
+        '✌️ Por favor, selecione o tempo mínimo entre as solicitações. O limite atual é *$[1]* segundos.',
       ru:
         '✌️ Пожалуйста, выберите минимальное количество секунд между голосованиями на бан. Текущий лимит — *$[1]* секунд.',
       uz:
@@ -230,7 +230,7 @@ module.exports = () =>
       en:
         '@banofbot will now allow new ban requests *$[1]* seconds after the last ban. Thanks!',
       pt:
-        '@banofbot agora permitirá novas solicitações de expulsão *$[1]* segundos após a última. Obrigado!',
+        '@banofbot agora permitirá novas solicitações *$[1]* segundos após a última. Obrigado!',
       ru:
         '@banofbot теперь будет начинать голосования на бан, спустя *$[1]* секунд после последнего бана. Спасибо!',
       uz:
