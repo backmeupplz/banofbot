@@ -22,6 +22,7 @@ module.exports = () =>
       ru: '👋 Пожалуйста, выберите ваш язык.',
       uz: '👋 Iltimos, tilni tanlang.',
       kz: '👋 Sіzdіń tіlіńіzdі tańdańyz.',
+      tr: '👋 Lütfen dilinizi seçin.',
     },
     "😎 *Banofbot* allows you to vote to ban users. Got a spammer or flamer but nobody is out there to ban one? Simply reply to the violator's message with the text `@banofbot` and the bot will start the voting.\n\n@banofbot works well in group chats — so go on, add it to one of your precious chats! Don't forget to set it as an admin, otherwise it wouldn't work.\n\n/help — Shows this message 😱\n/language — Lets you pick the language 📣\n\nLike this bot? Leave a review [here](https://telegram.me/storebot?start=banofbot).\n\nGot questions? Check with our support channel — @borodutch\\_support 🦄": {
       uk:
@@ -50,6 +51,8 @@ module.exports = () =>
         "😎 *Banofbot* guruh a'zolarini ban qilish uchun ovoz berishga yordam beradi. Spamer yoki qandaydir bezori paydo bo\\`ldi, lekin adminlar bandmi? Shunchaki bezorining habariga javob qilib `@banofbot` so\\`zini yuboring va bot ban qilish uchun ovoz to\\`plashni boshlaydi.\n\n/help — Ushbu habarni ko\\`rsatadi 😱\n/language — Foydalanish tilini tanlashga yordam beradi 📣\n/lock — Oddiy foydalanuvchilarga (admin bo\\`lmaganlarga) bot buyruqlarini ishlatishni ta'qiqlaydi 🔑\n/limit — Foydalanuvchini ban qilish uchun kerak bo\\`lgan eng kam ovozlar sonini belgilaydi ✌️\n/time — Banlar orasidagi eng kam vaqtni belgilaydi\n\nBotni admin qilib tayinlashni unutmang, aks holda u ishlamaydi.\n\nBot yoqdimi? [Ushbu havola](https://telegram.me/storebot?start=banofbot) orqali o\\`z fikringizni bildiring.\n\nSavollar bormi? Qo\\`llab-quvvatlash kanalimizni o\\`qing — @borodutch\\_support 🦄 P.S., if you want to help this bot, please, donate through the [GitHub Sponsors program here](https://github.com/sponsors/backmeupplz).",
       kz:
         '😎 *Banofbot* chattyń paıdalanýshylaryn ban etýge daýys berý múmkіndіgіn beredі. Spammer nemese basqa da qasqyr chatta otyr, bіraq jaqynda admın joq pa? Tek qana `@banofbot` mátіnі bar habarlamamen buzaqyǵa jaýap berіńіz de, bot daýys berýdі bastaıdy.\n\n/help — Bul habardy kórsetedі 😱\n/language — Tіldі tańdaýǵa múmkіndіk beredі 📣\n/lock — Bot komandalaryna admın emes qoldanýshylarǵa qatynaý berý nemese alý. 🔑\n/limit — Shyǵaryp jіberý úshіn eń az daýys sanyn tańdaý ✌️\n/time — Banǵa daýys berý aralyǵyndagy en az sekýndtar sanyn tańdaý\n\nBotty admın qyldyrýǵa umytpańyz, áıtpese ol jumys іstemeıdі!\n\nBot unaıma? Kerі baılanys [sіlteme boıynsha](https://telegram.me/storebot?start=banofbot) qaldyryńyz. \n\nSuraqtar barma? Bіzdіń qoldaý arnamyzdy oqyńyz — @borodutch\\_support 🦄 P.S., if you want to help this bot, please, donate through the [GitHub Sponsors program here](https://github.com/sponsors/backmeupplz).',
+      tr:
+        "😎 *Banofbot* kullanıcıları yasaklamak için oy kullanmanıza izin verir. İstenmeyen ileti gönderen bir kullanıcı var veya bir tane yasaklayacak kimse yok mu? İhlalci iletisine `@banofbot` yazıp cevaplamanız yeterli: Bot hemen oylamaya başlayacaktır.\n\n/help — Bu mesajı gösterir 😱\n/language — Dili seçmenizi sağlar 📣\n/lock — Komutları kullanarak yönetici olmayanların kilidini açar veya kapatır 🔑\n/limit — Bir kullanıcıyı kovmak için en az sayıda seçmen belirlemenizi sağlar (ayrıca \"/limit 100\" kullanabilirsiniz) ✌️\n/time — Yasaklamalar arasındaki minimum süreyi seçmenizi sağlar\n\n@banofbot botunu bir yönetici olarak ayarlamayı unutmayın, aksi halde işe yaramaz.\n\nBu botu beğendiniz mi? [Buradan](https://telegram.me/storebot?start=banofbot) bir inceleme bırakın.\n\nBaşka sorularınız mı var? Destek kanalımızı kontrol edin: @borodutch\\_support 🦄 NOT: Bu bota yardım etmek istiyorsanız, lütfen [GitHub Sponsorlar Programı](https://github.com/sponsors/backmeupplz) aracılığıyla bağış yapın.",
     },
     '@banofbot now speaks English. Thank you!': {
       uk: '@banofbot тепер розмовляє українською. Дякую!',
@@ -58,6 +61,7 @@ module.exports = () =>
       ru: '@banofbot теперь говорит по-русски. Спасибо!',
       uz: '@banofbot endi o\\`zbekcha gapiradi. Rahmat!',
       kz: '@banofbot endі qazaqsha sóıleıdі. Rahmet!',
+      tr: '@banofbot artık Türkçe konuşuyor. Teşekkür ederiz!',
     },
     '🔑 Great! *Banofbot* will now respond only to command calls sent by *admins* in this chat.': {
       uk:
@@ -72,6 +76,8 @@ module.exports = () =>
         '🔑 Ajoyib! *Banofbot* endi faqat ushbu guruhdagi *adminlar* yuborgan buyruqlarga javob beradi.',
       kz:
         '🔑 Keremet! *Banofbot* endі osy chatta *admınnyń* komandalaryna ǵana jaýap beredі.',
+      tr:
+        '🔑 Harika! *Banofbot* artık bu sohbette yalnızca *yöneticiler* tarafından gönderilen komut çağrılarına yanıt verecek.',
     },
     '🔑 Great! *Banofbot* will now respond only to command calls from *anyone* in this chat.': {
       uk:
@@ -85,6 +91,8 @@ module.exports = () =>
         '🔑 Ajoyib! *Banofbot* endi ushbu guruhdagi *istalgan foydalanuvchi* yuborgan buyruqlarga javob beradi.',
       kz:
         '🔑 Keremet! *Banofbot* endі osy chatta *kez kelgen paıdalanýshy* arqyly jіberіlgen komandalarǵa jaýap beredі.',
+      tr:
+        '🔑 Harika! *Banofbot* artık bu sohbette *herkes* tarafından gönderilen komut çağrılarına cevap verecek.',
     },
     '$[1] would like to kick $[2]. Do you agree?': {
       uk: '$[1] хоче кікнути $[2] з чату. Згідні?',
@@ -93,6 +101,7 @@ module.exports = () =>
       ru: '$[1] хочет кикнуть $[2] из чата. Согласны?',
       uz: '$[1] guruhdan $[2]ni ban qilishni istayapti. Rozimisiz?',
       kz: '$[1] chattań $[2]-ti shyǵatynyn qalaıdy. Sіz kelіsesіz be?',
+      tr: '$[1], $[2] kullanıcısını kovmak istiyor. Katılıyor musunuz?',
     },
     '🔫 Kick ($[1]/$[2])': {
       uk: '🔫 Кікнути ($[1]/$[2])',
@@ -101,6 +110,7 @@ module.exports = () =>
       ru: '🔫 Кикнуть ($[1]/$[2])',
       uz: '🔫 Ban qilish ($[1]/$[2])',
       kz: '🔫 Shyǵaryp jіberý ($[1]/$[2])',
+      tr: '🔫 Kov ($[1]/$[2])',
     },
     '👼 Save ($[1]/$[2])': {
       uk: '👼 Вибачити ($[1]/$[2])',
@@ -109,6 +119,7 @@ module.exports = () =>
       ru: '👼 Простить ($[1]/$[2])',
       uz: '👼 Kechirish ($[1]/$[2])',
       kz: '👼 Keshіrý',
+      tr: '👼 Tut ($[1]/$[2])',
     },
     '👼 $[1] has been saved — no kick for you this time.\n\nVoters who chose to save:\n$[2]': {
       uk:
@@ -123,6 +134,8 @@ module.exports = () =>
         '👼 $[1] guruhda qoldirildi — bu safar u ban qilinmadi.\n\nGuruhda qoldirishga berilgan ovozlar:\n$[2]',
       kz:
         '👼 $[1] qutqaryldy — bul joly ony shyǵaryp jіbermedі. \n\nQutqarý úshіn daýys berdі:\n$[2]',
+      tr:
+        '👼 $[1] grupta tutuldu — bu seferlik sizin için kovma eylemi yok.\n\nGrupta tutulmasını isteyenler:\n$[2]',
     },
     '🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]': {
       uk:
@@ -137,6 +150,8 @@ module.exports = () =>
         '🔫 $[1] ban qilindi — foydalanuvchini qaytarish uchun uni guruh qora ro\\`yxatidan olib tashlash kerak.\n\nBan qilish uchun ovozlar soni:\n$[2]',
       kz:
         '🔫 $[1] shyǵaryp jіberіldі — bul paıdalanýshyny tek chat parametrlerі arqyly qaıtarylýy múmkіn.\n\nShyǵaryp jіberý úshіn daýys bergen:\n$[2]',
+      tr:
+        '🔫 $[1] kovuldu — bu kullanıcıyı geri almanın tek yolu, yöneticilerin sohbet ayarlarından yasağı elle kaldırmasıdır.\n\nGruptan kovulmasını isteyenler:\n$[2]',
     },
     'You have already voted for 👼': {
       uk: 'Ви вже проголосували за 👼',
@@ -145,6 +160,7 @@ module.exports = () =>
       ru: 'Вы уже проголосовали за 👼',
       uz: 'Siz 👼 uchun ovoz berib bo\\`ldingiz',
       kz: 'Sіz daýys berіp qoıdynyz 👼',
+      tr: 'Zaten oy kullandınız 👼',
     },
     'You have already voted for 🔫': {
       uk: 'Ви вже проголосували за 🔫',
@@ -153,6 +169,7 @@ module.exports = () =>
       ru: 'Вы уже проголосовали за 🔫',
       uz: 'Siz 🔫 uchun ovoz berib bo\\`ldingiz',
       kz: 'Sіz daýys berіp qoıdynyz 🔫',
+      tr: 'Zaten oy kullandınız 🔫',
     },
     '🔥 Oops! Looks like @banofbot is not an admin here yet. Please ask admins to set @banofbot as an admin as well, otherwise it will not work. Thanks!': {
       uk:
@@ -167,6 +184,8 @@ module.exports = () =>
         "🔥 Vay! @banofbot ushbu guruhda admin emasga o\\`xshaydi. Iltimos, adminlardan @banofbot'ni guruh admini qilib tayinlashni so\\`rang, aks holda u ishlamaydi. Rahmat!",
       kz:
         '🔥 Oı! @Banofbot álі admın emes sııaqty. Admınderden @banofbot-dі admin dep qosýdy surańyz, áıtpese ol jumys іstemeıdі. Rahmet!',
+      tr:
+        '🔥 Hay aksi! Görünüşe göre @banofbot henüz bir yönetici değil. Lütfen yöneticilerinizden @banofbot botunu bir yönetici olarak ayarlamasını isteyin, aksi takdirde çalışmaz. Teşekkür ederiz!',
     },
     '✌️ Please, select the minimum number of votes to kick a user. Current number is *$[1]*': {
       uk:
@@ -181,6 +200,8 @@ module.exports = () =>
         '✌️ Iltimos, foydalanuvchilarni ban qilish uchun kerak bo\\`lgan eng kam ovozlar sonini ayting. Hozir — *$[1]*',
       kz:
         '✌️ Paıdalanýshyny shyǵaryp jіberý úshіn eń az daýys sanyn tańdańyz. Aǵymdaǵy san — *$[1]*',
+      tr:
+        '✌️ Lütfen bir kullanıcıyı kovmak için minimum oy sayısını seçin. Mevcut sayı: *$[1]*',
     },
     '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!': {
       uk:
@@ -195,6 +216,8 @@ module.exports = () =>
         '@banofbot endi foydalanuvchini *$[1]*ta qarshi ovozdan keyin kick qiladi. Rahmat!',
       kz:
         '@banofbot endі paıdalanýshyny *$[1]* adam daýys bergen kezde, ony shyǵaryp jіberedі. Rahmet!',
+      tr:
+        '@banofbot artık *$[1]* kişi oy verirse bir kullanıcıyı kovacak. Teşekkür ederiz!',
     },
     '🔥 Looks like you are trying to start a new ban request too soon. You can change the time limit for ban requests by using /time command. Thanks!': {
       uk:
@@ -209,6 +232,8 @@ module.exports = () =>
         '🔥 Kick qilish uchun ovoz to\\`plashni juda erta boshlashga urinyapsiz. Ban qilish uchun ovoz berish jarayonlari orasidagi vaqtni /time buyrug\\`i orqali o\\`zgartirishingiz mumkin. Rahmat!',
       kz:
         '🔥 Sіz tym erte shyǵaryp jіberýge daýys berýdі bastap jatyrsyz. Daýys berý arasyndaǵy ýaqyt aralyǵyn /time komandasymen ózgertýge bolady. Rahmet!',
+      tr:
+        '🔥 Çok kısa sürede yeni bir yasak isteği başlatmaya çalışıyor gibi görünüyorsun. /time komutunu kullanarak yasak isteklerinin zaman sınırını değiştirebilirsin. Teşekkür ederiz!',
     },
     '✌️ Please, select the minimum amount of time between ban requests. Current limit is *$[1]* seconds.': {
       uk:
@@ -223,6 +248,8 @@ module.exports = () =>
         '✌️ Iltimos, ban qilish uchun ovoz berish jarayonlari orasidagi eng kam vaqtni belgilang. Hozirgi cheklov — *$[1]* soniya.',
       kz:
         '✌️ Banǵa daýys berý aralyǵyndagy en az sekýndtar sanyn tańdanyz. Kazіrgі lımıt — *$[1]* sekýnd',
+      tr:
+        '✌️ Lütfen yasak istekleri arasındaki minimum süreyi seçin. Mevcut süre: *$[1]* saniye.',
     },
     '@banofbot will now allow new ban requests *$[1]* seconds after the last ban. Thanks!': {
       uk:
@@ -237,5 +264,7 @@ module.exports = () =>
         '@banofbot endi ban qilish uchun ovoz berishni oxirgi bandan *$[1]* soniyadan keyin boshlaydi. Rahmat!',
       kz:
         '@banofbot sońǵy bannan keıіn *$[1]* sekýnd ótkennen soń banǵa daýys berý bastaıdy. Rahmet!',
+      tr:
+        '@banofbot artık yeni yasaklama isteklerine son yasaklamadan *$[1]* saniye sonra izin verecek. Teşekkür ederiz!',
     },
   })
