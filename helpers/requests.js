@@ -150,6 +150,7 @@ async function voteQuery(bot, msg) {
     request = await request.save()
     await updateMessage(bot, request)
   } catch (err) {
+    console.error(err.message || err)
     // Do nothing
   } finally {
     lock.release()
