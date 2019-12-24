@@ -98,7 +98,7 @@ async function voteQuery(bot, msg) {
     const requestId = options[1]
     const against = parseInt(options[2], 10) === 1
 
-    const member = await bot.getChatMember(msg.chat.id, msg.from.id)
+    const member = await bot.getChatMember(msg.message.chat.id, msg.from.id)
 
     if (!['creator', 'administrator', 'member'].includes(member.status)) {
       return bot.answerCallbackQuery(msg.id)
