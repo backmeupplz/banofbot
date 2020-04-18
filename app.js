@@ -174,6 +174,7 @@ function handle(msg) {
                   })
                 }
               } else if (msg.text.includes('/votekickWord')) {
+                if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 if (!isPrivateChat) {
                   votekickWord.check(bot, chat, msg.text)
                 }

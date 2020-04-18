@@ -1,8 +1,8 @@
 function check(bot, chat, text) {
-  const strings = require('./strings')()
-  strings.setChat(chat)
+  bot.sendMessage(chat.id, '👍')
 
   const votekickWordString = text.substr('votekickWord '.length).trim()
+  bot.sendMessage(chat.id, `👍 ${votekickWordString}`)
   if (!votekickWordString.length) {
     return
   }
