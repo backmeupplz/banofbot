@@ -92,9 +92,10 @@ function handle(msg) {
           msg.text.includes('voteban') ||
           msg.text.includes('Voteban') ||
           msg.text.includes('/spam') ||
-          chat.votekickWord.split(', ').reduce((p, c) => {
-            return p || msg.text.includes(c)
-          }, false))
+          (chat.votekickWord &&
+            chat.votekickWord.split(', ').reduce((p, c) => {
+              return p || msg.text.includes(c)
+            }, false)))
       if (
         msg.reply_to_message &&
         msg.sticker &&
