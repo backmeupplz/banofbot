@@ -21,6 +21,7 @@ const requests = require('./helpers/requests')
 const admins = require('./helpers/admins')
 const limit = require('./helpers/limit')
 const time = require('./helpers/time')
+const votekickWord = require('./helpers/votekickWord')
 
 global.Promise = require('bluebird')
 
@@ -51,7 +52,7 @@ setTimeout(() => {
   timeoutOver = true
 }, 5000)
 
-bot.on('message', msg => {
+bot.on('message', (msg) => {
   if (!timeoutOver) {
     return
   }
@@ -98,7 +99,7 @@ function handle(msg) {
   }
   if (isCommand) {
     db.findChat(msg.chat)
-      .then(chat => {
+      .then((chat) => {
         if (isPrivateChat || !chat.admin_locked) {
           if (msg.text.includes('start')) {
             language.sendLanguage(bot, chat, false)
@@ -128,11 +129,15 @@ function handle(msg) {
                 until_date: Math.floor(Date.now() / 1000) + 60,
               })
             }
+          } else if (msg.text.includes('/votekickWord')) {
+            if (!isPrivateChat) {
+              votekickWord.check(bot, chat, msg.text)
+            }
           }
         } else {
           admins
             .isAdmin(bot, chat.id, msg.from.id)
-            .then(isAdmin => {
+            .then((isAdmin) => {
               if (msg.text.includes('start')) {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 language.sendLanguage(bot, chat, false)
@@ -168,6 +173,10 @@ function handle(msg) {
                     until_date: Math.floor(Date.now() / 1000) + 60,
                   })
                 }
+              } else if (msg.text.includes('/votekickWord')) {
+                if (!isPrivateChat) {
+                  votekickWord.check(bot, chat, msg.text)
+                }
               }
             })
             .catch(/** todo: handle error */)
@@ -176,7 +185,7 @@ function handle(msg) {
       .catch(/** todo: handle error */)
   } else if (isEntry) {
     db.findChat(msg.chat)
-      .then(chat => {
+      .then((chat) => {
         language.sendLanguage(bot, chat, false)
       })
       .catch(/** todo: handle error */)
@@ -190,7 +199,7 @@ function handle(msg) {
   }
 }
 
-bot.on('callback_query', msg => {
+bot.on('callback_query', (msg) => {
   const options = msg.data.split('~')
   const inline = options[0]
   if (inline === 'li') {
