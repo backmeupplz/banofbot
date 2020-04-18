@@ -43,7 +43,7 @@ const chatSchema = new Schema(
       default: 30,
     },
     votekickWord: {
-      type: Stroeg,
+      type: String,
       required: false,
     },
   },
