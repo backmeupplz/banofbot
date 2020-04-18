@@ -82,24 +82,27 @@ function handle(msg) {
       msg.new_chat_participant.username &&
       msg.new_chat_participant.username === 'banofbot') ||
     msg.group_chat_created
-  let isReply =
-    msg.reply_to_message &&
-    msg.text &&
-    (msg.text.includes('banofbot') ||
-      msg.text.includes('@ban') ||
-      msg.text.includes('voteban') ||
-      msg.text.includes('Voteban') ||
-      msg.text.includes('/spam'))
-  if (
-    msg.reply_to_message &&
-    msg.sticker &&
-    msg.sticker.file_id === 'CAADAQADyQIAAgdEiQTkPSm3CRyNIQI'
-  ) {
-    isReply = true
-  }
-  if (isCommand) {
-    db.findChat(msg.chat)
-      .then((chat) => {
+  db.findChat(msg.chat)
+    .then((chat) => {
+      let isReply =
+        msg.reply_to_message &&
+        msg.text &&
+        (msg.text.includes('banofbot') ||
+          msg.text.includes('@ban') ||
+          msg.text.includes('voteban') ||
+          msg.text.includes('Voteban') ||
+          msg.text.includes('/spam') ||
+          chat.votekickWord.split(', ').reduce((p, c) => {
+            return p || msg.text.includes(c)
+          }, false))
+      if (
+        msg.reply_to_message &&
+        msg.sticker &&
+        msg.sticker.file_id === 'CAADAQADyQIAAgdEiQTkPSm3CRyNIQI'
+      ) {
+        isReply = true
+      }
+      if (isCommand) {
         if (isPrivateChat || !chat.admin_locked) {
           if (msg.text.includes('start')) {
             language.sendLanguage(bot, chat, false)
@@ -182,22 +185,18 @@ function handle(msg) {
             })
             .catch(/** todo: handle error */)
         }
-      })
-      .catch(/** todo: handle error */)
-  } else if (isEntry) {
-    db.findChat(msg.chat)
-      .then((chat) => {
+      } else if (isEntry) {
         language.sendLanguage(bot, chat, false)
-      })
-      .catch(/** todo: handle error */)
-  } else if (isReply) {
-    try {
-      requests.startRequest(bot, msg)
-    } catch (err) {
-      console.error(err)
-      // Do nothing
-    }
-  }
+      } else if (isReply) {
+        try {
+          requests.startRequest(bot, msg)
+        } catch (err) {
+          console.error(err)
+          // Do nothing
+        }
+      }
+    })
+    .catch(/** todo: handle error */)
 }
 
 bot.on('callback_query', (msg) => {
