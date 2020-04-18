@@ -42,6 +42,10 @@ const chatSchema = new Schema(
       required: true,
       default: 30,
     },
+    votekickWord: {
+      type: Stroeg,
+      required: false,
+    },
   },
   { timestamps: true, usePushEach: true }
 )
