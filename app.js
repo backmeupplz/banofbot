@@ -94,7 +94,7 @@ function handle(msg) {
           msg.text.includes('/spam') ||
           (chat.votekickWord &&
             chat.votekickWord.split(', ').reduce((p, c) => {
-              return p || msg.text.includes(c)
+              return p || new RegExp(`\b${c}\b`).test(msg.text)
             }, false)))
       if (
         msg.reply_to_message &&
