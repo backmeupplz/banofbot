@@ -11,23 +11,21 @@
  * @param {Mongoose:Chat} chat Chat that should get adminLocked changed
  */
 function toggle(bot, chat) {
-  const strings = require('./strings')();
-  strings.setChat(chat);
+  const strings = require('./strings')()
 
-  chat.admin_locked = !chat.admin_locked;
-  chat.save()
+  chat.admin_locked = !chat.admin_locked
+  chat
+    .save()
     .then((newChat) => {
-      const text = newChat.admin_locked ?
-        '🔑 Great! *Banofbot* will now respond only to command calls sent by *admins* in this chat.' :
-        '🔑 Great! *Banofbot* will now respond only to command calls from *anyone* in this chat.';
-      bot.sendMessage(newChat.id, strings.translate(text), {
+      const text = newChat.admin_locked ? 'lockOnBanofbot' : 'lockOffBanofbot'
+      bot.sendMessage(newChat.id, strings.translate(text, chat.language), {
         parse_mode: 'Markdown',
-      });
+      })
     })
-    .catch(/** todo: handle error */);
+    .catch(/** todo: handle error */)
 }
 
 /** Exports */
 module.exports = {
   toggle,
-};
+}

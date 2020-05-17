@@ -15,7 +15,6 @@ const db = require('./db')
  */
 function sendLimit(bot, chat, text) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
   // Check if limit is set
   const limitNumber = +text.substr(7).trim()
@@ -27,7 +26,8 @@ function sendLimit(bot, chat, text) {
         bot.sendMessage(
           chat.id,
           strings.translate(
-            '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!',
+            'limitSuccess',
+            chat.language,
             chat.required_voters_count
           ),
           {
@@ -35,11 +35,12 @@ function sendLimit(bot, chat, text) {
           }
         )
       )
-      .catch(err => bot.sendMessage(chat.id, `❗️ _${error.message}_`))
+      .catch((err) => bot.sendMessage(chat.id, `❗️ _${error.message}_`))
   }
 
   const replyText = strings.translate(
-    '✌️ Please, select the minimum number of votes to kick a user. Current number is *$[1]*',
+    'limitMessage',
+    chat.language,
     chat.required_voters_count
   )
   const options = {
@@ -60,13 +61,13 @@ function setLimit(bot, msg) {
   const limit = parseInt(options[1], 10)
 
   db.findChat(msg.message.chat)
-    .then(chat => {
+    .then((chat) => {
       chat.required_voters_count = limit
       return chat
         .save()
-        .then(dbchat => updateMessagewithSuccess(bot, msg.message, dbchat))
+        .then((dbchat) => updateMessagewithSuccess(bot, msg.message, dbchat))
     })
-    .catch(err => updateMessagewithError(bot, msg.message, err))
+    .catch((err) => updateMessagewithError(bot, msg.message, err))
 }
 
 /**
@@ -91,11 +92,11 @@ function updateMessagewithError(bot, msg, error) {
  */
 function updateMessagewithSuccess(bot, msg, chat) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
   bot.editMessageText(
     strings.translate(
-      '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!',
+      'limitSuccess',
+      chat.language,
       chat.required_voters_count
     ),
     {
@@ -114,7 +115,7 @@ function limitKeyboard() {
   const list = [3, 5, 8, 10, 20, 30, 40, 50, 100]
   const keyboard = []
   let temp = []
-  list.forEach(number => {
+  list.forEach((number) => {
     temp.push({
       text: `${number}`,
       callback_data: `lti~${number}`,

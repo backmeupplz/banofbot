@@ -10,9 +10,8 @@ const help = require('./help')
  */
 function sendLanguage(bot, chat, isCommand) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
-  const text = strings.translate('👋 Please, select your language.')
+  const text = strings.translate('selectLanguage', chat.language)
   const options = {
     parse_mode: 'Markdown',
     reply_markup: { inline_keyboard: languageKeyboard(isCommand) },
@@ -32,16 +31,16 @@ function setLanguage(bot, msg) {
   const code = options[2]
 
   db.findChat(msg.message.chat)
-    .then(chat => {
+    .then((chat) => {
       chat.language = code
-      return chat.save().then(dbchat => {
+      return chat.save().then((dbchat) => {
         updateMessagewithSuccess(bot, msg.message, dbchat)
         if (!isCommand) {
           help.sendHelp(bot, dbchat)
         }
       })
     })
-    .catch(err => updateMessagewithError(bot, msg.message, err))
+    .catch((err) => updateMessagewithError(bot, msg.message, err))
 }
 
 /**
@@ -66,10 +65,9 @@ function updateMessagewithError(bot, msg, error) {
  */
 function updateMessagewithSuccess(bot, msg, chat) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
   bot.editMessageText(
-    strings.translate('@banofbot now speaks English. Thank you!'),
+    strings.translate('languageSelectedBanofbot', chat.language),
     {
       chat_id: msg.chat.id,
       message_id: msg.message_id,
@@ -85,7 +83,7 @@ function updateMessagewithSuccess(bot, msg, chat) {
  */
 function languageKeyboard(isCommand) {
   const list = languages()
-  const keyboard = Object.keys(list).map(key => {
+  const keyboard = Object.keys(list).map((key) => {
     const code = list[key]
     return [
       {

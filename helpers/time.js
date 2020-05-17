@@ -15,10 +15,10 @@ const db = require('./db')
  */
 function sendTime(bot, chat) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
   const text = strings.translate(
-    '✌️ Please, select the minimum amount of time between ban requests. Current limit is *$[1]* seconds.',
+    'timeLimitMessage',
+    chat.language,
     chat.seconds_between_bans
   )
   const options = {
@@ -39,13 +39,13 @@ function setTime(bot, msg) {
   const limit = parseInt(options[1], 10)
 
   db.findChat(msg.message.chat)
-    .then(chat => {
+    .then((chat) => {
       chat.seconds_between_bans = limit
       return chat
         .save()
-        .then(dbchat => updateMessagewithSuccess(bot, msg.message, dbchat))
+        .then((dbchat) => updateMessagewithSuccess(bot, msg.message, dbchat))
     })
-    .catch(err => updateMessagewithError(bot, msg.message, err))
+    .catch((err) => updateMessagewithError(bot, msg.message, err))
 }
 
 /**
@@ -70,11 +70,11 @@ function updateMessagewithError(bot, msg, error) {
  */
 function updateMessagewithSuccess(bot, msg, chat) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
   bot.editMessageText(
     strings.translate(
-      '@banofbot will now allow new ban requests *$[1]* seconds after the last ban. Thanks!',
+      'timeLimitSuccess',
+      chat.language,
       chat.seconds_between_bans
     ),
     {
@@ -93,7 +93,7 @@ function limitKeyboard() {
   const list = [0, 30, 60, 120, 240, 300, 600, 1200, 5000]
   const keyboard = []
   let temp = []
-  list.forEach(number => {
+  list.forEach((number) => {
     temp.push({
       text: `${number}`,
       callback_data: `tlti~${number}`,

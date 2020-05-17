@@ -55,13 +55,13 @@ async function startRequest(bot, msg) {
   const request = await db.createRequest(mockRequest)
 
   const strings = require('./strings')()
-  strings.setChat(request.chat)
 
   const starterName = await request.starter.realNameWithHTML(bot, chat.id)
   const candidateName = await request.candidate.realNameWithHTML(bot, chat.id)
 
   const text = strings.translate(
-    '$[1] would like to kick $[2]. Do you agree?',
+    'kickRequest',
+    request.chat.language,
     starterName,
     candidateName
   )
@@ -73,7 +73,8 @@ async function startRequest(bot, msg) {
         0,
         request._id,
         strings,
-        request.chat.required_voters_count
+        request.chat.required_voters_count,
+        request.chat.language
       ),
     },
   }
@@ -110,15 +111,14 @@ async function voteQuery(bot, msg) {
     const voter = await db.findUser(msg.from)
 
     const strings = require('./strings')()
-    strings.setChat(request.chat)
 
     if (against) {
-      const alreadyThere = _.find(request.voters_noban, arrayVoter =>
+      const alreadyThere = _.find(request.voters_noban, (arrayVoter) =>
         arrayVoter._id.equals(voter._id)
       )
       if (alreadyThere) {
         await bot.answerCallbackQuery(msg.id, {
-          text: strings.translate('You have already voted for 👼'),
+          text: strings.translate('voteSave', request.chat.language),
           show_alert: true,
         })
         return
@@ -126,16 +126,16 @@ async function voteQuery(bot, msg) {
         await bot.answerCallbackQuery(msg.id)
       }
       request.voters_ban = request.voters_ban.filter(
-        arrayVoter => !arrayVoter._id.equals(voter._id)
+        (arrayVoter) => !arrayVoter._id.equals(voter._id)
       )
       request.voters_noban.push(voter)
     } else {
-      const alreadyThere = _.find(request.voters_ban, arrayVoter =>
+      const alreadyThere = _.find(request.voters_ban, (arrayVoter) =>
         arrayVoter._id.equals(voter._id)
       )
       if (alreadyThere) {
         await bot.answerCallbackQuery(msg.id, {
-          text: strings.translate('You have already voted for 🔫'),
+          text: strings.translate('voteKick', request.chat.language),
           show_alert: true,
         })
         return
@@ -143,7 +143,7 @@ async function voteQuery(bot, msg) {
         await bot.answerCallbackQuery(msg.id)
       }
       request.voters_noban = request.voters_noban.filter(
-        arrayVoter => !arrayVoter._id.equals(voter._id)
+        (arrayVoter) => !arrayVoter._id.equals(voter._id)
       )
       request.voters_ban.push(voter)
     }
@@ -170,7 +170,6 @@ async function updateMessage(bot, request) {
     return await finishRequest(bot, request)
   }
   const strings = require('./strings')()
-  strings.setChat(request.chat)
 
   const starterName = await request.starter.realNameWithHTML(
     bot,
@@ -182,7 +181,8 @@ async function updateMessage(bot, request) {
   )
 
   const text = strings.translate(
-    '$[1] would like to kick $[2]. Do you agree?',
+    'kickRequest',
+    request.chat.language,
     starterName,
     candidateName
   )
@@ -196,7 +196,8 @@ async function updateMessage(bot, request) {
         request.voters_noban.length,
         request._id,
         strings,
-        request.chat.required_voters_count
+        request.chat.required_voters_count,
+        request.chat.language
       ),
     },
   }
@@ -212,7 +213,6 @@ async function updateMessage(bot, request) {
  */
 async function finishRequest(bot, request) {
   const strings = require('./strings')()
-  strings.setChat(request.chat)
 
   const saved =
     request.voters_noban.length >= request.chat.required_voters_count
@@ -240,12 +240,14 @@ async function finishRequest(bot, request) {
 
   const text = saved
     ? strings.translate(
-        '👼 $[1] has been saved — no kick for you this time.\n\nVoters who chose to save:\n$[2]',
+        'resultSave',
+        request.chat.language,
         candidateName,
         voters
       )
     : strings.translate(
-        '🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]',
+        'resultKick',
+        request.chat.language,
         candidateName,
         voters
       )
@@ -280,17 +282,24 @@ async function finishRequest(bot, request) {
  * @param {Number} voteCount Minimal number of votes to kick or save
  * @return {Telegram:InlineKeyboard} Keyboard to kick or not to kick user
  */
-function kickKeyboard(forkick, against, requestId, strings, voteCount) {
+function kickKeyboard(
+  forkick,
+  against,
+  requestId,
+  strings,
+  voteCount,
+  language
+) {
   return [
     [
       {
-        text: strings.translate('🔫 Kick ($[1]/$[2])', forkick, voteCount),
+        text: strings.translate('kickAction', language, forkick, voteCount),
         callback_data: `vi~${String(requestId)}~0`,
       },
     ],
     [
       {
-        text: strings.translate('👼 Save ($[1]/$[2])', against, voteCount),
+        text: strings.translate('saveAction', language, against, voteCount),
         callback_data: `vi~${String(requestId)}~1`,
       },
     ],
@@ -304,13 +313,11 @@ function kickKeyboard(forkick, against, requestId, strings, voteCount) {
  */
 function sendAdminError(bot, chat) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
   return bot.sendMessage(
     chat.id,
-    strings.translate(
-      '🔥 Oops! Looks like @banofbot is not an admin here yet. Please ask admins to set @banofbot as an admin as well, otherwise it will not work. Thanks!'
-    )
+    chat.language,
+    strings.translate('adminError')
   )
 }
 
@@ -321,13 +328,10 @@ function sendAdminError(bot, chat) {
  */
 function sendBanLimitError(bot, chat) {
   const strings = require('./strings')()
-  strings.setChat(chat)
 
   return bot.sendMessage(
     chat.id,
-    strings.translate(
-      '🔥 Looks like you are trying to start a new ban request too soon. You can change the time limit for ban requests by using /time command. Thanks!'
-    )
+    strings.translate('tooSoonError', chat.language)
   )
 }
 
