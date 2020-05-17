@@ -10,7 +10,9 @@
   },
   "scripts": {
     "start": "node app.js",
-    "localize": "node localize.js"
+    "localize": "node localize.js",
+    "upload-translations": "node scripts/upload.js",
+    "download-translations": "node scripts/download.js && yarn prettier --single-quote --no-semi --write ./src/helpers/locale.ts"
   },
   "dependencies": {
     "bluebird": "^3.5.5",
@@ -24,11 +26,13 @@
     "semaphore-async-await": "^1.5.1"
   },
   "devDependencies": {
+    "axios": "^0.19.2",
     "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.14.3"
+    "eslint-plugin-react": "^7.14.3",
+    "flat": "^5.0.0"
   }
 }
