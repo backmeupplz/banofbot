@@ -7,9 +7,9 @@ const fs = require('fs')
 ;(async function getTranslations() {
   console.log('==== Getting localizations')
   const translations = (
-    await axios.get('https://localizer.borodutch.com/localizations?tag=web')
+    await axios.get('https://localizer.borodutch.com/localizations')
   ).data.filter((l) => {
-    return l.tags.indexOf('randymbot') > -1
+    return l.tags.indexOf('banofbot') > -1
   })
   console.log('==== Got localizations:')
   console.log(JSON.stringify(translations, undefined, 2))
@@ -29,16 +29,8 @@ const fs = require('fs')
   console.log('==== Reversed and unflattened map')
   console.log(unflattened)
   fs.writeFileSync(
-    `${__dirname}/../src/helpers/locale.ts`,
-    `export function loc(text: string, language: string) {
-      return localizations[text][language] || localizations[text].en
-    }
-    
-    export const localizations: { [index: string]: { [index: string]: string } } = ${JSON.stringify(
-      unflattened,
-      undefined,
-      2
-    )}`
+    `${__dirname}/../helpers/localizations.js`,
+    `module.exports = ${JSON.stringify(unflattened, undefined, 2)}`
   )
   console.log('==== Saved object to the file')
 })()
