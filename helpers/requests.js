@@ -11,6 +11,9 @@ const _ = require('lodash')
 const admins = require('./admins')
 const { Lock } = require('semaphore-async-await')
 
+const todorantAddition =
+  'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a> (<a href="https://t.me/borodutch_support/110">?</a>)'
+
 /**
  * Starts ban request
  * @param {Telegram:Bot} bot Bot that should respond
@@ -59,12 +62,12 @@ async function startRequest(bot, msg) {
   const starterName = await request.starter.realNameWithHTML(bot, chat.id)
   const candidateName = await request.candidate.realNameWithHTML(bot, chat.id)
 
-  const text = strings.translate(
+  const text = `${strings.translate(
     'kickRequest',
     request.chat.language,
     starterName,
     candidateName
-  )
+  )}\n${todorantAddition}`
   const options = {
     parse_mode: 'HTML',
     reply_markup: {
@@ -180,12 +183,12 @@ async function updateMessage(bot, request) {
     request.chat.id
   )
 
-  const text = strings.translate(
+  const text = `${strings.translate(
     'kickRequest',
     request.chat.language,
     starterName,
     candidateName
-  )
+  )}\n${todorantAddition}`
   const options = {
     parse_mode: 'HTML',
     chat_id: request.inline_chat_id,
@@ -238,19 +241,21 @@ async function finishRequest(bot, request) {
     request.chat.id
   )
 
-  const text = saved
-    ? strings.translate(
-        'resultSave',
-        request.chat.language,
-        candidateName,
-        voters
-      )
-    : strings.translate(
-        'resultKick',
-        request.chat.language,
-        candidateName,
-        voters
-      )
+  const text = `${
+    saved
+      ? strings.translate(
+          'resultSave',
+          request.chat.language,
+          candidateName,
+          voters
+        )
+      : strings.translate(
+          'resultKick',
+          request.chat.language,
+          candidateName,
+          voters
+        )
+  }\n${todorantAddition}`
 
   if (!saved) {
     bot.kickChatMember(request.chat.id, request.candidate.id)
