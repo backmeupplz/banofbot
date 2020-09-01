@@ -70,6 +70,7 @@ async function startRequest(bot, msg) {
   )}\n${todorantAddition}`
   const options = {
     parse_mode: 'HTML',
+    disable_web_page_preview: true,
     reply_markup: {
       inline_keyboard: kickKeyboard(
         1,
@@ -193,6 +194,7 @@ async function updateMessage(bot, request) {
     parse_mode: 'HTML',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
+    disable_web_page_preview: true,
     reply_markup: {
       inline_keyboard: kickKeyboard(
         request.voters_ban.length,
@@ -274,6 +276,7 @@ async function finishRequest(bot, request) {
     parse_mode: 'HTML',
     chat_id: request.inline_chat_id,
     message_id: request.inline_message_id,
+    disable_web_page_preview: true,
   }
   return bot.editMessageText(text, options)
 }
