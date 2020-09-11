@@ -12,7 +12,7 @@ const admins = require('./admins')
 const { Lock } = require('semaphore-async-await')
 
 const todorantAddition =
-  'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a> (<a href="https://t.me/borodutch_support/110">?</a>)'
+  'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>'
 
 /**
  * Starts ban request
