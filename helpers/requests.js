@@ -10,7 +10,7 @@ const db = require('./db')
 const _ = require('lodash')
 const admins = require('./admins')
 const { Lock } = require('semaphore-async-await')
-const isRuChat = require('./isRuChat')
+const { isRuChat } = require('./isRuChat')
 
 const promoAdditions = {
   todorant:
