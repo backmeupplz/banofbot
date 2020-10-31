@@ -10,11 +10,14 @@ const db = require('./db')
 const _ = require('lodash')
 const admins = require('./admins')
 const { Lock } = require('semaphore-async-await')
+const isRuChat = require('./isRuChat')
 
-const promoAddition =
-  'Powered by <a href="https://t.me/golden_borodutch">Golden Borodutch</a>'
-// const promoAddition =
-//   'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>'
+const promoAdditions = {
+  todorant:
+    'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>',
+  goldenBorodutch:
+    'Powered by <a href="https://t.me/golden_borodutch">Golden Borodutch</a>',
+}
 
 /**
  * Starts ban request
@@ -63,6 +66,9 @@ async function startRequest(bot, msg) {
 
   const starterName = await request.starter.realNameWithHTML(bot, chat.id)
   const candidateName = await request.candidate.realNameWithHTML(bot, chat.id)
+
+  const promoAddition =
+    promoAdditions[isRuChat(chat) ? 'goldenBorodutch' : 'todorant']
 
   const text = `${strings.translate(
     'kickRequest',
@@ -186,6 +192,9 @@ async function updateMessage(bot, request) {
     request.chat.id
   )
 
+  const promoAddition =
+    promoAdditions[isRuChat(request.chat) ? 'goldenBorodutch' : 'todorant']
+
   const text = `${strings.translate(
     'kickRequest',
     request.chat.language,
@@ -244,6 +253,9 @@ async function finishRequest(bot, request) {
     bot,
     request.chat.id
   )
+
+  const promoAddition =
+    promoAdditions[isRuChat(request.chat) ? 'goldenBorodutch' : 'todorant']
 
   const text = `${
     saved
