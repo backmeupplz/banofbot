@@ -13,10 +13,8 @@ const { Lock } = require('semaphore-async-await')
 const { isRuChat } = require('./isRuChat')
 
 const promoAdditions = {
-  todorant:
-    'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>',
-  goldenBorodutch:
-    'Powered by <a href="https://t.me/golden_borodutch">Golden Borodutch</a>',
+  ru: 'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>',
+  en: 'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>',
 }
 
 /**
@@ -67,8 +65,7 @@ async function startRequest(bot, msg) {
   const starterName = await request.starter.realNameWithHTML(bot, chat.id)
   const candidateName = await request.candidate.realNameWithHTML(bot, chat.id)
 
-  const promoAddition =
-    promoAdditions[isRuChat(chat) ? 'goldenBorodutch' : 'todorant']
+  const promoAddition = promoAdditions[isRuChat(chat) ? 'ru' : 'en']
 
   const text = `${strings.translate(
     'kickRequest',
@@ -192,8 +189,7 @@ async function updateMessage(bot, request) {
     request.chat.id
   )
 
-  const promoAddition =
-    promoAdditions[isRuChat(request.chat) ? 'goldenBorodutch' : 'todorant']
+  const promoAddition = promoAdditions[isRuChat(request.chat) ? 'ru' : 'en']
 
   const text = `${strings.translate(
     'kickRequest',
@@ -254,8 +250,7 @@ async function finishRequest(bot, request) {
     request.chat.id
   )
 
-  const promoAddition =
-    promoAdditions[isRuChat(request.chat) ? 'goldenBorodutch' : 'todorant']
+  const promoAddition = promoAdditions[isRuChat(request.chat) ? 'ru' : 'en']
 
   const text = `${
     saved
