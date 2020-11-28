@@ -13,7 +13,8 @@ const { Lock } = require('semaphore-async-await')
 const { isRuChat } = require('./isRuChat')
 
 const promoAdditions = {
-  ru: 'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>',
+  ru:
+    'При поддержке <a href="https://t.me/golden_borodutch">Золота Бородача</a>',
   en: 'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>',
 }
 
