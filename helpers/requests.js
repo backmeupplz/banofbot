@@ -14,7 +14,7 @@ const { isRuChat } = require('./isRuChat')
 
 const promoAdditions = {
   ru:
-    'При поддержке <a href="https://t.me/golden_borodutch">Золота Бородача</a>',
+    'При поддержке <a href="https://todorant.com/?ref=banofbot">Тудуранта</a>',
   en: 'Powered by <a href="https://todorant.com/?ref=banofbot">Todorant</a>',
 }
 
