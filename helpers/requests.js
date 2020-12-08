@@ -11,11 +11,14 @@ const _ = require('lodash')
 const admins = require('./admins')
 const { Lock } = require('semaphore-async-await')
 const { isRuChat } = require('./isRuChat')
+const { isOver10000 } = require('./goldenBorodutchSubCount')
 
 const promoAdditions = {
-  ru:
-    'При поддержке <a href="https://todorant.com/?utm_source=banofbot">Тудуранта</a>',
-  en:
+  ru: () =>
+    isOver10000()
+      ? 'При поддержке <a href="https://todorant.com/?utm_source=banofbot">Тудуранта</a>'
+      : 'При поддержке <a href="https://t.me/golden_borodutch">Золота Бородача</a>',
+  en: () =>
     'Powered by <a href="https://todorant.com/?utm_source=banofbot">Todorant</a>',
 }
 
@@ -67,7 +70,7 @@ async function startRequest(bot, msg) {
   const starterName = await request.starter.realNameWithHTML(bot, chat.id)
   const candidateName = await request.candidate.realNameWithHTML(bot, chat.id)
 
-  const promoAddition = promoAdditions[isRuChat(chat) ? 'ru' : 'en']
+  const promoAddition = promoAdditions[isRuChat(chat) ? 'ru' : 'en']()
 
   const text = `${strings.translate(
     'kickRequest',
@@ -191,7 +194,7 @@ async function updateMessage(bot, request) {
     request.chat.id
   )
 
-  const promoAddition = promoAdditions[isRuChat(request.chat) ? 'ru' : 'en']
+  const promoAddition = promoAdditions[isRuChat(request.chat) ? 'ru' : 'en']()
 
   const text = `${strings.translate(
     'kickRequest',
@@ -252,7 +255,7 @@ async function finishRequest(bot, request) {
     request.chat.id
   )
 
-  const promoAddition = promoAdditions[isRuChat(request.chat) ? 'ru' : 'en']
+  const promoAddition = promoAdditions[isRuChat(request.chat) ? 'ru' : 'en']()
 
   const text = `${
     saved
