@@ -7,6 +7,7 @@ module.exports = {
     uz: '👋 Iltimos, tilni tanlang.',
     kz: '👋 Sіzdіń tіlіńіzdі tańdańyz.',
     tr: '👋 Lütfen dilinizi seçin.',
+    az: '👋 Xahiş edirəm dilinizi seçin.',
   },
   helpPrivate: {
     uk:
@@ -23,6 +24,8 @@ module.exports = {
       "😎 *Banofbot* chattyń paıdalanýshylaryn ban etýge daýys berý múmkіndіgіn beredі. Spammer nemese basqa da qasqyr chatta otyr, bіraq jaqynda admın joq pa? Tek qana `@banofbot` mátіnі bar habarlamamen buzaqyǵa jaýap berіńіz de, bot daýys berýdі bastaıdy. \n\nBotty admın qyldyrýǵa umytpańyz, áıtpese ol jumys іstemeıdі! \n\n/help — Bul habardy kórsetedі 😱\n/language — Tіldі tańdaýǵa múmkіndіk beredі 📣\n\nSuraqtar barma? Bіzdіń qoldaý arnamyzdy oqyńyz — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     tr:
       '😎 *Banofbot* kullanıcıları yasaklamak için oy kullanmanıza izin verir. İstenmeyen ileti gönderen bir kullanıcı var veya bir tane yasaklayacak kimse yok mu? İhlalci iletisine `@banofbot` yazıp cevaplamanız yeterli: Bot hemen oylamaya başlayacaktır.\n\n/help — Bu mesajı gösterir 😱\n/language — Dili seçmenizi sağlar 📣\n/lock — Komutları kullanarak yönetici olmayanların kilidini açar veya kapatır 🔑\n/limit — Bir kullanıcıyı kovmak için en az sayıda seçmen belirlemenizi sağlar (ayrıca "/limit 100" kullanabilirsiniz) ✌️\n/time — Yasaklamalar arasındaki minimum süreyi seçmenizi sağlar\n\n@banofbot botunu bir yönetici olarak ayarlamayı unutmayın, aksi halde işe yaramaz.\n\nBaşka sorularınız mı var? Destek kanalımızı kontrol edin: @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It\'s free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.',
+    az:
+      '*Banofbot* istifadəçiləri qadağan etmək üçün səs verməyə imkan verir. Spammer və ya alovlandıran var, amma heç kim qadağan edə bilməz? Qanunu pozanın mesajına sadəcə `@banofbot` mətni ilə cavab verin və bot səsverməyə başlayacaq.\n\n@banofbot qrup söhbətlərində yaxşı işləyir — davam edin, dəyərli söhbətlərinizdən birinə əlavə edin! Admin olaraq qurmağı unutmayın, əks halda işə yaramayacaq.\n\n/help — Bu mesajı göndərir.😱\n/language — Dilinizi seçməyə imkan verir 📣\n\nSuallarınız var? Dəstək kanalımıza baxın — @borodutch\\_support 🦄\n\nHəm də layihələrimdən birini nəzərdən keçirin — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant / id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Beyinlərinizi layihələri bitirmək və nəticələr göstərmək üçün aldatmaq üçün idrak psixologiyasından istifadə edən ağıllı bir todo siyahısı tətbiqetməsidir. Heç bir ip əlavə edilmədən 30 gün pulsuzdur, buna görə məhsuldarlığınızı artırmaq istəyirsinizsə vurun. Mənə kömək etdi — sizə də kömək edə bilər.',
   },
   helpPublic: {
     uk:
@@ -39,6 +42,8 @@ module.exports = {
       "😎 *Banofbot* chattyń paıdalanýshylaryn ban etýge daýys berý múmkіndіgіn beredі. Spammer nemese basqa da qasqyr chatta otyr, bіraq jaqynda admın joq pa? Tek qana `@banofbot` mátіnі bar habarlamamen buzaqyǵa jaýap berіńіz de, bot daýys berýdі bastaıdy.\n\n/help — Bul habardy kórsetedі 😱\n/language — Tіldі tańdaýǵa múmkіndіk beredі 📣\n/lock — Bot komandalaryna admın emes qoldanýshylarǵa qatynaý berý nemese alý. 🔑\n/limit — Shyǵaryp jіberý úshіn eń az daýys sanyn tańdaý ✌️\n/time — Banǵa daýys berý aralyǵyndagy en az sekýndtar sanyn tańdaý\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nBotty admın qyldyrýǵa umytpańyz, áıtpese ol jumys іstemeıdі!\n\nSuraqtar barma? Bіzdіń qoldaý arnamyzdy oqyńyz — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     tr:
       '😎 *Banofbot* kullanıcıları yasaklamak için oy kullanmanıza izin verir. İstenmeyen ileti gönderen bir kullanıcı var veya bir tane yasaklayacak kimse yok mu? İhlalci iletisine `@banofbot` yazıp cevaplamanız yeterli: Bot hemen oylamaya başlayacaktır.\n\n/help — Bu mesajı gösterir 😱\n/language — Dili seçmenizi sağlar 📣\n/lock — Komutları kullanarak yönetici olmayanların kilidini açar veya kapatır 🔑\n/limit — Bir kullanıcıyı kovmak için en az sayıda seçmen belirlemenizi sağlar (ayrıca "/limit 100" kullanabilirsiniz) ✌️\n/time — Yasaklamalar arasındaki minimum süreyi seçmenizi sağlar\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\n@banofbot botunu bir yönetici olarak ayarlamayı unutmayın, aksi halde işe yaramaz.\n\nBaşka sorularınız mı var? Destek kanalımızı kontrol edin: @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It\'s free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.',
+    az:
+      '😎 *Banofbot* istifadəçiləri qadağan etmək üçün səs verməyə imkan verir. Spammer və ya alovlandıran var, amma heç kim qadağan edə bilməz? Qanunu pozanın mesajına sadəcə `@banofbot` mətni ilə cavab verin və bot səsverməyə başlayacaq.\n\n/help — Bu mesajı göstərir 😱 \n/language — Dili seçməyə imkan verir 📣 \n/lock - Kilidi açar və ya əmrlərdən istifadə edərək admin olmayanların kilidini açmaq 🔑 \n/limit — Bir istifadəçiyə təpik vurmaq üçün seçicilərin minimum sayını təyin etməyə imkan verir ("/limit 100" də istifadə edə bilərsiniz) ✌️\n/time - arasında minimum vaxt seçməyə imkan verir qadağalar\n/votekickWord — daha çox səs seçmə sözləri təyin etməyə imkan verir. `/votekickWord kick, trial, challenge` kimi istifadə edin 🐸 \n\n@banofbot u admin olaraq təyin etməyi unutmayın, əks halda alınmayacaq.\n\nSuallarınız var? Dəstək kanalımıza baxın — @borodutch\\_support 🦄 \n\nHəm də layihələrimdən birinə baxın — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android] (https://play.google.com/store/apps/details?id=com.todorant)). Beyinlərinizi layihələri bitirmək və nəticələr göstərmək üçün aldatmaq üçün idrak psixologiyasından istifadə edən ağıllı bir todo siyahısı tətbiqetməsidir. Heç bir ip əlavə edilmədən 30 gün pulsuzdur, buna görə məhsuldarlığınızı artırmaq istəyirsinizsə vurun. Mənə kömək etdi — sizə də kömək edə bilər.',
   },
   languageSelectedBanofbot: {
     uk: '@banofbot тепер розмовляє українською. Дякую!',
@@ -48,6 +53,7 @@ module.exports = {
     uz: '@banofbot endi o\\`zbekcha gapiradi. Rahmat!',
     kz: '@banofbot endі qazaqsha sóıleıdі. Rahmet!',
     tr: '@banofbot artık Türkçe konuşuyor. Teşekkür ederiz!',
+    az: '@banofbot indi Azərbaycan dilində danışır. Çox sağ ol!',
   },
   lockOnBanofbot: {
     uk:
@@ -64,6 +70,8 @@ module.exports = {
       '🔑 Keremet! *Banofbot* endі osy chatta *admınnyń* komandalaryna ǵana jaýap beredі.',
     tr:
       '🔑 Harika! *Banofbot* artık bu sohbette yalnızca *yöneticiler* tarafından gönderilen komut çağrılarına yanıt verecek.',
+    az:
+      '🔑 Əla! *Banofbot* indi yalnız *söhbət* administratorları tərəfindən göndərilən komanda zənglərinə cavab verəcəkdir.',
   },
   lockOffBanofbot: {
     uk:
@@ -79,6 +87,8 @@ module.exports = {
       '🔑 Keremet! *Banofbot* endі osy chatta *kez kelgen paıdalanýshy* arqyly jіberіlgen komandalarǵa jaýap beredі.',
     tr:
       '🔑 Harika! *Banofbot* artık bu sohbette *herkes* tarafından gönderilen komut çağrılarına cevap verecek.',
+    az:
+      '🔑 Əla! *Banofbot* indi yalnız bu söhbətdəki *hər kəsdən* gələn komanda zənglərinə cavab verəcəkdir.',
   },
   kickRequest: {
     uk: '$[1] хоче кікнути $[2] з чату. Згідні?',
@@ -88,6 +98,7 @@ module.exports = {
     uz: '$[1] guruhdan $[2]ni ban qilishni istayapti. Rozimisiz?',
     kz: '$[1] chattań $[2]-ti shyǵatynyn qalaıdy. Sіz kelіsesіz be?',
     tr: '$[1], $[2] kullanıcısını kovmak istiyor. Katılıyor musunuz?',
+    az: '$[1] təpik vurmaq istəyir $[2]. Razısan?',
   },
   kickAction: {
     uk: '🔫 Кікнути ($[1]/$[2])',
@@ -97,6 +108,7 @@ module.exports = {
     uz: '🔫 Ban qilish ($[1]/$[2])',
     kz: '🔫 Shyǵaryp jіberý ($[1]/$[2])',
     tr: '🔫 Kov ($[1]/$[2])',
+    az: '🔫 Vurun ($[1]/$[2])',
   },
   saveAction: {
     uk: '👼 Вибачити ($[1]/$[2])',
@@ -106,6 +118,7 @@ module.exports = {
     uz: '👼 Kechirish ($[1]/$[2])',
     kz: '👼 Keshіrý',
     tr: '👼 Tut ($[1]/$[2])',
+    az: '👼 Yadda saxla ($[1]/$[2])',
   },
   resultSave: {
     uk:
@@ -138,6 +151,8 @@ module.exports = {
       '🔫 $[1] shyǵaryp jіberіldі — bul paıdalanýshyny tek chat parametrlerі arqyly qaıtarylýy múmkіn.\n\nShyǵaryp jіberý úshіn daýys bergen:\n$[2]',
     tr:
       '🔫 $[1] kovuldu — bu kullanıcıyı geri almanın tek yolu, yöneticilerin sohbet ayarlarından yasağı elle kaldırmasıdır.\n\nGruptan kovulmasını isteyenler:\n$[2]',
+    az:
+      '🔫 $[1] təpik atıldı — bu istifadəçini geri qaytarmağın yeganə yolu administratorların sohbet ayarlarında unban elan etməsidir. \\n\\nDoğuşmağı seçən seçicilər:\\n$[2]',
   },
   voteSave: {
     uk: 'Ви вже проголосували за 👼',
@@ -147,6 +162,7 @@ module.exports = {
     uz: 'Siz 👼 uchun ovoz berib bo\\`ldingiz',
     kz: 'Sіz daýys berіp qoıdynyz 👼',
     tr: 'Zaten oy kullandınız 👼',
+    az: 'Artıq səs vermisiniz 👼',
   },
   voteKick: {
     uk: 'Ви вже проголосували за 🔫',
@@ -156,6 +172,7 @@ module.exports = {
     uz: 'Siz 🔫 uchun ovoz berib bo\\`ldingiz',
     kz: 'Sіz daýys berіp qoıdynyz 🔫',
     tr: 'Zaten oy kullandınız 🔫',
+    az: 'Artıq səs vermisiniz 🔫',
   },
   adminError: {
     uk:
@@ -172,6 +189,8 @@ module.exports = {
       '🔥 Oı! @Banofbot álі admın emes sııaqty. Admınderden @banofbot-dі admin dep qosýdy surańyz, áıtpese ol jumys іstemeıdі. Rahmet!',
     tr:
       '🔥 Hay aksi! Görünüşe göre @banofbot henüz bir yönetici değil. Lütfen yöneticilerinizden @banofbot botunu bir yönetici olarak ayarlamasını isteyin, aksi takdirde çalışmaz. Teşekkür ederiz!',
+    az:
+      '🔥 Vay! Görünür @banofbot hələ burada admin deyil. Zəhmət olmasa, administratorlardan @banofbot-u da admin olaraq təyin etmələrini xahiş edin, əks halda işə yaramır. Təşəkkürlər!',
   },
   limitMessage: {
     uk:
@@ -188,6 +207,8 @@ module.exports = {
       '✌️ Paıdalanýshyny shyǵaryp jіberý úshіn eń az daýys sanyn tańdańyz. Aǵymdaǵy san — *$[1]*',
     tr:
       '✌️ Lütfen bir kullanıcıyı kovmak için minimum oy sayısını seçin. Mevcut sayı: *$[1]*',
+    az:
+      '✌️ Xahiş edirəm bir istifadəçiyə təpik vurmaq üçün minimum səs sayını seçin. Cari nömrə *$[1]*',
   },
   limitSuccess: {
     uk:
@@ -203,6 +224,8 @@ module.exports = {
       '@banofbot endі paıdalanýshyny *$[1]* adam daýys bergen kezde, ony shyǵaryp jіberedі. Rahmet!',
     tr:
       '@banofbot artık *$[1]* kişi oy verirse bir kullanıcıyı kovacak. Teşekkür ederiz!',
+    az:
+      '@banofbot indi *$[1]* nəfərin buna səs verməsi halında bir istifadəçini vuracaq. Təşəkkürlər!',
   },
   tooSoonError: {
     en:
@@ -217,6 +240,8 @@ module.exports = {
       '🔥 Sіz tym erte shyǵaryp jіberýge daýys berýdі bastap jatyrsyz. Daýys berý arasyndaǵy ýaqyt aralyǵyn /time komandasymen ózgertýge bolady. Rahmet!',
     tr:
       '🔥 Çok kısa sürede yeni bir yasak isteği başlatmaya çalışıyor gibi görünüyorsun. /time komutunu kullanarak yasak isteklerinin zaman sınırını değiştirebilirsin. Teşekkür ederiz!',
+    az:
+      '🔥 Göründüyü kimi yeni bir qadağan tələbini çox tez başlamağa çalışırsınız. /time əmrini istifadə edərək qadağan istəkləri üçün vaxt məhdudiyyətini dəyişə bilərsiniz. Təşəkkürlər!',
   },
   timeLimitMessage: {
     en:
@@ -231,6 +256,8 @@ module.exports = {
       '✌️ Banǵa daýys berý aralyǵyndagy en az sekýndtar sanyn tańdanyz. Kazіrgі lımıt — *$[1]* sekýnd',
     tr:
       '✌️ Lütfen yasak istekleri arasındaki minimum süreyi seçin. Mevcut süre: *$[1]* saniye.',
+    az:
+      '✌️ Xahiş edirəm, qadağan istəkləri arasındakı minimum vaxtı seçin. Cari limit *$[1]* saniyədir.',
   },
   timeLimitSuccess: {
     en:
@@ -245,5 +272,7 @@ module.exports = {
       '@banofbot sońǵy bannan keıіn *$[1]* sekýnd ótkennen soń banǵa daýys berý bastaıdy. Rahmet!',
     tr:
       '@banofbot artık yeni yasaklama isteklerine son yasaklamadan *$[1]* saniye sonra izin verecek. Teşekkür ederiz!',
+    az:
+      '@banofbot indi son qadağadan *$[1]* saniyə sonra yeni qadağan istəklərinə icazə verəcəkdir. Təşəkkürlər!',
   },
 }

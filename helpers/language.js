@@ -108,6 +108,7 @@ function languages() {
     Kazakh: 'kz',
     Português: 'pt',
     Turkish: 'tr',
+    Azerbaijani: 'az',
   }
 }
 
