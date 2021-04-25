@@ -135,6 +135,8 @@ module.exports = {
       '👼 $[1] qutqaryldy — bul joly ony shyǵaryp jіbermedі. \n\nQutqarý úshіn daýys berdі:\n$[2]',
     tr:
       '👼 $[1] grupta tutuldu — bu seferlik sizin için kovma eylemi yok.\n\nGrupta tutulmasını isteyenler:\n$[2]',
+    az:
+      '👼 $[1] Qeyd edildi — bu dəfə sizin üçün bir zərbə yoxdur. \\n\\nQənaəti seçən seçicilər:\\n$[2]',
   },
   resultKick: {
     uk:
