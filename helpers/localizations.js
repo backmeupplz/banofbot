@@ -28,8 +28,7 @@ module.exports = {
     az:
       '*Banofbot* istifadəçiləri qadağan etmək üçün səs verməyə imkan verir. Spammer və ya alovlandıran var, amma heç kim qadağan edə bilməz? Qanunu pozanın mesajına sadəcə `@banofbot` mətni ilə cavab verin və bot səsverməyə başlayacaq.\n\n@banofbot qrup söhbətlərində yaxşı işləyir — davam edin, dəyərli söhbətlərinizdən birinə əlavə edin! Admin olaraq qurmağı unutmayın, əks halda işə yaramayacaq.\n\n/help — Bu mesajı göndərir.😱\n/language — Dilinizi seçməyə imkan verir 📣\n\nSuallarınız var? Dəstək kanalımıza baxın — @borodutch\\_support 🦄\n\nHəm də layihələrimdən birini nəzərdən keçirin — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant / id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Beyinlərinizi layihələri bitirmək və nəticələr göstərmək üçün aldatmaq üçün idrak psixologiyasından istifadə edən ağıllı bir todo siyahısı tətbiqetməsidir. Heç bir ip əlavə edilmədən 30 gün pulsuzdur, buna görə məhsuldarlığınızı artırmaq istəyirsinizsə vurun. Mənə kömək etdi — sizə də kömək edə bilər.',
     de:
-      "😎 *Banofbot* erlaubt es, über das Bannen von Benutzern abzustimmen. Ihr habt einen Spammer oder Beleidiger, und niemand ist hier um ihn zu bannen? Antworte einfach mit dem Text `@banofbot` auf die Nachricht und der Bot startet die Abstimmung.\n\n@banofbot funktioniert gut in Gruppenchats — also los, füge ihn einem deiner wertvollen Chats hinzu! Vergiss nicht ihm Admin-Rechte zu geben, sonst funktioniert es nicht.\n\n/help — Zeige diese Nachricht 😱\n/language — Wähle die Sprache 📣\n\nDu hast fragen? Schau in den Support-Channel — @borodutch\\_support 🦄\n\nSchau dir auch meine anderen Projekte an — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Eine smarte TODO Listen-App, die psychologie verwendet um dich dazu zu bringen Projekte abzuschliessen und Resultate zu erzielen. Die App ist für 30 Tage gratis (ohne Abo), also teste sie wenn du deine Produktivität erhöhen willst. Sie hat mir geholfen — also kann sie dir auch helfen.",
-
+      '😎 *Banofbot* erlaubt es, über das Bannen von Benutzern abzustimmen. Ihr habt einen Spammer oder Beleidiger, und niemand ist hier um ihn zu bannen? Antworte einfach mit dem Text `@banofbot` auf die Nachricht und der Bot startet die Abstimmung.\n\n@banofbot funktioniert gut in Gruppenchats — also los, füge ihn einem deiner wertvollen Chats hinzu! Vergiss nicht ihm Admin-Rechte zu geben, sonst funktioniert es nicht.\n\n/help — Zeige diese Nachricht 😱\n/language — Wähle die Sprache 📣\n\nDu hast fragen? Schau in den Support-Channel — @borodutch\\_support 🦄\n\nSchau dir auch meine anderen Projekte an — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Eine smarte TODO Listen-App, die psychologie verwendet um dich dazu zu bringen Projekte abzuschliessen und Resultate zu erzielen. Die App ist für 30 Tage gratis (ohne Abo), also teste sie wenn du deine Produktivität erhöhen willst. Sie hat mir geholfen — also kann sie dir auch helfen.',
   },
   helpPublic: {
     uk:
@@ -49,7 +48,7 @@ module.exports = {
     az:
       '😎 *Banofbot* istifadəçiləri qadağan etmək üçün səs verməyə imkan verir. Spammer və ya alovlandıran var, amma heç kim qadağan edə bilməz? Qanunu pozanın mesajına sadəcə `@banofbot` mətni ilə cavab verin və bot səsverməyə başlayacaq.\n\n/help — Bu mesajı göstərir 😱 \n/language — Dili seçməyə imkan verir 📣 \n/lock - Kilidi açar və ya əmrlərdən istifadə edərək admin olmayanların kilidini açmaq 🔑 \n/limit — Bir istifadəçiyə təpik vurmaq üçün seçicilərin minimum sayını təyin etməyə imkan verir ("/limit 100" də istifadə edə bilərsiniz) ✌️\n/time - arasında minimum vaxt seçməyə imkan verir qadağalar\n/votekickWord — daha çox səs seçmə sözləri təyin etməyə imkan verir. `/votekickWord kick, trial, challenge` kimi istifadə edin 🐸 \n\n@banofbot u admin olaraq təyin etməyi unutmayın, əks halda alınmayacaq.\n\nSuallarınız var? Dəstək kanalımıza baxın — @borodutch\\_support 🦄 \n\nHəm də layihələrimdən birinə baxın — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android] (https://play.google.com/store/apps/details?id=com.todorant)). Beyinlərinizi layihələri bitirmək və nəticələr göstərmək üçün aldatmaq üçün idrak psixologiyasından istifadə edən ağıllı bir todo siyahısı tətbiqetməsidir. Heç bir ip əlavə edilmədən 30 gün pulsuzdur, buna görə məhsuldarlığınızı artırmaq istəyirsinizsə vurun. Mənə kömək etdi — sizə də kömək edə bilər.',
     de:
-      "😎 *Banofbot* erlaubt es, über das Bannen von Benutzern abzustimmen. Ihr habt einen Spammer oder Beleidiger, und niemand ist hier um ihn zu bannen? Antworte einfach mit dem Text `@banofbot` auf die Nachricht und der Bot startet die Abstimmung.\n\n/help — Zeige diese Nachricht 😱\n/language — Wähle die Sprache 📣\n/lock — Aktiviert oder deaktiviert, dass nicht-Admins Kommandos nutzen können 🔑\n/limit — Wähle die anzahl benötigter Stimmen, um einen User zu bannen (Du kannst auch \"/limit 100\" benutzen) ✌️\n/time — Erlaubt dir, die Zeitspanne zwischen Bans zu setzen\n/votekickWord — Erlaubt dir, andere Wörter zu wählen um eine Abstimmung zu starten. Verwende es wie `/votekickWord entfernen, abstimmung, bannen` 🐸\n\nVergiss nicht, @banofbot Admin-Rechte zu geben, sonst funktioniert es nicht.\n\nDu hast fragen? Schau in den Support-Channel — @borodutch\\_support 🦄\n\nSchau dir auch meine anderen Projekte an — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Eine smarte TODO Listen-App, die psychologie verwendet um dich dazu zu bringen Projekte abzuschliessen und Resultate zu erzielen. Die App ist für 30 Tage gratis (ohne Abo), also teste sie wenn du deine Produktivität erhöhen willst. Sie hat mir geholfen — also kann sie dir auch helfen.",
+      '😎 *Banofbot* erlaubt es, über das Bannen von Benutzern abzustimmen. Ihr habt einen Spammer oder Beleidiger, und niemand ist hier um ihn zu bannen? Antworte einfach mit dem Text `@banofbot` auf die Nachricht und der Bot startet die Abstimmung.\n\n/help — Zeige diese Nachricht 😱\n/language — Wähle die Sprache 📣\n/lock — Aktiviert oder deaktiviert, dass nicht-Admins Kommandos nutzen können 🔑\n/limit — Wähle die anzahl benötigter Stimmen, um einen User zu bannen (Du kannst auch "/limit 100" benutzen) ✌️\n/time — Erlaubt dir, die Zeitspanne zwischen Bans zu setzen\n/votekickWord — Erlaubt dir, andere Wörter zu wählen um eine Abstimmung zu starten. Verwende es wie `/votekickWord entfernen, abstimmung, bannen` 🐸\n\nVergiss nicht, @banofbot Admin-Rechte zu geben, sonst funktioniert es nicht.\n\nDu hast fragen? Schau in den Support-Channel — @borodutch\\_support 🦄\n\nSchau dir auch meine anderen Projekte an — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Eine smarte TODO Listen-App, die psychologie verwendet um dich dazu zu bringen Projekte abzuschliessen und Resultate zu erzielen. Die App ist für 30 Tage gratis (ohne Abo), also teste sie wenn du deine Produktivität erhöhen willst. Sie hat mir geholfen — also kann sie dir auch helfen.',
   },
   languageSelectedBanofbot: {
     uk: '@banofbot тепер розмовляє українською. Дякую!',
@@ -195,7 +194,6 @@ module.exports = {
     tr: 'Zaten oy kullandınız 🔫',
     az: 'Artıq səs vermisiniz 🔫',
     de: 'Du hast bereits für 🔫 gestummen',
-
   },
   adminError: {
     uk:
@@ -288,7 +286,7 @@ module.exports = {
     tr:
       '✌️ Lütfen yasak istekleri arasındaki minimum süreyi seçin. Mevcut süre: *$[1]* saniye.',
     az:
-      '✌️ Xahiş edirəm, qadağan istəkləri arasındakı minimum vaxtı seçin. Cari limit *$[1]* saniyədir.',    
+      '✌️ Xahiş edirəm, qadağan istəkləri arasındakı minimum vaxtı seçin. Cari limit *$[1]* saniyədir.',
     de:
       '✌️ Bitte wähle das Zeitlimit zwischen zwei Ban-Anfragen. Das momentane Limit ist *$[1]* Sekunden.',
   },
@@ -306,8 +304,8 @@ module.exports = {
     tr:
       '@banofbot artık yeni yasaklama isteklerine son yasaklamadan *$[1]* saniye sonra izin verecek. Teşekkür ederiz!',
     az:
-      '@banofbot indi son qadağadan *$[1]* saniyə sonra yeni qadağan istəklərinə icazə verəcəkdir. Təşəkkürlər!',    
+      '@banofbot indi son qadağadan *$[1]* saniyə sonra yeni qadağan istəklərinə icazə verəcəkdir. Təşəkkürlər!',
     de:
       '@banofbot erlaubt nun neue Ban-Anfragen *$[1]* Sekunden nach dem letzten Ban. Danke!',
   },
-}
+};

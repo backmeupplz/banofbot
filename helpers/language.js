@@ -109,6 +109,7 @@ function languages() {
     Português: 'pt',
     Turkish: 'tr',
     Azerbaijani: 'az',
+    German: 'de',
   }
 }
 
