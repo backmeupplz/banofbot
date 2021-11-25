@@ -171,7 +171,7 @@ module.exports = {
     az:
       '🔫 $[1] təpik atıldı — bu istifadəçini geri qaytarmağın yeganə yolu administratorların sohbet ayarlarında unban elan etməsidir. \\n\\nDoğuşmağı seçən seçicilər:\\n$[2]',
     de:
-      '🔫 $[1] wurde aus dme Chat gebannt — Der einzige Weg, diesen User in den Chat zurückzulassen ist für die Admins, den User in den Chat-Settings manuell zu entbannen.\n\nLeute die für Bannen gestummen haben:\n$[2]',
+      '🔫 $[1] wurde aus dem Chat gebannt — Der einzige Weg, diesen User in den Chat zurück zu lassen ist für die Admins, den User in den Chat-Settings manuell zu entbannen.\n\nLeute die für Bannen gestummen haben:\n$[2]',
   },
   voteSave: {
     uk: 'Ви вже проголосували за 👼',
