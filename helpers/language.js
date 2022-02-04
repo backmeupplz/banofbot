@@ -110,6 +110,7 @@ function languages() {
     Turkish: 'tr',
     Azerbaijani: 'az',
     German: 'de',
+    French: 'fr',
   }
 }
 
