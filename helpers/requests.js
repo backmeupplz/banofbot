@@ -16,10 +16,10 @@ const { isOver10000 } = require('./goldenBorodutchSubCount')
 const promoAdditions = {
   ru: () =>
     isOver10000()
-      ? 'При поддержке <a href="https://todorant.com/?utm_source=banofbot">Тудуранта</a>'
-      : 'При поддержке <a href="https://t.me/golden_borodutch">Золота Бородача</a>',
+      ? '<a href="https://www.ua2canada.info">Информация по переезду из 🇺🇦 в 🇨🇦</a>'
+      : '<a href="https://www.ua2canada.info">Информация по переезду из 🇺🇦 в 🇨🇦</a>',
   en: () =>
-    'Powered by <a href="https://todorant.com/?utm_source=banofbot">Todorant</a>',
+    '<a href="https://www.ua2canada.info/">Info on moving from 🇺🇦 to 🇨🇦</a>',
 }
 
 /**
