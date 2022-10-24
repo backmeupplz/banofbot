@@ -1,9 +1,9 @@
 module.exports = {
   selectLanguage: {
-    uk: '👋 Будь-ласка, виберіть вашу мову.',
+    uk: '👋 Будь ласка, оберіть свою мову.',
     en: '👋 Please, select your language.',
     pt: '👋 Por favor, selecione o idioma.',
-    ru: '👋 Пожалуйста, выберите ваш язык.',
+    ru: '👋 Пожалуйста, выберите свой язык.',
     uz: '👋 Iltimos, tilni tanlang.',
     kz: '👋 Sіzdіń tіlіńіzdі tańdańyz.',
     tr: '👋 Lütfen dilinizi seçin.',
@@ -13,13 +13,13 @@ module.exports = {
   },
   helpPrivate: {
     uk:
-      "😎 *Banofbot* дозволяє голосувати за бан участників чату. Появився спамер або ще який негідник, а адмінів нема поруч? Просто дайте відповідь на повідомлення порушника текстом `@banofbot` і бот почне голосування.\n\n@banofbot чудово працює в групових чатах — давайте, додайте його в кілька! Не забудьте назначити бота адміном, інакше він не зможе працювати.\n\n/help — Показує це повідомлення 😱\n/language — Дозволяє вибрати мову 📣\n\nНе забудьте назначити @banofbot адміном, інакше він не зможе працювати.\n\nЗалишились питання? Почитайте наш канал підтримки — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
+      "😎 *Banofbot* дозволяє голосувати за бан учасників чату. З'явився спамер або ще якийсь негідник, а адмінів немає поруч? Просто надішліть `@banofbot` у відповідь на повідомлення порушника, і бот почне голосування.\n\n@banofbot чудово працює в групових чатах — сміливіше, додайте його в кілька! Не забудьте зробити бота адміном, інакше він не зможе працювати.\n\n/help — Показує це повідомлення 😱\n/language — Дозволяє обрати мову 📣\n\nЗалишилися питання? Почитайте наш канал підтримки — @borodutch\\_support 🦄\n\Спробуйте також ще один мій проєкт — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Це розумний список завдань, який використовує когнітивну психологію для того, щоб змусити ваш мозок виконувати задачі. Ви можете користуватися ним повністю безкоштовно протягом 30 днів без якихось зобов'язань, тож чому ж не спробувати підвищити свою продуктивність? Він допоміг мені — допоможе й вам!",
     en:
-      "😎 *Banofbot* allows you to vote to ban users. Got a spammer or flamer but nobody is out there to ban one? Simply reply to the violator's message with the text `@banofbot` and the bot will start the voting.\n\n@banofbot works well in group chats — so go on, add it to one of your precious chats! Don't forget to set it as an admin, otherwise it wouldn't work.\n\n/help — Shows this message 😱\n/language — Lets you pick the language 📣\n\nGot questions? Check with our support channel — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
+      "😎 *Banofbot* allows you to vote to ban users. Got a spammer or flamer but nobody is out there to ban one? Simply reply to the violator's message with the text `@banofbot`, and the bot will start the voting.\n\n@banofbot works well in group chats — so go on, add it to one of your precious chats! Don't forget to set it as an admin, otherwise it wouldn't work.\n\n/help — Shows this message 😱\n/language — Lets you pick the language 📣\n\nGot questions? Check with our support channel — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     pt:
       "😎 *Banofbot* permite que você vote para banir usuários. Tem alguém fazendo spam ou flood e não tem um admin disponível para dar ban? Simplesmente responda à mensagem do infrator com o texto `@banofbot` e o bot iniciará a votação.\n\n@banofbot funciona bem em grupos — então o adicione a um de seus preciosos bate-papos! Não se esqueça de configurá-lo como administrador, caso contrário não vai adiantar nada.\n\n/help — Mostra esta mensagem 😱 \n/language — Permite escolher o idioma 📣\n\nPerguntas? Verifique com nosso canal de suporte — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     ru:
-      '😎 *Banofbot* позволяет голосовать за бан участников чата. Появился спамер или еще какой негодяй, а админов нет рядом? Просто ответьте на сообщение провинившегося текстом `@banofbot` и бот начнет голосование.\n\n@banofbot отлично работает в групповых чатах — давайте, добавьте его в парочку! Не забудьте назначить бота админом, иначе он не сможет работать.\n\n/help — Показывает это сообщение 😱\n/language — Позволяет выбрать язык 📣\n\nОстались вопросы? Почитайте наш канал поддержки — @borodutch\\_support 🦄\n\nПопробуйте еще один мой проект — [Тудурант](https://todorant.com) ([iOS](https://apps.apple.com/ru/app/todorant/id1482078243), [Андроид](https://play.google.com/store/apps/details?id=com.todorant)). Это умный список задач, который использует поведенческую психологию для того, чтобы заставить ваш мозг выполнять задачи. Полностью бесплатен 30 дней без каких-либо обязательств, поэтому почему бы не попробовать улучшить свою продуктивность? Тудурант помог мне, поможет и вам!',
+      '😎 *Banofbot* позволяет голосовать за бан участников чата. Появился спамер или ещё какой негодяй, а админов нет рядом? Просто ответьте на сообщение нарушителя текстом `@banofbot`, и бот начнет голосование.\n\n@banofbot отлично работает в групповых чатах — не бойтесь, добавьте его в парочку! Не забудьте сделать бота админом, иначе он не сможет работать.\n\n/help — Показывает это сообщение 😱\n/language — Позволяет выбрать язык 📣\n\nОстались вопросы? Почитайте наш канал поддержки — @borodutch\\_support 🦄\n\nПопробуйте ещё один мой проект — [Тудурант](https://todorant.com) ([iOS](https://apps.apple.com/ru/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Это умный список задач, который использует поведенческую психологию для того, чтобы заставить ваш мозг выполнять задачи. Полностью бесплатен 30 дней без каких-либо обязательств, поэтому почему бы не попробовать улучшить свою продуктивность? Тудурант помог мне, поможет и вам!',
     uz:
       "😎 *Banofbot* guruh a'zolarini ban qilish uchun ovoz berishga yordam beradi. Spamer yoki qandaydir bezori paydo bo`ldi, lekin adminlar bandmi? Shunchaki bezorining habariga javob qilib `@banofbot` so`zini yuboring va bot ban qilish uchun ovoz to`plashni boshlaydi.\n\n@banofbot guruhlarda zo`r ishlaydi — uni bir nechta guruhlarga qo`shing va rivojlantirishga yordam bering! Botni admin qilib tayinlashni unutmang, aks holda u ishlamaydi.\n\n/help — Ushbu habarni ko`rsatadi 😱\n/language — Foydalanish tilini tanlashga yordam beradi 📣\n`z fikringizni bildiring.\n\nSavollar bormi? Qo`llab-quvvatlash kanalimizni o`qing — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     kz:
@@ -32,17 +32,16 @@ module.exports = {
       '😎 *Banofbot* erlaubt es, über das Bannen von Benutzern abzustimmen. Ihr habt einen Spammer oder Beleidiger, und niemand ist hier um ihn zu bannen? Antworte einfach mit dem Text `@banofbot` auf die Nachricht und der Bot startet die Abstimmung.\n\n@banofbot funktioniert gut in Gruppenchats — also los, füge ihn einem deiner wertvollen Chats hinzu! Vergiss nicht ihm Admin-Rechte zu geben, sonst funktioniert es nicht.\n\n/help — Zeigt diese Nachricht 😱\n/language — Wähle die Sprache 📣\n\nNoch fragen? Schau in den Support-Channel — @borodutch\\_support 🦄\n\nSchau dir auch meine anderen Projekte an — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Eine smarte TODO Listen-App, die psychologie verwendet um dich dazu zu bringen Projekte abzuschliessen und Resultate zu erzielen. Die App ist für 30 Tage gratis (ohne Abo), also teste sie wenn du deine Produktivität erhöhen willst. Sie hat mir geholfen — also kann sie dir auch helfen.',
     fr:
       '😎 *Banofbot* vous permet de voter pour bannir des utilisateurs. Vous avez un spammeur ou un insulteur mais personne n\'est là pour le bannir ? Répondez simplement au message du contrevenant avec le texte `@banofbot` et le bot commencera le vote.\n\n@banofbot fonctionne bien dans les chats de groupe — alors allez-y, ajoutez-le à l\'un de vos précieux chats ! N\'oubliez pas de le configurer en tant qu\'administrateur, sinon il ne fonctionnera pas.\n\n/help — Affiche ce message 😱\n/language — Vous permet de choisir la langue 📣\n\nDes questions ? Consultez notre canal d\'assistance — @borodutch\\_support 🦄\n\nJetez également un coup d\'œil à mes autres projets — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Il s\'agit d\'une application de todo list intelligente qui utilise la psychologie cognitive pour tromper votre cerveau afin qu\'il termine les projets et montre des résultats. Elle est gratuite pendant 30 jours, sans aucune obligation, alors essayez-la si vous voulez améliorer votre productivité. Elle m\'a aidé — elle peut également vous aider.',
-
   },
   helpPublic: {
     uk:
-      "😎 *Banofbot* дозволяє голосувати за бан участників чату. Появився спамер або ще який негідник, а адмінів нема поруч? Просто дайте відповідь на повідомлення порушника текстом `@banofbot` і бот почне голосування.\n\n@banofbot чудово працює в групових чатах — давайте, додайте його в кілька! Не забудьте назначити бота адміном, інакше він не зможе працювати.\n\n/help — Показує це повідомлення 😱\n/language — Дозволяє вибрати мову 📣\n/lock — Увімкнути або вимкнути доступ не-адмінів до командам бота 🔑\n/limit — Змінити мінімальну кількість голосів для кіку користувача ✌️\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nНе забудьте назначити @banofbot адміном, інакше він не зможе працювати.\n\nЗалишились питання? Почитайте наш канал підтримки — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
+      "😎 *Banofbot* дозволяє голосувати за бан учасників чату. З'явився спамер або ще якийсь негідник, а адмінів немає поруч? Просто надішліть `@banofbot` у відповідь на повідомлення порушника, і бот почне голосування.\n\n/help — Відображає це повідомлення 😱\n/language — Дозволяє обрати мову 📣\n/lock — Увімкнути або вимкнути доступ неадмінів до команд бота 🔑\n/limit — Змінити мінімальну кількість голосів для кіку користувача ✌️\n/votekickWord — дозволяє додати слова, які починають голосування. Спробуйте, наприклад, `/votekickWord кік, челендж, бійка` 🐸\n\nНе забудьте зробити @banofbot адміном, інакше він не зможе працювати.\n\nЗалишилися питання? Почитайте наш канал підтримки — @borodutch\\_support 🦄\n\nСпробуйте також ще один мій проєкт — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). Це розумний список завдань, який використовує когнітивну психологію для того, щоб змусити ваш мозок виконувати задачі. Ви можете користуватися ним повністю безкоштовно протягом 30 днів без якихось зобов'язань, тож чому ж не спробувати підвищити свою продуктивність? Він допоміг мені — допоможе й вам!",
     en:
       "😎 *Banofbot* allows you to vote to ban users. Got a spammer or flamer but nobody is out there to ban one? Simply reply to the violator's message with the text `@banofbot` and the bot will start the voting.\n\n/help — Shows this message 😱\n/language — Lets you pick the language 📣\n/lock — Toggles lock or unlock of non-admins using commands 🔑\n/limit — Lets you set minimal number of voters to kick a user (you can also use \"/limit 100\") ✌️\n/time — Allows you to select the minimum time between bans\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nDon't forget to set @banofbot as an admin, otherwise it wouldn't work.\n\nGot questions? Check with our support channel  — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     pt:
-      "😎 * Banofbot * permite que você vote para banir usuários. Tem alguém fazendo spam ou flood, mas não tem um admin disponível para dar ban? Simplesmente responda à mensagem do infrator com o texto `@banofbot` e o bot iniciará a votação.\n\n/help — Mostra esta mensagem 😱 \n/language — Permite escolher o idioma 📣\n/lock — Alterna o bloqueio de não-administradores poderem usar os comandos 🔑\n/limit — Permite que você defina um número mínimo de membros para expulsar um usuário ✌️\n/time — permite que você selecione o tempo mínimo entre banimentos\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nNão se esqueça de configurar @banofbot como administrador, caso contrário não vai funcionar.\n\nDúvidas? Visite nosso canal de suporte — @borodutch\\_ support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
+      "😎 *Banofbot* permite que você vote para banir usuários. Tem alguém fazendo spam ou flood, mas não tem um admin disponível para dar ban? Simplesmente responda à mensagem do infrator com o texto `@banofbot` e o bot iniciará a votação.\n\n/help — Mostra esta mensagem 😱 \n/language — Permite escolher o idioma 📣\n/lock — Alterna o bloqueio de não-administradores poderem usar os comandos 🔑\n/limit — Permite que você defina um número mínimo de membros para expulsar um usuário ✌️\n/time — permite que você selecione o tempo mínimo entre banimentos\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nNão se esqueça de configurar @banofbot como administrador, caso contrário não vai funcionar.\n\nDúvidas? Visite nosso canal de suporte — @borodutch\\_ support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     ru:
-      '😎 *Banofbot* позволяет голосовать за бан участников чата. Появился спамер или еще какой негодяй, а админов нет рядом? Просто ответьте на сообщение провинившегося текстом `@banofbot` и бот начнет голосование.\n\n/help — Показывает это сообщение 😱\n/language — Позволяет выбрать язык 📣\n/lock — Включить или выключить доступ не-админов к командам бота 🔑\n/limit — Сменить минимальное количество голосов для кика пользователя (также вы можете использовать формат "/limit 100") ✌️\n/time — Настроить минимальное время между банами\n/votekickWord — настройка дополнительных слов начала голосований. Используйте в формате `/votekickWord кик, челлендж, драка` 🐸\n\nНе забудьте назначить @banofbot админом, иначе он не сможет работать.\n\nОстались вопросы? Почитайте наш канал поддержки — @borodutch\\_support 🦄\n\nПопробуйте еще один мой проект — [Тудурант](https://todorant.com) ([iOS](https://apps.apple.com/ru/app/todorant/id1482078243), [Андроид](https://play.google.com/store/apps/details?id=com.todorant)). Это умный список задач, который использует поведенческую психологию для того, чтобы заставить ваш мозг выполнять задачи. Полностью бесплатен 30 дней без каких-либо обязательств, поэтому почему бы не попробовать улучшить свою продуктивность? Тудурант помог мне, поможет и вам!',
+      '😎 *Banofbot* позволяет голосовать за бан участников чата. Появился спамер или ещё какой негодяй, а админов нет рядом? Просто ответьте на сообщение нарушителя текстом `@banofbot`, и бот начнет голосование.\n\n/help — Показывает это сообщение 😱\n/language — Позволяет выбрать язык 📣\n/lock — Включить или выключить доступ неадминов к командам бота 🔑\n/limit — Изменить минимальное количество голосов для кика пользователя (вы также можете использовать формат "/limit 100") ✌️\n/time — Настроить минимальное время между банами\n/votekickWord — Добавить слова для начала голосования. Попробуйте, например, `/votekickWord кик, челлендж, драка` 🐸\n\nНе забудьте сделать @banofbot админом, иначе он не сможет работать.\n\nОстались вопросы? Почитайте наш канал поддержки — @borodutch\\_support 🦄\n\nПопробуйте ещё один мой проект — [Тудурант](https://todorant.com) ([iOS](https://apps.apple.com/ru/app/todorant/id1482078243), [Андроид](https://play.google.com/store/apps/details?id=com.todorant)). Это умный список задач, который использует поведенческую психологию для того, чтобы заставить ваш мозг выполнять задачи. Полностью бесплатен 30 дней без каких-либо обязательств, поэтому почему бы не попробовать улучшить свою продуктивность? Тудурант помог мне, поможет и вам!',
     uz:
       "😎 *Banofbot* guruh a'zolarini ban qilish uchun ovoz berishga yordam beradi. Spamer yoki qandaydir bezori paydo bo`ldi, lekin adminlar bandmi? Shunchaki bezorining habariga javob qilib `@banofbot` so`zini yuboring va bot ban qilish uchun ovoz to`plashni boshlaydi.\n\n/help — Ushbu habarni ko`rsatadi 😱\n/language — Foydalanish tilini tanlashga yordam beradi 📣\n/lock — Oddiy foydalanuvchilarga (admin bo`lmaganlarga) bot buyruqlarini ishlatishni ta'qiqlaydi 🔑\n/limit — Foydalanuvchini ban qilish uchun kerak bo`lgan eng kam ovozlar sonini belgilaydi ✌️\n/time — Banlar orasidagi eng kam vaqtni belgilaydi\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nBotni admin qilib tayinlashni unutmang, aks holda u ishlamaydi.\n\nSavollar bormi? Qo`llab-quvvatlash kanalimizni o`qing — @borodutch\\_support 🦄\n\nAlso check out another one of my projects — [Todorant](https://todorant.com) ([iOS](https://apps.apple.com/us/app/todorant/id1482078243), [Android](https://play.google.com/store/apps/details?id=com.todorant)). It is a smart todo list app that uses cognitive psychology to trick your brain into finishing projects and showing results. It's free for 30 days with no strings attached, so go give it a shot if you want to improve your productivity. It helped me — it can help you as well.",
     kz:
@@ -70,13 +69,13 @@ module.exports = {
   },
   lockOnBanofbot: {
     uk:
-      '🔑 Чудно! *Banofbot* тепер реагує на команди, відправлені *адмінами*, в цьому чаті.',
+      '🔑 Чудово! *Banofbot* тепер реагує тільки на команди, надіслані *адмінами*, у цьому чаті.',
     en:
       '🔑 Great! *Banofbot* will now respond only to command calls sent by *admins* in this chat.',
     pt:
       '🔑 OK! *Banofbot* somente vai atender a comandos enviados por *admins".',
     ru:
-      '🔑 Чудно! *Banofbot* теперь реагирует только на команды, посланные *админами*, в этом чате.',
+      '🔑 Чудно! *Banofbot* теперь реагирует только на команды, отправленные *админами*, в этом чате.',
     uz:
       '🔑 Ajoyib! *Banofbot* endi faqat ushbu guruhdagi *adminlar* yuborgan buyruqlarga javob beradi.',
     kz:
@@ -92,12 +91,13 @@ module.exports = {
   },
   lockOffBanofbot: {
     uk:
-      '🔑 Чудно! *Banofbot* тепер реагує на команди, відправлені *будь-якими користувачами*, в цьому чаті.',
+      '🔑 Чудово! *Banofbot* тепер реагує на команди, надіслані *будь-якими користувачами*, у цьому чаті.',
     en:
       '🔑 Great! *Banofbot* will now respond to command calls from *anyone* in this chat.',
-    pt: '🔑 OK! *Banofbot* vai atender a comandos de *qualquer membro*.',
+    pt:
+      '🔑 OK! *Banofbot* vai atender a comandos de *qualquer membro*.',
     ru:
-      '🔑 Чудно! *Banofbot* теперь реагирует на команды, посланные *любыми пользователями*, в этом чате.',
+      '🔑 Чудно! *Banofbot* теперь реагирует на команды, отправленные *любыми пользователями*, в этом чате.',
     uz:
       '🔑 Ajoyib! *Banofbot* endi ushbu guruhdagi *istalgan foydalanuvchi* yuborgan buyruqlarga javob beradi.',
     kz:
@@ -112,7 +112,7 @@ module.exports = {
       '🔑 Super! *Banofbot* répondra désormais aux commandes de *n\'importe qui* dans ce chat.',
   },
   kickRequest: {
-    uk: '$[1] хоче кікнути $[2] з чату. Згідні?',
+    uk: '$[1] хоче кікнути $[2] з чату. Згодні?',
     en: '$[1] would like to kick $[2]. Do you agree?',
     pt: '$[1] acha que $[2] deveria ser retirado do grupo. Concordam?',
     ru: '$[1] хочет кикнуть $[2] из чата. Согласны?',
@@ -149,13 +149,13 @@ module.exports = {
   },
   resultSave: {
     uk:
-      '👼 $[1] врятований — в цей раз його не кікнули.\n\nПроголосувавші за порятунок:\n$[2]',
+      '👼 $[1] врятований — цього разу його не кікнули.\n\nЗа порятунок проголосували:\n$[2]',
     en:
       '👼 $[1] has been saved — no kick for you this time.\n\nVoters who chose to save:\n$[2]',
     pt:
       '👼 $[1] foi absolvido — sem expulsões por enquanto.\n\nQuem votou pela absolvição:\n$[2]',
     ru:
-      '👼 $[1] спасен — в этот раз его не кикнули.\n\nПроголосовавшие за спасение:\n$[2]',
+      '👼 $[1] спасён — в этот раз его не кикнули.\n\За спасение проголосовали:\n$[2]',
     uz:
       '👼 $[1] guruhda qoldirildi — bu safar u ban qilinmadi.\n\nGuruhda qoldirishga berilgan ovozlar:\n$[2]',
     kz:
@@ -171,13 +171,13 @@ module.exports = {
   },
   resultKick: {
     uk:
-      '🔫 $[1] кікнуто — вернути цього користувача можна тільки розбаном в налаштуваннях чату.\n\nПроголосувавші за кік:\n$[2]',
+      '🔫 $[1] кікнуто — повернути цього користувача можна тільки розбаном у налаштуваннях чату.\n\nЗа кік проголосували:\n$[2]',
     en:
       '🔫 $[1] has been kicked — the only way to get this user back is for admins to manualy unban in chat settings.\n\nVoters who chose to kick:\n$[2]',
     pt:
       '🔫 $[1] foi retirado do grupo — a única forma de retornar é um admin removendo o banimento do usuário nas configurações do grupo.\n\nQuem votou pela expulsão:\n$[2]',
     ru:
-      '🔫 $[1] кикнут — вернуть этого пользователя можно только разбаном в настройках чата.\n\nПроголосовавшие за кик:\n$[2]',
+      '🔫 $[1] кикнут — вернуть этого пользователя можно только разбаном в настройках чата.\n\nЗа кик проголосовали:\n$[2]',
     uz:
       '🔫 $[1] ban qilindi — foydalanuvchini qaytarish uchun uni guruh qora ro\\`yxatidan olib tashlash kerak.\n\nBan qilish uchun ovozlar soni:\n$[2]',
     kz:
@@ -217,13 +217,13 @@ module.exports = {
   },
   adminError: {
     uk:
-      '🔥 Ой! Схоже, що @banofbot тут ще не адмін. Будь-ласка, попросіть адмінів додати @banofbot, як адміна, інакше він не буде. Дякую!',
+      '🔥 Ой! Схоже, що @banofbot тут ще не адмін. Будь-ласка, попросіть адмінів зробити @banofbot також адміном, інакше він не буде працювати. Дякую!',
     en:
       '🔥 Oops! Looks like @banofbot is not an admin here yet. Please ask admins to set @banofbot as an admin as well, otherwise it will not work. Thanks!',
     pt:
       '🔥 Ops! Parece que o @banofbot ainda não é um administrador. Por favor, peça aos administradores que definam @banofbot como administrador também, senão não funcionará. Obrigado!',
     ru:
-      '🔥 Ой! Похоже, что @banofbot здесь еще не админ. Пожалуйста, попросите админов добавить @banofbot, как админа, иначее он не будет работать. Спасибо!',
+      '🔥 Ой! Похоже, что @banofbot здесь ещё не админ. Пожалуйста, попросите админов сделать @banofbot админом тоже, иначе он не будет работать. Спасибо!',
     uz:
       "🔥 Vay! @banofbot ushbu guruhda admin emasga o\\`xshaydi. Iltimos, adminlardan @banofbot'ni guruh admini qilib tayinlashni so\\`rang, aks holda u ishlamaydi. Rahmat!",
     kz:
@@ -239,7 +239,7 @@ module.exports = {
   },
   limitMessage: {
     uk:
-      '✌️ Будь-ласка, виберіть мінімальну кількість голосів для кіка користувача. Зараз кількість — *$[1]*',
+      '✌️ Будь ласка, оберіть мінімальну кількість голосів для кіка користувача. Поточна кількість — *$[1]*',
     en:
       '✌️ Please, select the minimum number of votes to kick a user. Current number is *$[1]*',
     pt:
@@ -261,8 +261,9 @@ module.exports = {
   },
   limitSuccess: {
     uk:
-      '@banofbot тепер буде кікати користувача, якщо*$[1]* людей проголосує за це. Дякую!',
-    en: '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!',
+      '@banofbot тепер буде кікати користувача, якщо *$[1]* людей проголосує за це. Дякую!',
+    en:
+      '@banofbot will now kick a user if *$[1]* people vote for it. Thanks!',
     pt:
       '@banofbot agora vai expulsar um usuário se *$[1]* pessoas votarem. Obrigado!',
     ru:
@@ -275,8 +276,10 @@ module.exports = {
       '@banofbot artık *$[1]* kişi oy verirse bir kullanıcıyı kovacak. Teşekkür ederiz!',
     az:
       '@banofbot indi *$[1]* nəfərin buna səs verməsi halında bir istifadəçini vuracaq. Təşəkkürlər!',
-    de: '@banofbot bannt nun einen User wenn *$[1]* leute dafür abstimmen. Danke!',
-    fr: '@banofbot va exclure un utilisateur si *$[1]* personnes votent. Merci!',
+    de:
+      '@banofbot bannt nun einen User wenn *$[1]* leute dafür abstimmen. Danke!',
+    fr:
+      '@banofbot va exclure un utilisateur si *$[1]* personnes votent. Merci!',
   },
   tooSoonError: {
     en:
@@ -284,7 +287,7 @@ module.exports = {
     pt:
       '🔥 Parece que você está tentando iniciar uma nova solicitação cedo demais. Você pode alterar o limite de tempo para este tipo de solicitação usando o comando /time. Obrigado!',
     ru:
-      '🔥 Похоже, вы пытаетесь начать голосование на кик слишком рано. Вы можете изменить лимит по времени между голосованиями при помощи комманды /time. Спасибо!',
+      '🔥 Похоже, вы пытаетесь начать голосование за кик слишком рано. Вы можете изменить лимит по времени между голосованиями при помощи команды /time. Спасибо!',
     uz:
       '🔥 Kick qilish uchun ovoz to\\`plashni juda erta boshlashga urinyapsiz. Ban qilish uchun ovoz berish jarayonlari orasidagi vaqtni /time buyrug\\`i orqali o\\`zgartirishingiz mumkin. Rahmat!',
     kz:
@@ -304,7 +307,7 @@ module.exports = {
     pt:
       '✌️ Por favor, selecione o tempo mínimo entre as solicitações. O limite atual é *$[1]* segundos.',
     ru:
-      '✌️ Пожалуйста, выберите минимальное количество секунд между голосованиями на бан. Текущий лимит — *$[1]* секунд.',
+      '✌️ Пожалуйста, выберите минимальное количество секунд между голосованиями за бан. Текущий лимит — *$[1]* секунд.',
     uz:
       '✌️ Iltimos, ban qilish uchun ovoz berish jarayonlari orasidagi eng kam vaqtni belgilang. Hozirgi cheklov — *$[1]* soniya.',
     kz:
@@ -324,7 +327,7 @@ module.exports = {
     pt:
       '@banofbot agora permitirá novas solicitações *$[1]* segundos após a última. Obrigado!',
     ru:
-      '@banofbot теперь будет начинать голосования на бан, спустя *$[1]* секунд после последнего бана. Спасибо!',
+      '@banofbot теперь будет начинать голосования за бан спустя *$[1]* секунд после последнего бана. Спасибо!',
     uz:
       '@banofbot endi ban qilish uchun ovoz berishni oxirgi bandan *$[1]* soniyadan keyin boshlaydi. Rahmat!',
     kz:
