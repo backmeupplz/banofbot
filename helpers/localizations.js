@@ -165,7 +165,7 @@ module.exports = {
     az:
       '👼 $[1] Qeyd edildi — bu dəfə sizin üçün bir zərbə yoxdur. \\n\\nQənaəti seçən seçicilər:\\n$[2]',
     de:
-      '👼 $[1] wurde im Chat behalten — diesmal kein bannen aus dem Chat für dich.\n\nLeute die für im Chat behalten gestummen haben:\n$[2]',
+      '👼 $[1] wurde im Chat behalten — diesmal kein Bannen aus dem Chat für dich.\n\nLeute die für im Chat behalten gestimmt haben:\n$[2]',
     fr:
       '👼 $[1] a été sauvé — pas d\'exclusion pour cette fois.\n\nLes votants qui ont choisi de sauver:\n$[2]',
   },
@@ -187,7 +187,8 @@ module.exports = {
     az:
       '🔫 $[1] təpik atıldı — bu istifadəçini geri qaytarmağın yeganə yolu administratorların sohbet ayarlarında unban elan etməsidir. \\n\\nDoğuşmağı seçən seçicilər:\\n$[2]',
     de:
-      '🔫 $[1] wurde aus dem Chat gebannt — Der einzige Weg, diesen User in den Chat zurück zu lassen ist für die Admins, den User in den Chat-Settings manuell zu entbannen.\n\nLeute die für Bannen gestummen haben:\n$[2]',
+      '🔫 $[1] wurde aus dem Chat gebannt — Der einzige Weg, diesen User in den Chat zurück zu lassen ist für die Admins, den User in den Chat-Settings manuell zu entbannen.\n\nLeute die für Bannen 
+    haben:\n$[2]',
     fr:
       '🔫 $[1] a été exclu — le seul moyen d\'autoriser cet utilisasteur à revenir est que les admins l\'autorisent manuellement dans les paramètres du chat.\n\nLes votants qui ont choisi l\'exclusion:\n$[2]',
   },
@@ -200,7 +201,7 @@ module.exports = {
     kz: 'Sіz daýys berіp qoıdynyz 👼',
     tr: 'Zaten oy kullandınız 👼',
     az: 'Artıq səs vermisiniz 👼',
-    de: 'Du hast bereits für 👼 gestummen',
+    de: 'Du hast bereits für 👼 gestimmt',
     fr: 'Tu as déjà voté pour 👼',
   },
   voteKick: {
@@ -212,7 +213,7 @@ module.exports = {
     kz: 'Sіz daýys berіp qoıdynyz 🔫',
     tr: 'Zaten oy kullandınız 🔫',
     az: 'Artıq səs vermisiniz 🔫',
-    de: 'Du hast bereits für 🔫 gestummen',
+    de: 'Du hast bereits für 🔫 gestimmt',
     fr: 'Tu as déjà voté pour 🔫',
   },
   adminError: {
