@@ -155,7 +155,7 @@ module.exports = {
     pt:
       '👼 $[1] foi absolvido — sem expulsões por enquanto.\n\nQuem votou pela absolvição:\n$[2]',
     ru:
-      '👼 $[1] спасён — в этот раз его не кикнули.\n\За спасение проголосовали:\n$[2]',
+      '👼 $[1] спасён — в этот раз его не кикнули.\n\nЗа спасение проголосовали:\n$[2]',
     uz:
       '👼 $[1] guruhda qoldirildi — bu safar u ban qilinmadi.\n\nGuruhda qoldirishga berilgan ovozlar:\n$[2]',
     kz:
@@ -185,10 +185,9 @@ module.exports = {
     tr:
       '🔫 $[1] kovuldu — bu kullanıcıyı geri almanın tek yolu, yöneticilerin sohbet ayarlarından yasağı elle kaldırmasıdır.\n\nGruptan kovulmasını isteyenler:\n$[2]',
     az:
-      '🔫 $[1] təpik atıldı — bu istifadəçini geri qaytarmağın yeganə yolu administratorların sohbet ayarlarında unban elan etməsidir. \\n\\nDoğuşmağı seçən seçicilər:\\n$[2]',
+      '🔫 $[1] təpik atıldı — bu istifadəçini geri qaytarmağın yeganə yolu administratorların sohbet ayarlarında unban elan etməsidir. \n\nDoğuşmağı seçən seçicilər:\n$[2]',
     de:
-      '🔫 $[1] wurde aus dem Chat gebannt — Der einzige Weg, diesen User in den Chat zurück zu lassen ist für die Admins, den User in den Chat-Settings manuell zu entbannen.\n\nLeute die für Bannen 
-    haben:\n$[2]',
+      '🔫 $[1] wurde aus dem Chat gebannt — Der einzige Weg, diesen User in den Chat zurück zu lassen ist für die Admins, den User in den Chat-Settings manuell zu entbannen.\n\nLeute die für Bannen haben:\n$[2]',
     fr:
       '🔫 $[1] a été exclu — le seul moyen d\'autoriser cet utilisasteur à revenir est que les admins l\'autorisent manuellement dans les paramètres du chat.\n\nLes votants qui ont choisi l\'exclusion:\n$[2]',
   },
