@@ -21,7 +21,7 @@ module.exports = {
     ru:
       '😎 *Banofbot* позволяет голосовать за бан участников чата. Появился спамер или ещё какой негодяй, а админов нет рядом? Просто ответьте на сообщение нарушителя текстом `@banofbot`, и бот начнет голосование.\n\n@banofbot отлично работает в групповых чатах — не бойтесь, добавьте его в парочку! Не забудьте сделать бота админом, иначе он не сможет работать.\n\n/help — Показывает это сообщение 😱\n/language — Позволяет выбрать язык 📣\n\nХотите поддержать автора бота? Я написал научную книгу о том, как жить здоровее и счастливее! Купить ее можно на Амазоне — amazon.com/dp/B0CHL7WRYM или на сайте книги — wdlaty.com. Спасибо!',
     uz:
-      "😎 *Banofbot* guruh a'zolarini ban qilish uchun ovoz berishga yordam beradi. Spamer yoki qandaydir bezori paydo bo`ldi, lekin adminlar bandmi? Shunchaki bezorining habariga javob qilib `@banofbot` so`zini yuboring va bot ban qilish uchun ovoz to`plashni boshlaydi.\n\n@banofbot guruhlarda zo`r ishlaydi — uni bir nechta guruhlarga qo`shing va rivojlantirishga yordam bering! Botni admin qilib tayinlashni unutmang, aks holda u ishlamaydi.\n\n/help — Ushbu habarni ko`rsatadi 😱\n/language — Foydalanish tilini tanlashga yordam beradi 📣\n\nDo you want to support the bot's author? I wrote a scientific book about how to live healthier and happier! You can buy it on Amazon — amazon.com/dp/B0CHL7WRYM or on the book's website — wdlaty.com. Thank you!",
+      "😎 *Banofbot* guruh a’zolarini ban qilish uchun ovoz berishga yordam beradi. Spamer yoki qandaydir bezori paydo bo‘ldi, lekin adminlar bandmi? Shunchaki bezorining xabariga javob qilib `@banofbot` so‘zini yuboring va bot ban qilish uchun ovoz to‘plashni boshlaydi.\n\n@banofbot guruhlarda zo‘r ishlaydi — uni bir nechta guruhlarga qo‘shing va rivojlantirishga yordam bering! Botni admin qilib tayinlashni unutmang, aks holda u ishlamaydi.\n\n/help — Ushbu xabarni ko‘rsatadi 😱\n/language — Foydalanish tilini tanlashga yordam beradi 📣\n\nBot muallifini qo‘llab-quvvatlashni istaysizmi? Men qanday qilib sog‘lomroq va baxtliroq yashash haqida ilmiy kitob yozganman! Siz uni Amazonda - amazon.com/dp/B0CHL7WRYM yoki vebsaytda — wdlaty.com sotib olishingiz mumkin. Kattakon rahmat!",
     kz:
       "😎 *Banofbot* chattyń paıdalanýshylaryn ban etýge daýys berý múmkіndіgіn beredі. Spammer nemese basqa da qasqyr chatta otyr, bіraq jaqynda admın joq pa? Tek qana `@banofbot` mátіnі bar habarlamamen buzaqyǵa jaýap berіńіz de, bot daýys berýdі bastaıdy. \n\nBotty admın qyldyrýǵa umytpańyz, áıtpese ol jumys іstemeıdі! \n\n/help — Bul habardy kórsetedі 😱\n/language — Tіldі tańdaýǵa múmkіndіk beredі 📣\n\nDo you want to support the bot's author? I wrote a scientific book about how to live healthier and happier! You can buy it on Amazon — amazon.com/dp/B0CHL7WRYM or on the book's website — wdlaty.com. Thank you!",
     tr:
@@ -43,7 +43,7 @@ module.exports = {
     ru:
       '😎 *Banofbot* позволяет голосовать за бан участников чата. Появился спамер или ещё какой негодяй, а админов нет рядом? Просто ответьте на сообщение нарушителя текстом `@banofbot`, и бот начнет голосование.\n\n/help — Показывает это сообщение 😱\n/language — Позволяет выбрать язык 📣\n/lock — Включить или выключить доступ неадминов к командам бота 🔑\n/limit — Изменить минимальное количество голосов для кика пользователя ✌️\n/time — Изменить минимальный промежуток времени между банами\n/votekickWord — Добавить слова для начала голосования. Попробуйте, например, `/votekickWord кик, челлендж, драка` 🐸\n\nНе забудьте сделать @banofbot админом, иначе он не сможет работать.\n\nХотите поддержать автора бота? Я написал научную книгу о том, как жить здоровее и счастливее! Купить ее можно на Амазоне — amazon.com/dp/B0CHL7WRYM или на сайте книги — wdlaty.com. Спасибо!',
     uz:
-      "😎 *Banofbot* guruh a'zolarini ban qilish uchun ovoz berishga yordam beradi. Spamer yoki qandaydir bezori paydo bo`ldi, lekin adminlar bandmi? Shunchaki bezorining habariga javob qilib `@banofbot` so`zini yuboring va bot ban qilish uchun ovoz to`plashni boshlaydi.\n\n/help — Ushbu habarni ko`rsatadi 😱\n/language — Foydalanish tilini tanlashga yordam beradi 📣\n/lock — Oddiy foydalanuvchilarga (admin bo`lmaganlarga) bot buyruqlarini ishlatishni ta'qiqlaydi 🔑\n/limit — Foydalanuvchini ban qilish uchun kerak bo`lgan eng kam ovozlar sonini belgilaydi ✌️\n/time — Banlar orasidagi eng kam vaqtni belgilaydi\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nBotni admin qilib tayinlashni unutmang, aks holda u ishlamaydi.\n\nDo you want to support the bot's author? I wrote a scientific book about how to live healthier and happier! You can buy it on Amazon — amazon.com/dp/B0CHL7WRYM or on the book's website — wdlaty.com. Thank you!",
+      "😎 *Banofbot* guruh a’zolarini ban qilish uchun ovoz berishga yordam beradi. Spamer yoki qandaydir bezori paydo bo‘ldi, lekin adminlar bandmi? Shunchaki bezorining xabariga javob qilib `@banofbot` so‘zini yuboring va bot ban qilish uchun ovoz to‘plashni boshlaydi.\n\n/help — Ushbu xabarni ko‘rsatadi 😱\n/language — Foydalanish tilini tanlashga yordam beradi 📣\n/lock — Oddiy foydalanuvchilarga (admin bo‘lmaganlarga) bot buyruqlarini ishlatishni ta’qiqlaydi 🔑\n/limit — Foydalanuvchini ban qilish uchun kerak bo‘lgan eng kam ovozlar sonini belgilaydi ✌️\n/time — Banlar orasidagi eng kam vaqtni belgilaydi\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nBotni admin qilib tayinlashni unutmang, aks holda u ishlamaydi.\n\nBot muallifini qo‘llab-quvvatlashni istaysizmi? Men qanday qilib sog‘lomroq va baxtliroq yashash haqida ilmiy kitob yozganman! Siz uni Amazonda - amazon.com/dp/B0CHL7WRYM yoki vebsaytda — wdlaty.com sotib olishingiz mumkin. Kattakon rahmat!",
     kz:
       "😎 *Banofbot* chattyń paıdalanýshylaryn ban etýge daýys berý múmkіndіgіn beredі. Spammer nemese basqa da qasqyr chatta otyr, bіraq jaqynda admın joq pa? Tek qana `@banofbot` mátіnі bar habarlamamen buzaqyǵa jaýap berіńіz de, bot daýys berýdі bastaıdy.\n\n/help — Bul habardy kórsetedі 😱\n/language — Tіldі tańdaýǵa múmkіndіk beredі 📣\n/lock — Bot komandalaryna admın emes qoldanýshylarǵa qatynaý berý nemese alý. 🔑\n/limit — Shyǵaryp jіberý úshіn eń az daýys sanyn tańdaý ✌️\n/time — Banǵa daýys berý aralyǵyndagy en az sekýndtar sanyn tańdaý\n/votekickWord — allows you to set more votekick words. Use like `/votekickWord kick, trial, challenge` 🐸\n\nBotty admın qyldyrýǵa umytpańyz, áıtpese ol jumys іstemeıdі!\n\nDo you want to support the bot's author? I wrote a scientific book about how to live healthier and happier! You can buy it on Amazon — amazon.com/dp/B0CHL7WRYM or on the book's website — wdlaty.com. Thank you!",
     tr:
@@ -60,7 +60,7 @@ module.exports = {
     en: '@banofbot now speaks English. Thank you!',
     pt: '@banofbot agora fala português. Obrigado!',
     ru: '@banofbot теперь говорит по-русски. Спасибо!',
-    uz: '@banofbot endi o\\`zbekcha gapiradi. Rahmat!',
+    uz: '@banofbot endi o‘zbekcha gapiradi. Rahmat!',
     kz: '@banofbot endі qazaqsha sóıleıdі. Rahmet!',
     tr: '@banofbot artık Türkçe konuşuyor. Teşekkür ederiz!',
     az: '@banofbot indi Azərbaycan dilində danışır. Çox sağ ol!',
@@ -179,7 +179,7 @@ module.exports = {
     ru:
       '🔫 $[1] кикнут — вернуть этого пользователя можно только разбаном в настройках чата.\n\nЗа кик проголосовали:\n$[2]',
     uz:
-      '🔫 $[1] ban qilindi — foydalanuvchini qaytarish uchun uni guruh qora ro\\`yxatidan olib tashlash kerak.\n\nBan qilish uchun ovozlar soni:\n$[2]',
+      '🔫 $[1] ban qilindi — foydalanuvchini qaytarish uchun uni guruh qora ro‘yxatdan olib tashlash kerak.\n\nBan qilish uchun ovozlar soni:\n$[2]',
     kz:
       '🔫 $[1] shyǵaryp jіberіldі — bul paıdalanýshyny tek chat parametrlerі arqyly qaıtarylýy múmkіn.\n\nShyǵaryp jіberý úshіn daýys bergen:\n$[2]',
     tr:
@@ -196,7 +196,7 @@ module.exports = {
     en: 'You have already voted for 👼',
     pt: 'Você já vou em 👼',
     ru: 'Вы уже проголосовали за 👼',
-    uz: 'Siz 👼 uchun ovoz berib bo\\`ldingiz',
+    uz: 'Siz 👼 uchun ovoz berib bo‘ldingiz',
     kz: 'Sіz daýys berіp qoıdynyz 👼',
     tr: 'Zaten oy kullandınız 👼',
     az: 'Artıq səs vermisiniz 👼',
@@ -208,7 +208,7 @@ module.exports = {
     en: 'You have already voted for 🔫',
     pt: 'Você já votou em 🔫',
     ru: 'Вы уже проголосовали за 🔫',
-    uz: 'Siz 🔫 uchun ovoz berib bo\\`ldingiz',
+    uz: 'Siz 🔫 uchun ovoz berib bo‘ldingiz',
     kz: 'Sіz daýys berіp qoıdynyz 🔫',
     tr: 'Zaten oy kullandınız 🔫',
     az: 'Artıq səs vermisiniz 🔫',
@@ -225,7 +225,7 @@ module.exports = {
     ru:
       '🔥 Ой! Похоже, что @banofbot здесь ещё не админ. Пожалуйста, попросите админов сделать @banofbot админом тоже, иначе он не будет работать. Спасибо!',
     uz:
-      "🔥 Vay! @banofbot ushbu guruhda admin emasga o\\`xshaydi. Iltimos, adminlardan @banofbot'ni guruh admini qilib tayinlashni so\\`rang, aks holda u ishlamaydi. Rahmat!",
+      "🔥 Vay! @banofbot ushbu guruhda admin emasga o‘xshaydi. Iltimos, adminlardan @banofbot'ni guruh admini qilib tayinlashni so‘rang, aks holda u ishlamaydi. Rahmat!",
     kz:
       '🔥 Oı! @Banofbot álі admın emes sııaqty. Admınderden @banofbot-dі admin dep qosýdy surańyz, áıtpese ol jumys іstemeıdі. Rahmet!',
     tr:
@@ -247,7 +247,7 @@ module.exports = {
     ru:
       '✌️ Пожалуйста, выберите минимальное количество голосов для кика пользователя. Текущее количество — *$[1]*',
     uz:
-      '✌️ Iltimos, foydalanuvchilarni ban qilish uchun kerak bo\\`lgan eng kam ovozlar sonini ayting. Hozir — *$[1]*',
+      '✌️ Iltimos, foydalanuvchilarni ban qilish uchun kerak bo‘lgan eng kam ovozlar sonini ayting. Hozir — *$[1]*',
     kz:
       '✌️ Paıdalanýshyny shyǵaryp jіberý úshіn eń az daýys sanyn tańdańyz. Aǵymdaǵy san — *$[1]*',
     tr:
@@ -291,7 +291,7 @@ module.exports = {
     ru:
       '🔥 Похоже, вы пытаетесь начать голосование за кик слишком рано. Минимальный промежуток времени между голосованиями можно изменить при помощи команды /time. Спасибо!',
     uz:
-      '🔥 Kick qilish uchun ovoz to\\`plashni juda erta boshlashga urinyapsiz. Ban qilish uchun ovoz berish jarayonlari orasidagi vaqtni /time buyrug\\`i orqali o\\`zgartirishingiz mumkin. Rahmat!',
+      '🔥 Kick qilish uchun ovoz to‘plashni juda erta boshlashga urinyapsiz. Ban qilish uchun ovoz berish jarayonlari orasidagi vaqtni /time buyrug‘i orqali o‘zgartirishingiz mumkin. Rahmat!',
     kz:
       '🔥 Sіz tym erte shyǵaryp jіberýge daýys berýdі bastap jatyrsyz. Daýys berý arasyndaǵy ýaqyt aralyǵyn /time komandasymen ózgertýge bolady. Rahmet!',
     tr:
