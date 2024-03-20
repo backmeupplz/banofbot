@@ -142,7 +142,8 @@ async function voteQuery(bot, msg) {
       request.voters_ban = request.voters_ban.filter(
         (arrayVoter) => !arrayVoter._id.equals(voter._id)
       )
-      request.voters_noban.push(voter)
+      request.update({ 'voters_noban._id': { $ne: voter._id } },
+        { $addToSet: { voters_noban: voter } });
     } else {
       const alreadyThere = _.find(request.voters_ban, (arrayVoter) =>
         arrayVoter._id.equals(voter._id)
@@ -159,7 +160,8 @@ async function voteQuery(bot, msg) {
       request.voters_noban = request.voters_noban.filter(
         (arrayVoter) => !arrayVoter._id.equals(voter._id)
       )
-      request.voters_ban.push(voter)
+      request.update({ 'voters_ban._id': { $ne: voter._id } },
+        { $addToSet: { voters_ban: voter } });
     }
     request = await request.save()
     await updateMessage(bot, request)
