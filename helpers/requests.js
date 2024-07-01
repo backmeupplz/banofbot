@@ -9,7 +9,6 @@
 const db = require('./db')
 const _ = require('lodash')
 const admins = require('./admins')
-const { Lock } = require('semaphore-async-await')
 const { isRuChat } = require('./isRuChat')
 const { isOver10000 } = require('./goldenBorodutchSubCount')
 
@@ -106,8 +105,6 @@ async function startRequest(bot, msg) {
  * @param {Teleram:Message} msg Message that triggered inline
  */
 async function voteQuery(bot, msg) {
-  const lock = new Lock(1)
-  await lock.acquire()
   try {
     const options = msg.data.split('~')
     const requestId = options[1]
@@ -142,7 +139,8 @@ async function voteQuery(bot, msg) {
       request.voters_ban = request.voters_ban.filter(
         (arrayVoter) => !arrayVoter._id.equals(voter._id)
       )
-      request.voters_noban.push(voter)
+      request.update({ 'voters_noban._id': { $ne: voter._id } },
+          { $addToSet: { voters_noban: voter } })
     } else {
       const alreadyThere = _.find(request.voters_ban, (arrayVoter) =>
         arrayVoter._id.equals(voter._id)
@@ -159,16 +157,14 @@ async function voteQuery(bot, msg) {
       request.voters_noban = request.voters_noban.filter(
         (arrayVoter) => !arrayVoter._id.equals(voter._id)
       )
-      request.voters_ban.push(voter)
+      request.update({ 'voters_ban._id': { $ne: voter._id } },
+          { $addToSet: { voters_ban: voter } })
     }
     request = await request.save()
     await updateMessage(bot, request)
   } catch (err) {
     console.error(err)
     // Do nothing
-  } finally {
-    lock.release()
-  }
 }
 
 /**
