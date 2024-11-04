@@ -1,5 +1,5 @@
 function check(bot, chat, text) {
-  const votekickWordString = text.substr('votekickWord '.length).trim()
+  const votekickWordString = text.substr('votekickWord'.length).trim()
   if (!votekickWordString.length) {
     chat.votekickWord = undefined
     chat
