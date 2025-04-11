@@ -1,0 +1,8 @@
+[phases.install]
+cmds = ["yarn install"]
+
+[start]
+cmd = "yarn start"
+
+[variables]
+NODE_ENV = "production"
