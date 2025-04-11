@@ -13,16 +13,26 @@ const userSchema = new Schema(
     id: {
       type: Number,
       required: true,
+      index: true, // Add index for faster lookups by Telegram user ID
     },
     first_name: {
       type: String,
       required: true,
     },
     last_name: String,
-    username: String,
+    username: {
+      type: String,
+      index: true, // Add index for username lookups
+    },
   },
   { timestamps: true, usePushEach: true }
 )
+
+// Create a unique index on the id field for faster lookups
+userSchema.index({ id: 1 }, { unique: true });
+
+// Create index for searching users by name
+userSchema.index({ first_name: 1, last_name: 1 });
 
 userSchema.methods.name = function name() {
   if (this.username) {

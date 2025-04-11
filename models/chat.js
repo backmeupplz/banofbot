@@ -8,12 +8,16 @@ const chatSchema = new Schema(
     id: {
       type: String,
       required: true,
+      index: true,
     },
     type: {
       type: String,
       required: true,
     },
-    username: String,
+    username: {
+      type: String,
+      index: true,
+    },
     first_name: String,
     last_name: String,
     all_members_are_administrators: Boolean,
@@ -36,6 +40,7 @@ const chatSchema = new Schema(
       type: Date,
       required: true,
       default: new Date(0),
+      index: true, // Add index for time-based queries
     },
     seconds_between_bans: {
       type: Number,
@@ -49,6 +54,15 @@ const chatSchema = new Schema(
   },
   { timestamps: true, usePushEach: true }
 )
+
+// Create a unique index on the id field for faster lookups
+chatSchema.index({ id: 1 }, { unique: true });
+
+// Create a compound index for queries that might filter by type and sort by last_ban
+chatSchema.index({ type: 1, last_ban: -1 });
+
+// Create an index for the findChatsWithNewcomers function that looks for chats with newcomers
+chatSchema.index({ 'newcomers.0': 1 });
 
 // Exports
 module.exports = mongoose.model('chat', chatSchema)

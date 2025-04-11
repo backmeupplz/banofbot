@@ -18,16 +18,19 @@ const requestSchema = new Schema(
       type: Schema.ObjectId,
       ref: 'chat',
       required: true,
+      index: true, // Add index for faster lookups by chat
     },
     candidate: {
       type: Schema.ObjectId,
       ref: 'user',
       required: true,
+      index: true, // Add index for faster lookups by candidate
     },
     starter: {
       type: Schema.ObjectId,
       ref: 'user',
       required: true,
+      index: true, // Add index for faster lookups by request starter
     },
     voters_ban: [
       {
@@ -48,6 +51,17 @@ const requestSchema = new Schema(
   },
   { timestamps: true, usePushEach: true }
 )
+
+// Create compound indexes for common query patterns
+// Index for queries that filter by chat and sort by createdAt (for finding recent requests in a chat)
+requestSchema.index({ chat: 1, createdAt: -1 });
+
+// Index for finding active requests (those with fewer votes than required)
+requestSchema.index({ 'voters_ban.0': 1 });
+requestSchema.index({ 'voters_noban.0': 1 });
+
+// Index for finding requests by inline message details (used when updating votes)
+requestSchema.index({ inline_chat_id: 1, inline_message_id: 1 });
 
 /** Exports */
 module.exports = mongoose.model('request', requestSchema)
