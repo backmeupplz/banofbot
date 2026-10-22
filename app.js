@@ -33,19 +33,15 @@ mongoose.Promise = require('bluebird')
 mongoose.connect(config.database, {
   socketTimeoutMS: 0,
   connectTimeoutMS: 0,
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
 })
 mongoose.connection.on('disconnected', () => {
   mongoose.connect(config.database, {
     socketTimeoutMS: 0,
     connectTimeoutMS: 0,
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
   })
 })
-mongoose.set('useCreateIndex', true)
-mongoose.set('useFindAndModify', false)
+// Mongoose 6 defaults to dropping unknown fields from query filters; keep v5's behavior
+mongoose.set('strictQuery', false)
 
 let timeoutOver = false
 setTimeout(() => {
