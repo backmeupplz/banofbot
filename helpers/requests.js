@@ -338,8 +338,7 @@ function sendAdminError(bot, chat) {
 
   return bot.sendMessage(
     chat.id,
-    chat.language,
-    strings.translate('adminError')
+    strings.translate('adminError', chat.language)
   )
 }
 
