@@ -228,19 +228,28 @@ bot.processUpdate = (update) => {
   lastUpdate = Math.max(lastUpdate, update.update_id)
   processUpdate(update)
 }
-const confirmUpdates = () =>
-  bot.getUpdates({ offset: lastUpdate + 1, limit: 1, timeout: 0 })
+// A zero-timeout getUpdates confirms every update fetched, so the next poller does not get them
+// again. Retried: a reused keep-alive socket can be reset
+const confirmUpdates = async (attempt = 1) => {
+  try {
+    await bot.getUpdates({ offset: lastUpdate + 1, limit: 1, timeout: 0 })
+  } catch (err) {
+    if (attempt === 3) throw err
+    await new Promise((resolve) => setTimeout(resolve, 300))
+    await confirmUpdates(attempt + 1)
+  }
+}
 
 if (!config.should_use_webhooks) {
   pollWithHandover(
     () => bot.startPolling(),
     async () => {
-      // stopPolling() waits for the pending long poll: a zero-timeout getUpdates ends it
-      // and confirms every update fetched, so the next poller does not get them again
-      const stopped = bot.stopPolling()
-      await confirmUpdates()
-      await stopped
-      // The long poll may still have returned updates (handled above): confirm those too
+      // Abort the pending long poll (the library enables Bluebird cancellation). Without the
+      // abort, the confirming getUpdates turns it into a 409, which the library answers with a
+      // setWebHook and another long poll. The cancelled poll's finally() schedules the next poll
+      // unless _abort is set, which stopPolling({ cancel }) does not do
+      bot._polling._abort = true
+      await bot.stopPolling({ cancel: true })
       await confirmUpdates()
     },
     // The handlers are fire-and-forget promise chains: give them a moment to finish
