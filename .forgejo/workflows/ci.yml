@@ -1,0 +1,34 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [master]
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  check:
+    # Our own PRs and pushes run on the Mac runners; outsiders' PRs (AGit via the github bot) on Linux
+    runs-on: ${{ (github.event_name != 'pull_request' || contains(fromJSON('["backmeupplz","renovate","claude"]'), github.event.pull_request.user.login)) && 'macos-latest' || 'ubuntu-latest' }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      # Production's Node major (.nvmrc); the Mac runners keep their tool cache, so this is a cache hit there
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # Linux caches node_modules (a hit skips the install). On the Mac yarn keeps its cache per runner
+      # instance: yarn 1 corrupts a cache shared by concurrent installs
+      - id: modules
+        if: runner.os == 'Linux'
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock', '.nvmrc') }}
+      - if: steps.modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive --cache-folder "$RUNNER_TOOL_CACHE/yarn"
+      # Parses every .js file and flags undefined variables. The repo's .eslintrc.js (airbnb style)
+      # doesn't match the code's no-semicolon style (500+ findings), so it isn't used here.
+      - run: yarn -s eslint --no-eslintrc --env node,es2020 --parser-options ecmaVersion:2020 --rule 'no-undef:error' .

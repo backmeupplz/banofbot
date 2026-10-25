@@ -35,7 +35,7 @@ function sendLimit(bot, chat, text) {
           }
         )
       )
-      .catch((err) => bot.sendMessage(chat.id, `❗️ _${error.message}_`))
+      .catch((err) => bot.sendMessage(chat.id, `❗️ _${err.message}_`))
   }
 
   const replyText = strings.translate(
