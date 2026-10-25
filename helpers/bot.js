@@ -27,8 +27,9 @@ if (config.should_use_webhooks) {
     .then(() => { console.info('Telegram webhook is active'); })
     .catch(/** todo: handle error */);
 } else {
+  // app.js starts polling once this instance holds the polling lock
   bot = new Telegram(config.token, {
-    polling: true,
+    polling: { autoStart: false },
   });
   console.info('Telegram is using polling');
 }

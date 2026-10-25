@@ -22,6 +22,7 @@ const admins = require('./helpers/admins')
 const limit = require('./helpers/limit')
 const time = require('./helpers/time')
 const votekickWord = require('./helpers/votekickWord')
+const { pollWithHandover } = require('./helpers/handover')
 
 global.Promise = require('bluebird')
 
@@ -219,6 +220,33 @@ bot.on('callback_query', (msg) => {
     time.setTime(bot, msg)
   }
 })
+
+// The newest update fetched, for handing polling over on deploys
+let lastUpdate = 0
+const processUpdate = bot.processUpdate.bind(bot)
+bot.processUpdate = (update) => {
+  lastUpdate = Math.max(lastUpdate, update.update_id)
+  processUpdate(update)
+}
+const confirmUpdates = () =>
+  bot.getUpdates({ offset: lastUpdate + 1, limit: 1, timeout: 0 })
+
+if (!config.should_use_webhooks) {
+  pollWithHandover(
+    () => bot.startPolling(),
+    async () => {
+      // stopPolling() waits for the pending long poll: a zero-timeout getUpdates ends it
+      // and confirms every update fetched, so the next poller does not get them again
+      const stopped = bot.stopPolling()
+      await confirmUpdates()
+      await stopped
+      // The long poll may still have returned updates (handled above): confirm those too
+      await confirmUpdates()
+    },
+    // The handlers are fire-and-forget promise chains: give them a moment to finish
+    () => new Promise((resolve) => setTimeout(resolve, 2000))
+  )
+}
 
 console.info('Bot is up and running')
 
