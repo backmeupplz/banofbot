@@ -1,4 +1,7 @@
 # [@banofbot](https://telegram.me/banofbot) and [@silent_banofbot](https://telegram.me/banofbot) code
+
+Website: **[banofbot.borodutch.com](https://banofbot.borodutch.com)** (vote bans for Telegram groups: how it works, settings, FAQ).
+
 This repository contains the code for the democracy bots I've built. Readme is still in work, any contributions are welcome.
 
 # Installation and local launch
