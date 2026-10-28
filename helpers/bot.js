@@ -29,7 +29,13 @@ if (config.should_use_webhooks) {
 } else {
   // app.js starts polling once this instance holds the polling lock
   bot = new Telegram(config.token, {
-    polling: { autoStart: false },
+    polling: {
+      autoStart: false,
+      // my_chat_member: a private chat blocking the bot (promo.js harm checks)
+      params: {
+        allowed_updates: JSON.stringify(['message', 'callback_query', 'my_chat_member']),
+      },
+    },
   });
   console.info('Telegram is using polling');
 }

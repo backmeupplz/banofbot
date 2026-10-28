@@ -31,4 +31,6 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive --cache-folder "$RUNNER_TOOL_CACHE/yarn"
       # Parses every .js file and flags undefined variables. The repo's .eslintrc.js (airbnb style)
       # doesn't match the code's no-semicolon style (500+ findings), so it isn't used here.
+      # The reply-promo hook (helpers/promo.js)
+      - run: node --test helpers/promo.test.js
       - run: yarn -s eslint --no-eslintrc --env node,es2020 --parser-options ecmaVersion:2020 --rule 'no-undef:error' .

@@ -23,6 +23,8 @@ const limit = require('./helpers/limit')
 const time = require('./helpers/time')
 const votekickWord = require('./helpers/votekickWord')
 const { pollWithHandover } = require('./helpers/handover')
+const promo = require('./helpers/promoHook')
+const { startPayload } = require('./helpers/promo')
 
 global.Promise = require('bluebird')
 
@@ -81,6 +83,18 @@ function handle(msg) {
     msg.group_chat_created
   db.findChat(msg.chat)
     .then((chat) => {
+      // Prime Radiant experiments (promo.js): another bot's campaign link
+      // brought this user, or someone it brought uses Banofbot
+      if (
+        msg.chat.type === 'private' &&
+        isCommand &&
+        msg.text.includes('start')
+      )
+        promo.arrived(
+          msg.from.id,
+          startPayload(msg.text),
+          Date.now() - new Date(chat.createdAt).getTime() < 600000
+        )
       let isReply =
         msg.reply_to_message &&
         msg.text &&
@@ -190,8 +204,10 @@ function handle(msg) {
             .catch(/** todo: handle error */)
         }
       } else if (isEntry) {
+        if (msg.from) promo.used(msg.from.id)
         language.sendLanguage(bot, chat, false)
       } else if (isReply) {
+        promo.used(msg.from.id)
         try {
           requests.startRequest(bot, msg)
         } catch (err) {
@@ -226,6 +242,13 @@ let lastUpdate = 0
 const processUpdate = bot.processUpdate.bind(bot)
 bot.processUpdate = (update) => {
   lastUpdate = Math.max(lastUpdate, update.update_id)
+  const member = update.my_chat_member
+  if (
+    member &&
+    member.chat.type === 'private' &&
+    member.new_chat_member.status === 'kicked'
+  )
+    promo.blocked(member.from.id)
   processUpdate(update)
 }
 // A zero-timeout getUpdates confirms every update fetched, so the next poller does not get them
@@ -252,10 +275,15 @@ if (!config.should_use_webhooks) {
       await bot.stopPolling({ cancel: true })
       await confirmUpdates()
     },
-    // The handlers are fire-and-forget promise chains: give them a moment to finish
-    () => new Promise((resolve) => setTimeout(resolve, 2000))
+    // The handlers are fire-and-forget promise chains: give them a moment to
+    // finish, then send the promo events still queued
+    () =>
+      new Promise((resolve) => setTimeout(resolve, 2000)).then(() =>
+        promo.stop()
+      )
   )
 }
+promo.start()
 
 console.info('Bot is up and running')
 
