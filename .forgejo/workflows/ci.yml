@@ -12,7 +12,7 @@ jobs:
   check:
     # Our own PRs and pushes run on the Mac runners; outsiders' PRs (AGit via the github bot) and bots like radiant run
     # on Linux in the node:22 image (label `docker`): it ships production's Node major, so there's no setup-node download
-    runs-on: ${{ (github.event_name != 'pull_request' || contains(fromJSON('["backmeupplz","renovate","claude"]'), github.event.pull_request.user.login)) && 'macos-latest' || 'docker' }}
+    runs-on: ${{ (github.event_name != 'pull_request' || contains(fromJSON('["backmeupplz","renovate","claude","radiant"]'), github.event.pull_request.user.login)) && 'macos-latest' || 'docker' }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
