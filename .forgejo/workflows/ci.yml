@@ -10,27 +10,25 @@ permissions:
   contents: read
 jobs:
   check:
-    # Our own PRs and pushes run on the Mac runners; outsiders' PRs (AGit via the github bot) on Linux
-    runs-on: ${{ (github.event_name != 'pull_request' || contains(fromJSON('["backmeupplz","renovate","claude"]'), github.event.pull_request.user.login)) && 'macos-latest' || 'ubuntu-latest' }}
+    # Our own PRs and pushes run on the Mac runners; outsiders' PRs (AGit via the github bot) and bots like radiant run
+    # on Linux in the node:22 image (label `docker`): it ships production's Node major, so there's no setup-node download
+    runs-on: ${{ (github.event_name != 'pull_request' || contains(fromJSON('["backmeupplz","renovate","claude"]'), github.event.pull_request.user.login)) && 'macos-latest' || 'docker' }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       # Production's Node major (.nvmrc); the Mac runners keep their tool cache, so this is a cache hit there
-      - uses: actions/setup-node@v4
+      - if: runner.os == 'macOS'
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      # Linux caches node_modules (a hit skips the install). On the Mac yarn keeps its cache per runner
-      # instance: yarn 1 corrupts a cache shared by concurrent installs
-      - id: modules
-        if: runner.os == 'Linux'
-        uses: actions/cache@v4
+      - uses: https://github.com/oven-sh/setup-bun@v2
         with:
-          path: node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock', '.nvmrc') }}
-      - if: steps.modules.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --non-interactive --cache-folder "$RUNNER_TOOL_CACHE/yarn"
+          bun-version: 1.4.4
+      # bun reads yarn.lock (the same versions production's yarn install gets) and installs in seconds, cold or warm.
+      # The Dockerfile keeps yarn
+      - run: bun install --frozen-lockfile
+      # The reply-promo hook (helpers/promo.js), command matching (helpers/command.js) and any other helpers/*.test.js
+      - run: node --test 'helpers/*.test.js'
       # Parses every .js file and flags undefined variables. The repo's .eslintrc.js (airbnb style)
       # doesn't match the code's no-semicolon style (500+ findings), so it isn't used here.
-      # The reply-promo hook (helpers/promo.js) and command matching (helpers/command.js)
-      - run: node --test helpers/promo.test.js helpers/command.test.js
-      - run: yarn -s eslint --no-eslintrc --env node,es2020 --parser-options ecmaVersion:2020 --rule 'no-undef:error' .
+      - run: node_modules/.bin/eslint --no-eslintrc --env node,es2020 --parser-options ecmaVersion:2020 --rule 'no-undef:error' .
