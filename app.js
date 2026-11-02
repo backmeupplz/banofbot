@@ -25,6 +25,7 @@ const votekickWord = require('./helpers/votekickWord')
 const { pollWithHandover } = require('./helpers/handover')
 const promo = require('./helpers/promoHook')
 const { startPayload } = require('./helpers/promo')
+const { commandOf } = require('./helpers/command')
 
 global.Promise = require('bluebird')
 
@@ -71,11 +72,8 @@ function handle(msg) {
   }
   const isPrivateChat =
     msg.chat.type === 'private' || msg.chat.type === 'channel'
-  const isCommand =
-    msg.text &&
-    msg.entities &&
-    msg.entities[0] &&
-    msg.entities[0].type === 'bot_command'
+  const command = commandOf(msg)
+  const isCommand = !!command
   const isEntry =
     (msg.new_chat_participant &&
       msg.new_chat_participant.username &&
@@ -85,11 +83,7 @@ function handle(msg) {
     .then((chat) => {
       // Prime Radiant experiments (promo.js): another bot's campaign link
       // brought this user, or someone it brought uses Banofbot
-      if (
-        msg.chat.type === 'private' &&
-        isCommand &&
-        msg.text.includes('start')
-      )
+      if (msg.chat.type === 'private' && command === 'start')
         promo.arrived(
           msg.from.id,
           startPayload(msg.text),
@@ -122,35 +116,35 @@ function handle(msg) {
       }
       if (isCommand) {
         if (isPrivateChat || !chat.admin_locked) {
-          if (msg.text.includes('start')) {
+          if (command === 'start') {
             language.sendLanguage(bot, chat, false)
-          } else if (msg.text.includes('help')) {
+          } else if (command === 'help') {
             help.sendHelp(bot, chat)
-          } else if (msg.text.includes('language')) {
+          } else if (command === 'language') {
             language.sendLanguage(bot, chat, true)
-          } else if (msg.text.includes('limit')) {
+          } else if (command === 'limit') {
             if (!isPrivateChat) {
               limit.sendLimit(bot, chat, msg.text)
             }
-          } else if (msg.text.includes('time')) {
+          } else if (command === 'time') {
             if (!isPrivateChat) {
               time.sendTime(bot, chat)
             }
-          } else if (msg.text.includes('lock')) {
+          } else if (command === 'lock') {
             if (!isPrivateChat) {
               lock.toggle(bot, chat)
             }
-          } else if (msg.text.includes('filterNewcomers')) {
+          } else if (command === 'filterNewcomers') {
             if (!isPrivateChat) {
               bot.sendMessage(chat.id, 'Please, use @shieldy_bot instead.')
             }
-          } else if (msg.text.includes('/banme')) {
+          } else if (command === 'banme') {
             if (!isPrivateChat) {
               bot.kickChatMember(msg.chat.id, msg.from.id, {
                 until_date: Math.floor(Date.now() / 1000) + 60,
               })
             }
-          } else if (msg.text.includes('/votekickWord')) {
+          } else if (command === 'votekickWord') {
             if (!isPrivateChat) {
               votekickWord.check(bot, chat, msg.text)
             }
@@ -159,42 +153,42 @@ function handle(msg) {
           admins
             .isAdmin(bot, chat.id, msg.from.id)
             .then((isAdmin) => {
-              if (msg.text.includes('start')) {
+              if (command === 'start') {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 language.sendLanguage(bot, chat, false)
-              } else if (msg.text.includes('help')) {
+              } else if (command === 'help') {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 help.sendHelp(bot, chat)
-              } else if (msg.text.includes('language')) {
+              } else if (command === 'language') {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 language.sendLanguage(bot, chat, true)
-              } else if (msg.text.includes('limit')) {
+              } else if (command === 'limit') {
                 if (!isPrivateChat) {
                   if (!isAdmin)
                     return deleteMessage(msg.chat.id, msg.message_id)
                   limit.sendLimit(bot, chat, msg.text)
                 }
-              } else if (msg.text.includes('time')) {
+              } else if (command === 'time') {
                 if (!isPrivateChat) {
                   if (!isAdmin)
                     return deleteMessage(msg.chat.id, msg.message_id)
                   time.sendTime(bot, chat)
                 }
-              } else if (msg.text.includes('lock')) {
+              } else if (command === 'lock') {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 if (!isPrivateChat) {
                   lock.toggle(bot, chat)
                 }
-              } else if (msg.text.includes('filterNewcomers')) {
+              } else if (command === 'filterNewcomers') {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 bot.sendMessage(chat.id, 'Please, use @shieldy_bot instead.')
-              } else if (msg.text.includes('/banme')) {
+              } else if (command === 'banme') {
                 if (!isPrivateChat) {
                   bot.kickChatMember(msg.chat.id, msg.from.id, {
                     until_date: Math.floor(Date.now() / 1000) + 60,
                   })
                 }
-              } else if (msg.text.includes('/votekickWord')) {
+              } else if (command === 'votekickWord') {
                 if (!isAdmin) return deleteMessage(msg.chat.id, msg.message_id)
                 if (!isPrivateChat) {
                   votekickWord.check(bot, chat, msg.text)
