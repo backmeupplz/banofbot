@@ -25,6 +25,9 @@ test('commandOf', () => {
     undefined
   )
   assert.strictEqual(commandOf(msg('/spam')), undefined)
+  assert.strictEqual(commandOf(msg('/promos@BanOfBot off')), 'promos')
+  assert.strictEqual(commandOf(msg('/promos@randymbot off')), undefined)
+  assert.strictEqual(commandOf(msg('/privacy@voicybot')), undefined)
   assert.strictEqual(commandOf(msg('see /help')), undefined)
   assert.strictEqual(commandOf({ text: 'help' }), undefined)
 })

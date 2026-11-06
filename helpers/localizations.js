@@ -347,4 +347,49 @@ module.exports = {
     fr:
       '@banofbot autorise désormais de nouvelles exclusions *$[1]* secondes après la dernière exclusion. Merci!',
   },
+  promosPrivacy: {
+    en: "In groups, Banofbot may add one button under a vote's result that points to another bot by the same maker, picked by matching the reported message and the vote call to that bot's topic (for example, spam). The text is only matched in memory and is never stored or logged for this, and it happens at most once a week per group across all our bots. Group admins can turn this off with /promos off.",
+    ru: "В группах Banofbot может добавить под итогом голосования одну кнопку другого бота того же автора, если слова сообщения, на которое пожаловались, и вызова голосования совпадают с темой этого бота (например, спам). Текст для этого сверяется только в памяти и никогда не сохраняется и не попадает в логи, а кнопка появляется не чаще раза в неделю на группу во всех наших ботах вместе. Админы группы могут выключить это командой /promos off.",
+    uk: "У групах Banofbot може додати під підсумком голосування одну кнопку іншого бота того ж автора, якщо слова повідомлення, на яке поскаржилися, і виклику голосування збігаються з темою цього бота (наприклад, спам). Текст для цього звіряється лише в пам'яті й ніколи не зберігається і не потрапляє в логи, а кнопка з'являється не частіше разу на тиждень на групу в усіх наших ботах разом. Адміни групи можуть вимкнути це командою /promos off.",
+  },
+  promosHelp: {
+    en: "/promos — Turn buttons for our other bots in this group on or off\n/privacy — How Banofbot handles your data",
+    ru: "/promos — Включить или выключить кнопки других наших ботов в этой группе\n/privacy — Как Banofbot обращается с данными",
+    uk: "/promos — Увімкнути або вимкнути кнопки інших наших ботів у цій групі\n/privacy — Як Banofbot поводиться з даними",
+  },
+  promosStatusOn: {
+    en: "📣 Banofbot may add one button for another bot by the same maker under a vote's result in this group, at most once a week, when the vote is about that bot's topic. Group admins can turn this off with /promos off.",
+    ru: "📣 Banofbot может добавить под итогом голосования в этой группе одну кнопку другого бота того же автора, не чаще раза в неделю, если голосование касается темы этого бота. Админы группы могут выключить это командой /promos off.",
+    uk: "📣 Banofbot може додати під підсумком голосування в цій групі одну кнопку іншого бота того ж автора, не частіше разу на тиждень, якщо голосування стосується теми цього бота. Адміни групи можуть вимкнути це командою /promos off.",
+  },
+  promosStatusOff: {
+    en: "🔕 Buttons for other bots are off in this group. Group admins can turn them back on with /promos on.",
+    ru: "🔕 Кнопки других ботов в этой группе выключены. Админы группы могут включить их снова командой /promos on.",
+    uk: "🔕 Кнопки інших ботів у цій групі вимкнені. Адміни групи можуть увімкнути їх знову командою /promos on.",
+  },
+  promosOff: {
+    en: "🔕 Done: Banofbot won't add buttons for other bots in this group.",
+    ru: "🔕 Готово: Banofbot не будет добавлять кнопки других ботов в этой группе.",
+    uk: "🔕 Готово: Banofbot не додаватиме кнопки інших ботів у цій групі.",
+  },
+  promosOn: {
+    en: "📣 Done: Banofbot may again add a button for another bot by the same maker under a vote's result, at most once a week.",
+    ru: "📣 Готово: Banofbot снова может добавить под итогом голосования кнопку другого бота того же автора, не чаще раза в неделю.",
+    uk: "📣 Готово: Banofbot знову може додати під підсумком голосування кнопку іншого бота того ж автора, не частіше разу на тиждень.",
+  },
+  promosAdminsOnly: {
+    en: "👮 Only group admins can change this.",
+    ru: "👮 Это могут менять только админы группы.",
+    uk: "👮 Це можуть змінювати лише адміни групи.",
+  },
+  promosError: {
+    en: "😥 Banofbot couldn't do that. Please try again later.",
+    ru: "😥 Banofbot не удалось это сделать. Попробуйте позже.",
+    uk: "😥 Banofbot не вдалося це зробити. Спробуйте пізніше.",
+  },
+  promosGroupOnly: {
+    en: "😅 This command only works in group chats.",
+    ru: "😅 Эта команда работает только в групповых чатах.",
+    uk: "😅 Ця команда працює лише в групових чатах.",
+  },
 };

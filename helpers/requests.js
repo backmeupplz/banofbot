@@ -12,6 +12,21 @@ const admins = require('./admins')
 const { Lock } = require('semaphore-async-await')
 const { isRuChat } = require('./isRuChat')
 const { isOver10000 } = require('./goldenBorodutchSubCount')
+const promo = require('./promoHook')
+const { keyboard } = require('./promo')
+
+// Group promos (promo.js, approvals.md 2026-11-06): the ids of the group
+// campaigns whose topics the reported message and the vote call touched, by
+// vote, until its result goes out (a button under the result). Only the
+// campaign ids, in memory; never the text. Lost on a restart: no button then.
+const voteTopics = new Map()
+const rememberTopics = (requestId, hits) => {
+  if (!hits.length) return
+  voteTopics.set(String(requestId), hits)
+  // the oldest go first: a vote nobody finishes mustn't hold memory forever
+  while (voteTopics.size > 5000)
+    voteTopics.delete(voteTopics.keys().next().value)
+}
 
 const promoAdditions = {
   ru: () =>
@@ -98,6 +113,14 @@ async function startRequest(bot, msg) {
   request.inline_chat_id = data.chat.id
   request.inline_message_id = data.message_id
   await request.save()
+
+  const reported = msg.reply_to_message
+  rememberTopics(
+    request._id,
+    promo.matches(
+      [reported.text, reported.caption, msg.text].filter(Boolean).join('\n')
+    )
+  )
 }
 
 /**
@@ -292,7 +315,47 @@ async function finishRequest(bot, request) {
     message_id: request.inline_message_id,
     disable_web_page_preview: true,
   }
-  return bot.editMessageText(text, options)
+  // a button for another bot by the same maker under the result, when the
+  // vote's messages matched a group campaign's topic (promo.js)
+  const hits = voteTopics.get(String(request._id))
+  voteTopics.delete(String(request._id))
+  const d = hits
+    ? await promo.group(
+        Number(request.chat.id),
+        request.chat.type,
+        request.chat.language,
+        hits
+      )
+    : null
+  const markup = keyboard(d && d.promo)
+  if (markup) options.reply_markup = JSON.stringify(markup)
+  let sent
+  try {
+    sent = await bot.editMessageText(text, options)
+  } catch (err) {
+    // Telegram may refuse the button itself (a 400 such as
+    // BUTTON_URL_INVALID): the result still goes out once more without it,
+    // and the group's cap isn't used up. Not after other errors (a timeout
+    // may have gone through)
+    const code =
+      err && err.response && err.response.body && err.response.body.error_code
+    if (!markup || code !== 400) {
+      promo.release(d)
+      throw err
+    }
+    // eslint-disable-next-line no-unused-vars
+    const { reply_markup, ...plain } = options
+    try {
+      sent = await bot.editMessageText(text, plain)
+    } catch (again) {
+      promo.release(d)
+      throw again
+    }
+    await promo.record(d, false)
+    return sent
+  }
+  await promo.record(d)
+  return sent
 }
 
 /**
@@ -360,4 +423,7 @@ function sendBanLimitError(bot, chat) {
 module.exports = {
   startRequest,
   voteQuery,
+  // for tests
+  finishRequest,
+  voteTopics,
 }

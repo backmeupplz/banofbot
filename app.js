@@ -26,6 +26,7 @@ const { pollWithHandover } = require('./helpers/handover')
 const promo = require('./helpers/promoHook')
 const { startPayload } = require('./helpers/promo')
 const { commandOf } = require('./helpers/command')
+const promos = require('./helpers/promos')
 
 global.Promise = require('bluebird')
 
@@ -148,6 +149,10 @@ function handle(msg) {
             if (!isPrivateChat) {
               votekickWord.check(bot, chat, msg.text)
             }
+          } else if (command === 'promos') {
+            promos.sendPromos(bot, msg, chat)
+          } else if (command === 'privacy') {
+            promos.sendPrivacy(bot, chat)
           }
         } else {
           admins
@@ -193,6 +198,16 @@ function handle(msg) {
                 if (!isPrivateChat) {
                   votekickWord.check(bot, chat, msg.text)
                 }
+              } else if (command === 'promos' || command === 'privacy') {
+                // anonymous admins (the group posting as itself) too, so
+                // they can turn promos off in a locked group
+                return promos.isGroupAdmin(bot, msg).then((groupAdmin) => {
+                  if (!groupAdmin)
+                    return deleteMessage(msg.chat.id, msg.message_id)
+                  if (command === 'promos')
+                    return promos.sendPromos(bot, msg, chat)
+                  return promos.sendPrivacy(bot, chat)
+                })
               }
             })
             .catch(/** todo: handle error */)
@@ -243,6 +258,13 @@ bot.processUpdate = (update) => {
     member.new_chat_member.status === 'kicked'
   )
     promo.blocked(member.from.id)
+  // removed from a group: the harm numbers of the group promos (promo.js)
+  if (
+    member &&
+    ['group', 'supergroup'].includes(member.chat.type) &&
+    ['left', 'kicked'].includes(member.new_chat_member.status)
+  )
+    promo.removed(member.chat.id)
   processUpdate(update)
 }
 // A zero-timeout getUpdates confirms every update fetched, so the next poller does not get them

@@ -23,7 +23,11 @@ async function sendHelp(bot, chat) {
       ? 'helpPrivate'
       : 'helpPublic'
 
-  const text = strings.translate(privateText, chat.language)
+  // what group promos do and how to turn them off (promos.js)
+  const text = `${strings.translate(
+    privateText,
+    chat.language
+  )}\n\n${strings.translate('promosHelp', chat.language)}`
   const options = {
     parse_mode: 'Markdown',
     disable_web_page_preview: true,
